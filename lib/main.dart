@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'widget/bottom_bar.dart';
+import 'screen/home.dart';
+import 'screen/search.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,16 +34,8 @@ class _MyAppState extends State<MyApp> {
                   child: Text('favorites'),
                 ),
               ),
-              Container(
-                child: Center(
-                  child: Text('search'),
-                ),
-              ),
-              Container(
-                child: Center(
-                  child: Text('home'),
-                ),
-              ),
+              search(),
+              home(),
               Container(
                 child: Center(
                   child: Text('mypage'),
