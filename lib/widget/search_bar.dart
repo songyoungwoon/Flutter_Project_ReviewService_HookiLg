@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import '../page/searchResult.dart';
 
 class searchBar extends StatefulWidget {
   const searchBar({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class _searchBarState extends State<searchBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       // This is handled by the search bar itself.
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -26,7 +27,7 @@ class _searchBarState extends State<searchBar> {
     final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return FloatingSearchBar(
-      hint: 'Search...',
+      hint: '리뷰나 결말해석이 궁금한 영화를 검색하세요.',
       scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
       transitionDuration: const Duration(milliseconds: 800),
       transitionCurve: Curves.easeInOut,
@@ -47,7 +48,12 @@ class _searchBarState extends State<searchBar> {
           showIfOpened: false,
           child: CircularButton(
             icon: const Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => searchResult()),
+              );
+            },
           ),
         ),
         FloatingSearchBarAction.searchToClear(
@@ -70,6 +76,7 @@ class _searchBarState extends State<searchBar> {
           ),
         );
       },
+
     );
   }
 

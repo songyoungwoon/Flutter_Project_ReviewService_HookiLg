@@ -14,10 +14,10 @@ class BottomBar extends StatelessWidget {
           tabs: [
             Tab(
               icon: Icon(
-                Icons.favorite,
+                Icons.home,
                 size: 18,
               ),
-              child:Text('Favorites'),
+              child:Text('Home'),
             ),
             Tab(
               icon: Icon(
@@ -28,10 +28,10 @@ class BottomBar extends StatelessWidget {
             ),
             Tab(
               icon: Icon(
-                Icons.home,
+                Icons.favorite,
                 size: 18,
               ),
-              child:Text('Home'),
+              child:Text('Favorites'),
             ),
             Tab(
               icon: Icon(

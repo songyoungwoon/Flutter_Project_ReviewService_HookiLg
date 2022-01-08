@@ -29,13 +29,13 @@ class _MyAppState extends State<MyApp> {
           body: TabBarView(
             physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
+              home(),
+              search(),
               Container(
                 child: Center(
                   child: Text('favorites'),
                 ),
               ),
-              search(),
-              home(),
               Container(
                 child: Center(
                   child: Text('mypage'),
