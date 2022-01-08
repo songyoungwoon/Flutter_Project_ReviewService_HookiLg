@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import '../page/searchResult.dart';
+import '../page/searchResult_page.dart';
 
 class searchBar extends StatefulWidget {
   const searchBar({Key? key}) : super(key: key);
@@ -10,17 +11,77 @@ class searchBar extends StatefulWidget {
 }
 
 class _searchBarState extends State<searchBar> {
+  final TextEditingController _filter = TextEditingController();
+  FocusNode focusNode = FocusNode();
+  String _searchText = "";
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        fit: StackFit.expand,
+    return Container(
+      // color: Colors.black,
+      padding: EdgeInsets.fromLTRB(10, 7, 10, 7),
+      child: Row(
         children: [
-          buildFloatingSearchBar(),
+          Expanded(
+            flex: 6,
+            child: TextField(
+              focusNode: focusNode,
+              style: TextStyle(
+                fontSize: 12,
+              ),
+              autofocus: true,
+              controller: _filter,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white12,
+                prefixIcon: focusNode.hasFocus
+                    ? TextButton(
+                        onPressed: () {
+                          setState(() {
+                            _filter.clear();
+                            _searchText = "";
+                            focusNode.unfocus();
+                          });
+                        },
+                        child: Text('취소'))
+                    : Icon(Icons.search, color: Colors.white60, size: 20),
+                suffixIcon: focusNode.hasFocus
+                    ? IconButton(
+                        icon:
+                            Icon(Icons.cancel, color: Colors.white60, size: 20),
+                        onPressed: () {
+                          setState(() {
+                            _filter.clear();
+                            _searchText = "";
+                          });
+                        },
+                      )
+                    : Container(),
+                hintText: '리뷰나 해석을 보고싶은 영화를 검색하세요.',
+                labelStyle: TextStyle(color: Colors.white),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+              ),
+            ),
+          ),
         ],
-      );
+      ),
+    );
 
 
-    /*
+
+    // ------------------------------------------------
+    /* open sorce search_bar  don't use
     return Scaffold(
       // This is handled by the search bar itself.
       // resizeToAvoidBottomInset: false,
@@ -33,8 +94,12 @@ class _searchBarState extends State<searchBar> {
     );
     */
   }
+
+  // --------------------------------------------------
+  /* open sorce search_bar  don't use
   Widget buildFloatingSearchBar() {
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
 
     return FloatingSearchBar(
       hint: '리뷰나 결말해석이 궁금한 영화를 검색하세요.',
@@ -86,29 +151,7 @@ class _searchBarState extends State<searchBar> {
           ),
         );
       },
-
     );
   }
-
-
-
-
-    /*
-    return Container(
-        child: Row(
-      children: [
-        Expanded(
-          child: Column(
-            children: [
-              Container(),
-
-              Container(),
-            ],
-          ),
-        ),
-      ],
-    ));
-
-   */
-
+  */
 }
