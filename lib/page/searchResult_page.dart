@@ -3,13 +3,19 @@ import '../main.dart';
 import '../widget/bottom_bar.dart';
 
 class searchResult extends StatefulWidget {
-  const searchResult({Key? key}) : super(key: key);
+  String searchText;
+
+  searchResult(this.searchText);
 
   @override
-  _searchResultState createState() => _searchResultState();
+  _searchResultState createState() => _searchResultState(searchText);
 }
 
 class _searchResultState extends State<searchResult> {
+  String searchText;
+
+  _searchResultState(this.searchText);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

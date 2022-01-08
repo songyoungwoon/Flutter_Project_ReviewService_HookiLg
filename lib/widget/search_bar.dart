@@ -25,6 +25,12 @@ class _searchBarState extends State<searchBar> {
           Expanded(
             flex: 6,
             child: TextField(
+              onSubmitted: (value){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => searchResult(value)),
+                );
+              },
               focusNode: focusNode,
               style: TextStyle(
                 fontSize: 12,
