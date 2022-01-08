@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import '../widget/bottom_bar.dart';
 
 class searchResult extends StatefulWidget {
   const searchResult({Key? key}) : super(key: key);
@@ -20,12 +21,8 @@ class _searchResultState extends State<searchResult> {
           },
         ),
         actions: [
-          Icon(Icons.file_upload),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.delete),
-          ),
-          IconButton(
+          Center(
+          child:IconButton(
             icon: Icon(Icons.home),
             onPressed: () {
               Navigator.push(
@@ -34,8 +31,9 @@ class _searchResultState extends State<searchResult> {
               );
             },
           ),
+          ),
         ],
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.black12,
       ),
       body: Container(
         padding: const EdgeInsets.all(15.0),

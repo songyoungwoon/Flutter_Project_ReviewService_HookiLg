@@ -12,6 +12,15 @@ class searchBar extends StatefulWidget {
 class _searchBarState extends State<searchBar> {
   @override
   Widget build(BuildContext context) {
+    return Stack(
+        fit: StackFit.expand,
+        children: [
+          buildFloatingSearchBar(),
+        ],
+      );
+
+
+    /*
     return Scaffold(
       // This is handled by the search bar itself.
       // resizeToAvoidBottomInset: false,
@@ -22,6 +31,7 @@ class _searchBarState extends State<searchBar> {
         ],
       ),
     );
+    */
   }
   Widget buildFloatingSearchBar() {
     final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
