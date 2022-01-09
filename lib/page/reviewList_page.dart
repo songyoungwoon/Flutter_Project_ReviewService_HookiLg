@@ -34,10 +34,18 @@ class _reviewListState extends State<reviewList> {
             ),
           ),
         ],
-        backgroundColor: Colors.black12,
+       //backgroundColor: Colors.grey,
       ),
       body: Container(),
-
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // 글쓰기 페이지 이동
+        },
+        label: const Text('리뷰작성', style: TextStyle(color: Colors.white),),
+        icon: const Icon(Icons.add, color: Colors.white,),
+        backgroundColor: Colors.grey,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

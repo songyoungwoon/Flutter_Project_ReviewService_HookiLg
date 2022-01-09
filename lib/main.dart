@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'widget/bottom_bar.dart';
 import 'screen/home.dart';
 import 'screen/search.dart';
+import 'screen/my_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,11 +37,7 @@ class _MyAppState extends State<MyApp> {
                   child: Text('favorites'),
                 ),
               ),
-              Container(
-                child: Center(
-                  child: Text('mypage'),
-                ),
-              ),
+              MyPage(),
             ],
           ),
           bottomNavigationBar: BottomBar(),
