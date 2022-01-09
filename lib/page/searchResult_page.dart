@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import '../main.dart';
-import '../widget/bottom_bar.dart';
+import 'package:http/http.dart' as http;
 
 class searchResult extends StatefulWidget {
   String searchText;
@@ -16,8 +18,29 @@ class _searchResultState extends State<searchResult> {
 
   _searchResultState(this.searchText);
 
+
+  String getJsonSearchText(String searchText) {
+    print(searchText);
+    String json = jsonEncode(searchText);
+    print(json);
+    return json;
+  }
+
+  Future fetch() async {
+    String json = getJsonSearchText(searchText);
+    print("https://openapi.naver.com/v1/search/movie.json?query=$json");
+    var res = await http
+        .get(
+        "https://openapi.naver.com/v1/search/movie.json?query=$json", headers: {
+      "X-Naver-Client-Id": "EAgJWlJ06zRLksT2nQKf",
+      "X-Naver-Client-Secret": "svAVfEmK82"
+    });
+    print(res.body);
+  }
+
   @override
   Widget build(BuildContext context) {
+    fetch();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -28,15 +51,15 @@ class _searchResultState extends State<searchResult> {
         ),
         actions: [
           Center(
-          child:IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyApp()),
-              );
-            },
-          ),
+            child: IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
+              },
+            ),
           ),
         ],
         backgroundColor: Colors.black12,
@@ -46,6 +69,7 @@ class _searchResultState extends State<searchResult> {
         child: Column(
           children: [
             Text('search result'),
+            Text(searchText),
           ],
         ),
       ),
