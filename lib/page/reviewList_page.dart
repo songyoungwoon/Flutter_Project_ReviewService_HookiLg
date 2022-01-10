@@ -39,7 +39,9 @@ class _reviewListState extends State<reviewList> {
             ),
           ),
         ],
-        //backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black54,
+        shadowColor: Colors.white24,
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('review').snapshots(),
@@ -52,22 +54,29 @@ class _reviewListState extends State<reviewList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text("loading"));
           }
-          return ListView.builder(
+          return
+            ListView.builder(
               itemCount: snapshot.data.docs.length,
               itemBuilder: (ctx, index) {
-                return ListTile(
-                  onTap: (){
+                return Card(
+                  elevation: 7,
+                  margin: EdgeInsets.symmetric(vertical: 13, horizontal:15 ),
+                  child:ListTile(
+                  onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => showReview(snapshot.data.docs[index]['title'], snapshot.data.docs[index]['content'])),
+                      MaterialPageRoute(
+                          builder: (context) => showReview(
+                              snapshot.data.docs[index]['title'],
+                              snapshot.data.docs[index]['content'])),
                     );
                   },
                   title: Text(snapshot.data.docs[index]['title']),
-                  subtitle: Text(snapshot.data.docs[index]['content']),
-                );
-              },
-            );
+                  subtitle: Text(snapshot.data.docs[index]['content'],),
 
+                ),);
+              },
+          );
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -77,11 +86,16 @@ class _reviewListState extends State<reviewList> {
             MaterialPageRoute(builder: (context) => writeReview()),
           );
         },
-        label: const Text('리뷰작성', style: TextStyle(color: Colors.white,fontSize: 15),
+        label: const Text(
+          '리뷰작성',
+          style: TextStyle(color: Colors.white, fontSize: 15),
         ),
-        icon: const Icon(Icons.create, color: Colors.white,),
+        icon: const Icon(
+          Icons.create,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.pink[200],
-  ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

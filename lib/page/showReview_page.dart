@@ -43,7 +43,9 @@ class _showReviewState extends State<showReview>{
               ),
             ),
           ],
-          backgroundColor: Colors.black12,
+       backgroundColor: Colors.white,
+       foregroundColor: Colors.black54,
+       shadowColor: Colors.white24,
         ),
      body:Container(
       child: Padding(

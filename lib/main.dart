@@ -26,9 +26,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'HookiLg',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.black,
-        accentColor: Colors.white,
+        brightness: Brightness.light,
+        primaryColor: Colors.white,
+        accentColor: Colors.black12,
       ),
       home: DefaultTabController(
         length: 4,
