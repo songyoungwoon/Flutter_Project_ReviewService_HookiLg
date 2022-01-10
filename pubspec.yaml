@@ -61,10 +61,7 @@ flutter:
   assets:
     - images/profile.jpg
     - images/loading.jpg
-<<<<<<< HEAD
-=======
     - images/noImage.png
->>>>>>> a6b3a9329453b9c47e9d11295ed0b90074d17bc4
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
