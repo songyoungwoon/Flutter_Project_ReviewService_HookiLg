@@ -11,6 +11,9 @@ class writeReview extends StatefulWidget {
   _writeReviewState createState() => _writeReviewState();
 }
 
+String title_text ='';
+String content_text='' ;
+
 class _writeReviewState extends State<writeReview>{
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class _writeReviewState extends State<writeReview>{
                        fontWeight: FontWeight.bold
                     )),
                     SizedBox(height: 10),
-                    wirteText(),
+                    wirteText(40,300),
                   ],
                 )
               ),
@@ -46,7 +49,7 @@ class _writeReviewState extends State<writeReview>{
                       // BuildContext context;
                        Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => showReview()),
+                        MaterialPageRoute(builder: (context) => showReview(title_text,'content')),
                         );
                       },
                       icon: Icon(Icons.add,size:15),
@@ -90,6 +93,9 @@ Widget titleSection(){
           decoration: InputDecoration(
             hintText: 'Title',
           ),
+          onChanged: (value){
+            title_text=value;
+          },
         )
       ],
     ),
