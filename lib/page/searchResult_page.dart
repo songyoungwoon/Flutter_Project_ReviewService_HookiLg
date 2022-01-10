@@ -11,7 +11,6 @@ class searchResult extends StatefulWidget {
   String searchText;
 
   // boolean
-
   searchResult(this.searchText);
 
   @override
