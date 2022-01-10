@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'reviewList_page.dart';
+
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_html/flutter_html.dart';
 
 class searchResult extends StatefulWidget {
   String searchText;
@@ -24,19 +27,12 @@ class _searchResultState extends State<searchResult> {
     String jsonText = jsonEncode(searchText);
     return jsonText;
   }
+
   bool get_urlIsNull(String url) {
     if (url == '') {
       return true;
     } else
       return false;
-  }
-  String removeBToslashB(String str){
-    print(str);
-    str.replaceAll('<b>', '');
-    str.replaceAll('</b>', '');
-    print(str);
-
-    return str;
   }
 
   Future fetch() async {
@@ -81,20 +77,32 @@ class _searchResultState extends State<searchResult> {
         body: FutureBuilder(
             future: fetch(),
             builder: (BuildContext context, AsyncSnapshot snap) {
-              if(!snap.hasData) return Center(child: CircularProgressIndicator());
+              if (!snap.hasData)
+                return Center(child: CircularProgressIndicator());
               List result = snap.data['items'];
               return ListView.builder(
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
                     return ListTile(
                       leading: get_urlIsNull(result[index]['image'])
-                              ? Text('no image')//Image.asset('images/loading.jpg')
-                              : FadeInImage.assetNetwork(
-                                  placeholder: 'images/loading.jpg',
-                                  image: result[index]['image'].toString()),
-                      title: Text(result[index]['title'].toString()),
-                      subtitle: Text(removeBToslashB(result[index]['subtitle']) + "dk"),
+                          ? Text('no image') //Image.asset('images/loading.jpg')
+                          : FadeInImage.assetNetwork(
+                              placeholder: 'images/loading.jpg',
+                              image: result[index]['image'].toString()),
+                      title: Container(
+                          margin: EdgeInsets.only(left: 5),
+                          child: Text(result[index]['title'].toString())),
+                      subtitle: //result[index]['subtitle']
+                          Html(
+                        data: result[index]['subtitle'],
+                      ),
                       trailing: Icon(Icons.favorite),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => reviewList()),
+                        );
+                      },
                     );
                   });
             })
