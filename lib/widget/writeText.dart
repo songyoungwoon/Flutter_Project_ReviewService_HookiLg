@@ -5,9 +5,10 @@ class wirteText extends StatefulWidget {
   @override
   _wirteTextState createState() => _wirteTextState();
 }
-final TextEditingController _contentEditingController = TextEditingController();
-String content='';
 class _wirteTextState extends State<wirteText>{
+  final TextEditingController _contentEditingController = TextEditingController();
+  String content='';
+
   @override
   Widget build(BuildContext context) {
     return Container(

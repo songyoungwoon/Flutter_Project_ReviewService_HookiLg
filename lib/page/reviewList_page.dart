@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'writeReview_page.dart';
+import 'writeReview_page_test.dart';
 import '../main.dart';
 
 class reviewList extends StatefulWidget {
@@ -35,21 +38,74 @@ class _reviewListState extends State<reviewList> {
             ),
           ),
         ],
-       //backgroundColor: Colors.grey,
+        //backgroundColor: Colors.grey,
       ),
-      body: Container(),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('review').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("firebase load fail"),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: Text("loading"));
+          }
+          return ListView.builder(
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (ctx, index) {
+                return ListTile(
+                  title: Text(snapshot.data.docs[index]['title']),
+                  subtitle: Text(snapshot.data.docs[index]['content']),
+                );
+              },
+            );
+
+        },
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => writeReview()),
+            MaterialPageRoute(builder: (context) => writeReviewTest()),
           );
         },
-        label: const Text('리뷰작성', style: TextStyle(color: Colors.white),),
-        icon: const Icon(Icons.add, color: Colors.white,),
+        label: const Text(
+          '리뷰작성',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.grey,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+}
+
+void createdata(String code, String name, String status) {
+  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
+  usercol.set({
+    "name": "$name",
+    "status": "$status",
+  });
+}
+
+void readdata(String code) {
+  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
+  usercol.get().then((value) => {print(value.data())});
+}
+
+void updatedata(String code, String status) {
+  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
+  usercol.update({
+    "status": "$status",
+  });
+}
+
+void deleteData() {
+  final usercol = FirebaseFirestore.instance.collection("review").doc();
+  usercol.delete();
 }
