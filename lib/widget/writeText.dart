@@ -9,9 +9,9 @@ class wirteText extends StatefulWidget {
   @override
   _wirteTextState createState() => _wirteTextState(maxline, fieldHeight);
 }
-final TextEditingController _contentEditingController = TextEditingController();
-String content='';
 class _wirteTextState extends State<wirteText>{
+  final TextEditingController _contentEditingController = TextEditingController();
+  String content='';
   int maxline=0;
   double fieldHeight=0;
   _wirteTextState(this.maxline,this.fieldHeight);
