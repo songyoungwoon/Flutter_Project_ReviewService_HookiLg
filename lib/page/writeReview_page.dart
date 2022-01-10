@@ -74,10 +74,7 @@ class _writeReviewState extends State<writeReview>{
                       onPressed: (){
                       // BuildContext context;
                        createdata(title_text, content_text);
-                       Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => reviewList()),
-                        );
+                       Navigator.pop(context);
                       },
                       icon: Icon(Icons.add,size:15),
                       label: Text("저장",
