@@ -32,7 +32,7 @@ class _writeReviewState extends State<writeReview>{
                        fontWeight: FontWeight.bold
                     )),
                     SizedBox(height: 10),
-                    wirteText(70,300),
+                    wirteText(),
                   ],
                 )
               ),

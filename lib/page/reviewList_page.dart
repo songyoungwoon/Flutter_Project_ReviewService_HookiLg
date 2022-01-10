@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'writeReview_page.dart';
 import '../main.dart';
 
 class reviewList extends StatefulWidget {
@@ -39,7 +40,10 @@ class _reviewListState extends State<reviewList> {
       body: Container(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          // 글쓰기 페이지 이동
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => writeReview()),
+          );
         },
         label: const Text('리뷰작성', style: TextStyle(color: Colors.white),),
         icon: const Icon(Icons.add, color: Colors.white,),
