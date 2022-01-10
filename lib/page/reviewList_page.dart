@@ -45,9 +45,10 @@ class _reviewListState extends State<reviewList> {
             MaterialPageRoute(builder: (context) => writeReview()),
           );
         },
-        label: const Text('리뷰작성', style: TextStyle(color: Colors.white),),
-        icon: const Icon(Icons.add, color: Colors.white,),
-        backgroundColor: Colors.grey,
+        label: const Text('리뷰작성', style: TextStyle(color: Colors.white,fontSize: 15),
+        ),
+        icon: const Icon(Icons.create, color: Colors.white,),
+        backgroundColor: Colors.pink[200],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

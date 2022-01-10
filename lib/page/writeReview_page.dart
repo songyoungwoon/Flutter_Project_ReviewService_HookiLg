@@ -18,9 +18,32 @@ class _writeReviewState extends State<writeReview>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Text("후기 작성"),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          actions: [
+            Center(
+              child: IconButton(
+                icon: Icon(Icons.home),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp()),
+                  );
+                },
+              ),
+            ),
+          ],
+          backgroundColor: Colors.black12,
+        ),
       body:Container(
         child:Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 60),
+          padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 30),
           child: Column(
             children: [
               Container(
@@ -35,7 +58,7 @@ class _writeReviewState extends State<writeReview>{
                        fontWeight: FontWeight.bold
                     )),
                     SizedBox(height: 10),
-                    wirteText(40,300),
+                    wirteText(40,250),
                   ],
                 )
               ),
@@ -80,7 +103,7 @@ Widget titleSection(){
       children: [
         Text("제목",
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             // color: Colors.pinkAccent
           ),
