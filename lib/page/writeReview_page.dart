@@ -63,7 +63,7 @@ class _writeReviewState extends State<writeReview>{
                        fontWeight: FontWeight.bold
                     )),
                     SizedBox(height: 10),
-                    wirteText(40,250),
+                    wirteText(40,250,'writeReview'),
                   ],
                 )
               ),
@@ -135,30 +135,3 @@ void createdata(String title_text, String content_text) {
     "content": "$content_text",
   });
 }
-
-// Widget saveBtSection(){
-//   return Container(
-//     child: Row(
-//       children: [
-//         Expanded(child: SizedBox(height: 20)),
-//         ElevatedButton.icon(
-//           onPressed: (){
-//             // BuildContext context;
-//             Navigator.push(
-//                   context,
-//                   MaterialPageRoute(builder: (context) => writeReview()),
-//                 );
-//           },
-//           icon: Icon(Icons.add,size:15),
-//           label: Text("저장",
-//           style: TextStyle(fontWeight: FontWeight.bold),),
-//           style: ElevatedButton.styleFrom(
-//             primary: Colors.pink[200]
-//           ),
-//         )
-//       ]
-//     ),
-//   );
-
-// }
-// // 저장버튼 => SRV 페이지 이동
