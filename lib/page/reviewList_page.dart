@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 import 'writeReview_page.dart';
 import 'writeReview_page_test.dart';
@@ -55,6 +56,12 @@ class _reviewListState extends State<reviewList> {
               itemCount: snapshot.data.docs.length,
               itemBuilder: (ctx, index) {
                 return ListTile(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => showReview(snapshot.data.docs[index]['title'], snapshot.data.docs[index]['content'])),
+                    );
+                  },
                   title: Text(snapshot.data.docs[index]['title']),
                   subtitle: Text(snapshot.data.docs[index]['content']),
                 );
