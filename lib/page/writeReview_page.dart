@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'reviewList_page.dart';
 import '../main.dart';
 import '../widget/writeText.dart';
-import '../page/showReview_page.dart';
 
 
 class writeReview extends StatefulWidget {
@@ -12,7 +15,7 @@ class writeReview extends StatefulWidget {
 }
 
 String title_text ='';
-String content_text='' ;
+String content_text='';
 
 class _writeReviewState extends State<writeReview>{
   @override
@@ -70,9 +73,10 @@ class _writeReviewState extends State<writeReview>{
                     ElevatedButton.icon(
                       onPressed: (){
                       // BuildContext context;
+                       createdata(title_text, content_text);
                        Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => showReview(title_text,'content')),
+                        MaterialPageRoute(builder: (context) => reviewList()),
                         );
                       },
                       icon: Icon(Icons.add,size:15),
@@ -123,9 +127,15 @@ Widget titleSection(){
       ],
     ),
   );
-
 }
 
+void createdata(String title_text, String content_text) {
+  final usercol = FirebaseFirestore.instance.collection("review").doc();
+  usercol.set({
+    "title": "$title_text",
+    "content": "$content_text",
+  });
+}
 
 // Widget saveBtSection(){
 //   return Container(

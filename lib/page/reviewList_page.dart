@@ -67,7 +67,7 @@ class _reviewListState extends State<reviewList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => writeReviewTest()),
+            MaterialPageRoute(builder: (context) => writeReview()),
           );
         },
         label: const Text('리뷰작성', style: TextStyle(color: Colors.white,fontSize: 15),
