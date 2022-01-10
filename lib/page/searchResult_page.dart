@@ -85,7 +85,7 @@ class _searchResultState extends State<searchResult> {
                   itemBuilder: (context, int index) {
                     return ListTile(
                       leading: get_urlIsNull(result[index]['image'])
-                          ? Text('no image') //Image.asset('images/loading.jpg')
+                          ? Image.asset('images/noImage.png') //Image.asset('images/loading.jpg')
                           : FadeInImage.assetNetwork(
                               placeholder: 'images/loading.jpg',
                               image: result[index]['image'].toString()),
