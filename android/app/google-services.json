@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "320253771631",
+    "project_id": "reviewservicehookilg",
+    "storage_bucket": "reviewservicehookilg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320253771631:android:6cbd7f020baa5d2170f29a",
+        "android_client_info": {
+          "package_name": "com.example.fp_review_service_hookilg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320253771631-hajgpomrt7m9t913t2vh562dnv8ln6a9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fp_review_service_hookilg",
+            "certificate_hash": "0d8b41d380cc71f0411b3f73422b62a77237a33b"
+          }
+        },
+        {
+          "client_id": "320253771631-jmaoencfttq2o7f4edk7aohj7dm77bav.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjjR3HfJDG-ZvGhYHqeNqCLPYRpKLln60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320253771631-jmaoencfttq2o7f4edk7aohj7dm77bav.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
