@@ -98,11 +98,12 @@ class _writeReviewTestState extends State<writeReviewTest>{
                         Expanded(child: SizedBox(height: 20)),
                         ElevatedButton.icon(
                           onPressed: (){
-                            // BuildContext context;
+                           /* // BuildContext context;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => showReview()),
                             );
+                            */
                           },
                           icon: Icon(Icons.add,size:15),
                           label: Text("저장",

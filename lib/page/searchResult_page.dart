@@ -53,7 +53,7 @@ class _searchResultState extends State<searchResult> {
         appBar: AppBar(
           title: Text(searchText + " " + "검색결과"),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios,),
             onPressed: () {
               Navigator.pop(context);
             },
