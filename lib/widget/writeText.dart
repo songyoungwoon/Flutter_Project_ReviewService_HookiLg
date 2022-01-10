@@ -10,14 +10,11 @@ class wirteText extends StatefulWidget {
   _wirteTextState createState() => _wirteTextState(maxline, fieldHeight);
 }
 class _wirteTextState extends State<wirteText>{
-<<<<<<< HEAD
   final TextEditingController _contentEditingController = TextEditingController();
   String content='';
-=======
   int maxline=0;
   double fieldHeight=0;
   _wirteTextState(this.maxline,this.fieldHeight);
->>>>>>> 7b5afa548a8ce6980905273967d329a015d20b7d
 
   @override
   Widget build(BuildContext context) {
