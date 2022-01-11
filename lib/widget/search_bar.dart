@@ -17,7 +17,6 @@ class _searchBarState extends State<searchBar> {
   bool isFocusNodeTrue = false;
   String _searchText = "";
   bool isFocusOn = false;
-      FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +56,7 @@ class _searchBarState extends State<searchBar> {
                             _searchText = "";
                             //focusNode.unfocus();
                           });
-                        },
-                        child: Text('취소'))
+                        },)
                     : Icon(Icons.search, color: Colors.pink[300], size: 20),
 
                 suffixIcon: focusNode.hasFocus
