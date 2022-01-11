@@ -29,12 +29,18 @@ class _HomeState extends State<Home> {
               Icons.auto_stories,
               size: 40,
             ),
-            color: Colors.grey[600],
+            color: Colors.pink[200],
           ),
           searchBar(),
-          Padding(padding: EdgeInsets.only(top: 20),),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+          ),
           CarouselSlider(
-            options: CarouselOptions(height: 220.0),
+            options: CarouselOptions(
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                height: 220.0),
             items: [1, 2, 3, 4, 5].map((i) {
               return Builder(
                 builder: (BuildContext context) {
@@ -56,7 +62,24 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(' 이달의 베스트 리뷰어', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.person,
+                      color: Colors.amber[600],
+                    ),
+                    Text(
+                      ' 이달의 베스트 리뷰어',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
                 Container(
                   color: Colors.pink[200],
                   height: 150,
@@ -66,21 +89,23 @@ class _HomeState extends State<Home> {
                     itemCount: 10,
                     itemBuilder: (context, int index) {
                       return InkWell(
-                        child:Container(
+                        child: Container(
                           padding: EdgeInsets.all(20),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundImage: AssetImage('images/profile.jpg', ),
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: CircleAvatar(
+                                  radius: 30,
+                                  backgroundImage: AssetImage(
+                                    'images/profile.jpg',
+                                  ),
+                                ),
                               ),
-                            ),
-                            Text((index+1).toString() + '위'),
-                          ],
+                              Text((index + 1).toString() + '위'),
+                            ],
+                          ),
                         ),
-                      ),
                       );
                     },
                   ),
@@ -93,7 +118,24 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(' 이달의 베스트 리뷰', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.article,
+                      color: Colors.amber[600],
+                    ),
+                    Text(
+                      ' 이달의 베스트 리뷰',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
                 Padding(padding: EdgeInsets.only(top: 5)),
                 CarouselSlider(
                   options: CarouselOptions(height: 220.0),
@@ -115,10 +157,8 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-
         ]),
       ),
-
     );
   }
 }

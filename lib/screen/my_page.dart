@@ -39,9 +39,31 @@ class MyPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('mbti'),
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.sell_sharp, color: Colors.amber[600],
+                              size: 14,),
+                              SizedBox(width: 2,),
+                              Text('mbti',style: TextStyle(
+                                color: Colors.amber[700]
+                              ),),
+                            ],
+                          ),
+                        ],
+                      ),
                       SizedBox(width: 20,),
-                      Text('age'),
+
+                      Row(
+                        children: [
+                          Icon(Icons.person_sharp, color: Colors.amber[600],
+                          size: 14,),
+                          SizedBox(width: 2,),
+                          Text('age',style: TextStyle(
+                                color: Colors.amber[700])),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -52,7 +74,7 @@ class MyPage extends StatelessWidget {
               child: FlatButton(
                 onPressed: () {},
                 child: Container(
-                  color: Colors.black12,
+                  color: Colors.pink[200],
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -80,7 +102,7 @@ class MyPage extends StatelessWidget {
               child: FlatButton(
                 onPressed: () {},
                 child: Container(
-                  color: Colors.black12,
+                  color: Colors.pink[200],
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
