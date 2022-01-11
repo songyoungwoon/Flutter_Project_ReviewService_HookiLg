@@ -91,7 +91,6 @@ class _searchResultState extends State<searchResult> {
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
                     return Container(
-                      height: 130,
                       child: Card(
                         elevation: 6,
                         margin:
@@ -111,7 +110,7 @@ class _searchResultState extends State<searchResult> {
                                     child: get_urlIsNull(result[index]['image'])
                                         ? Image.asset(
                                             'images/noImage.png',
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.cover, scale: 20,
                                           )
                                         : FadeInImage.assetNetwork(
                                             placeholder: 'images/loading.jpg',
