@@ -4,7 +4,7 @@ import '../main.dart';
 import '../page/reviewList_page.dart';
 import '../screen/home.dart';
 import '../screen/fristhome.dart';
-
+import '../widget/writeText.dart';
 class showReview extends StatefulWidget {
   String review_title ='';
   String review_contents ='';
@@ -18,6 +18,9 @@ class showReview extends StatefulWidget {
 class _showReviewState extends State<showReview>{
   String _review_title='';
   String _review_contents='';
+
+  List <String>dropdownList=['modify','delete'];
+  String selectedValue ='modify';
 
   _showReviewState(this._review_title,this._review_contents);
 
@@ -56,23 +59,33 @@ class _showReviewState extends State<showReview>{
         ),
      body:
      SingleChildScrollView(
-     
+
      child: Container(
       child: Padding(
         padding: EdgeInsets.symmetric(vertical:30, horizontal: 30),
         child: Column(
           children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-              
+
               Icon(Icons.turned_in_not_sharp, color: Colors.pinkAccent,),
               SizedBox(width: 5),
               Text(_review_title,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold
-              ))
+              )),
+              Expanded(child: SizedBox(height: 10),),
+
+              IconButton(onPressed: (){
+
+              }, icon: Icon(Icons.upgrade,color: Colors.pinkAccent,)),
+              IconButton(onPressed: (){
+
+              }, icon: Icon(Icons.delete,color: Colors.pinkAccent,))
+
+
             ]),
             SizedBox(height: 10),
             Column(
@@ -85,10 +98,15 @@ class _showReviewState extends State<showReview>{
                     child: Text(_review_contents),)
                 ),
             ]),
-                
+
             SizedBox(height: 5),
-            Row(children: [
-              Expanded(child: SizedBox(height: 5)),
+            Divider(color: Colors.pink,thickness: 2,),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+              SizedBox(width:5),
+              Icon(Icons.question_answer, color: Colors.pink[300],),
+              Expanded(child: SizedBox(height: 7)),
               ElevatedButton.icon(
                style: ElevatedButton.styleFrom(
                         primary: Colors.pink[200]
@@ -101,16 +119,21 @@ class _showReviewState extends State<showReview>{
               }, icon: Icon(Icons.list,
               ),
                label: Text('목록',
-               style: TextStyle(fontSize: 15))
-               )
-            ],)
+               style: TextStyle(fontSize: 14))
+               ),
+              SizedBox(width:5),
+
+            ],
+            ),
+            SizedBox(height: 5),
+            
+            wirteText(2,60,'writeReply')
+            
+
           ]),
         )
     )
    )
    );
   }
-
-  
-
 }
