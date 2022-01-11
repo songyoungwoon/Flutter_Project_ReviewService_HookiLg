@@ -1,10 +1,12 @@
-import '../page/writeReview_page.dart';
+// import '../page/writeReview_page.dart';
 import 'package:flutter/material.dart';
-import '../main.dart';
+// import '../main.dart';
 import '../page/reviewList_page.dart';
-import '../screen/home.dart';
+// import '../screen/home.dart';
 import '../screen/fristhome.dart';
 import '../widget/writeText.dart';
+
+
 class showReview extends StatefulWidget {
   String review_title ='';
   String review_contents ='';
@@ -14,6 +16,9 @@ class showReview extends StatefulWidget {
   @override
   _showReviewState createState() => _showReviewState(review_title, review_contents);
 }
+
+
+String replyString='';
 
 class _showReviewState extends State<showReview>{
   String _review_title='';

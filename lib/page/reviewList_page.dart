@@ -47,7 +47,9 @@ class _reviewListState extends State<reviewList> {
             ),
           ),
         ],
-        backgroundColor: Colors.white,
+                   
+      
+        backgroundColor: Colors.pink,
         foregroundColor: Colors.black54,
         shadowColor: Colors.white24,
       ),
