@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../page/writeReview_page.dart';
+import '../page/showReview_page.dart';
 
 class wirteText extends StatefulWidget {
   int maxline=0;
@@ -35,7 +36,14 @@ class _wirteTextState extends State<wirteText>{
         setState(() {
           switch(_returnPage){
             case 'writeReview':
-            content_text=value;
+              content_text=value;
+              break;
+            case 'writeReply':
+              replyString=value;
+              break;
+
+
+          
 
           }
         });
