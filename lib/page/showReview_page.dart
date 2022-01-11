@@ -1,41 +1,44 @@
 import 'package:flutter/material.dart';
+
 import '../widget/writeText.dart';
 
-
 class showReview extends StatefulWidget {
-  String review_title ='';
-  String review_contents ='';
+  String review_title = '';
+  String review_contents = '';
 
-  showReview(this.review_title,this.review_contents);
+  showReview(this.review_title, this.review_contents);
 
   @override
-  _showReviewState createState() => _showReviewState(review_title, review_contents);
+  _showReviewState createState() =>
+      _showReviewState(review_title, review_contents);
 }
 
+String replyString = '';
 
-String replyString='';
+class _showReviewState extends State<showReview> {
+  String _review_title = '';
+  String _review_contents = '';
 
-class _showReviewState extends State<showReview>{
-  String _review_title='';
-  String _review_contents='';
+  List<String> dropdownList = ['modify', 'delete'];
+  String selectedValue = 'modify';
 
-  List <String>dropdownList=['modify','delete'];
-  String selectedValue ='modify';
-
-  _showReviewState(this._review_title,this._review_contents);
+  _showReviewState(this._review_title, this._review_contents);
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-     appBar: AppBar(
-          title: Text("Review",style: TextStyle(
-            color: Colors.grey[800],
-            fontWeight: FontWeight.bold,
-            fontSize: 25
-          ),),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Review",
+            style: TextStyle(
+                color: Colors.grey[800],
+                fontWeight: FontWeight.bold,
+                fontSize: 25),
+          ),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios,
+        icon: const Icon(Icons.arrow_back_ios,
             color: Color(0xFFF06292),),
+
             onPressed: () {
               Navigator.pop(context);
             },
@@ -73,12 +76,11 @@ class _showReviewState extends State<showReview>{
               }, icon: Icon(Icons.delete,color: Colors.pink[300],))
 
 
+
             ]),
             SizedBox(height: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                  Container(
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
                   width: 350,
                   child: Padding(
                     padding: EdgeInsets.all(10),
@@ -86,12 +88,13 @@ class _showReviewState extends State<showReview>{
                     style: TextStyle(fontSize: 15 )
                     ),)
                 ),
-            ]),
 
+            ]),
             SizedBox(height: 5),
             Divider(color: Colors.amber[600],thickness: 2,),
             
             SizedBox(height: 10),
+
 
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -106,10 +109,8 @@ class _showReviewState extends State<showReview>{
             )
             
 
+
           ]),
-        )
-    )
-   )
-   );
+        ))));
   }
 }

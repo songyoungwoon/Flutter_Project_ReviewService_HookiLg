@@ -20,7 +20,6 @@ class _searchBarState extends State<searchBar> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       // color: Colors.black,
       padding: EdgeInsets.fromLTRB(10, 10, 10, 7),
@@ -46,16 +45,17 @@ class _searchBarState extends State<searchBar> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.blueAccent[99],
-                prefixIcon: focusNode.hasFocus
+                prefixIcon:
+                focusNode.hasFocus
                     ? TextButton(
-                        child: Text('취소'),
-                        onPressed: () {
-                          setState(() {
-                            _filter.clear();
-                            _searchText = "";
-                            //focusNode.unfocus();
-                          });
-                        },)
+                  child:Text('취소'),
+                  onPressed: () {
+                    setState(() {
+                      _filter.clear();
+                      _searchText = "";
+                      focusNode.unfocus();
+                    });
+                  },)
                     : Icon(Icons.search, color: Colors.pink[300], size: 20),
 
                 suffixIcon: focusNode.hasFocus
