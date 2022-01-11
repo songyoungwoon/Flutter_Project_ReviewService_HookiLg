@@ -50,7 +50,6 @@ class _searchBarState extends State<searchBar> {
                     ? TextButton(
                         child: Text('취소'),
                         onPressed: () {
-                          
                           setState(() {
                             _filter.clear();
                             _searchText = "";
