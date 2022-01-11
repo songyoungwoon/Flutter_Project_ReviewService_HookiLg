@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fp_review_service_hookilg/components/rounded_button.dart';
+import 'package:fp_review_service_hookilg/components/without_login.dart';
 import 'package:fp_review_service_hookilg/screen/Login/login_screen.dart';
 import 'package:fp_review_service_hookilg/screen/Signup/signup_screen.dart';
+import 'package:fp_review_service_hookilg/screen/fristhome.dart';
 
 import '../../../constants.dart';
 
@@ -50,6 +52,19 @@ class Body extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) {
                       return SignUpScreen();
+                    },
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: size.height * 0.0001),
+            WithoutLogin(
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FirstHome();
                     },
                   ),
                 );

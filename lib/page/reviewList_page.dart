@@ -1,10 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 import 'writeReview_page.dart';
-import 'writeReview_page_test.dart';
 import '../main.dart';
 
 class reviewList extends StatefulWidget {
@@ -39,7 +38,9 @@ class _reviewListState extends State<reviewList> {
             ),
           ),
         ],
-        backgroundColor: Colors.white,
+                   
+      
+        backgroundColor: Colors.pink,
         foregroundColor: Colors.black54,
         shadowColor: Colors.white24,
       ),
@@ -54,6 +55,7 @@ class _reviewListState extends State<reviewList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text("loading"));
           }
+
           return
             ListView.builder(
               itemCount: snapshot.data.docs.length,
@@ -61,20 +63,37 @@ class _reviewListState extends State<reviewList> {
                 return Card(
                   elevation: 7,
                   margin: EdgeInsets.symmetric(vertical: 13, horizontal:15 ),
-                  child:ListTile(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => showReview(
-                              snapshot.data.docs[index]['title'],
-                              snapshot.data.docs[index]['content'])),
-                    );
-                  },
-                  title: Text(snapshot.data.docs[index]['title']),
-                  subtitle: Text(snapshot.data.docs[index]['content'],),
+                  child:Container(
+                    // height: 80,
+                    child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => showReview(
+                                snapshot.data.docs[index]['title'],
+                                snapshot.data.docs[index]['content'])),
+                      );
+                    },
+                    leading: Container(child: Icon(Icons.circle),),
+                    title: Text(snapshot.data.docs[index]['title']),
+                    // subtitle: Text(snapshot.data.docs[index]['content']),
+                    trailing: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.favorite, color: Colors.pink[300],),
+                          Text("N", style: TextStyle(
+                            color: Colors.pink[300],
+                            fontSize: 10
+                          ),)                           
+                        ],),
+                    ),
+                              
 
-                ),);
+                ),
+                  ),);
               },
           );
         },
@@ -97,7 +116,6 @@ class _reviewListState extends State<reviewList> {
         backgroundColor: Colors.pink[200],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    
     );
   }
 }
