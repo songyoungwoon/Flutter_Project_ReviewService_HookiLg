@@ -37,7 +37,7 @@ class _searchBarState extends State<searchBar> {
               style: TextStyle(
                 fontSize: 12,
               ),
-              autofocus: true,
+              autofocus: false,
               controller: _filter,
               decoration: InputDecoration(
                 filled: true,
