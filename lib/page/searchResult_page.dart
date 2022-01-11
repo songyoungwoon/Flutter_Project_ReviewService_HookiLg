@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'reviewList_page.dart';
 
 import 'package:flutter/material.dart';
-import '../main.dart';
+// import '../main.dart';
+import '../screen/home.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_html/flutter_html.dart';
 
@@ -65,7 +66,7 @@ class _searchResultState extends State<searchResult> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
+                    MaterialPageRoute(builder: (context) => Home()),
                   );
                 },
               ),
