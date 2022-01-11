@@ -90,35 +90,39 @@ class _searchResultState extends State<searchResult> {
               return ListView.builder(
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
-                    return Card(
+                    return Container(
+                      height: 110,
+                      child:Card(
                       elevation: 6,
                       margin:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       child: ListTile(
-                        leading: ClipRRect(
+                        leading:Container(
+                        child:ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: get_urlIsNull(result[index]['image'])
                               ? Image.asset(
                                   'images/noImage.png',
                                   fit: BoxFit.cover,
+                                  /*
                                   width: 55,
-                                  height: 100,
+                                  height: 100,*/
                                 ) //Image.asset('images/loading.jpg')
                               : FadeInImage.assetNetwork(
                                   placeholder: 'images/loading.jpg',
                                   image: result[index]['image'].toString(),
                                   fit: BoxFit.cover,
+                                  /*
                                   width: 55,
-                                  height: 100,
+                                  height: 100,*/
                                 ),
+                        ),
                         ),
                         trailing: Icon(Icons.arrow_forward_ios_rounded, size: 18,),
                         title: Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: Text(
-                              result[index]['title'].toString(),
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )),
+                            child: Html(
+                              data: '<b>'+result[index]['title'].toString()+'</b>')
+                        ),
                         subtitle: Html(
                           data: result[index]['subtitle'],
                         ),
@@ -130,7 +134,7 @@ class _searchResultState extends State<searchResult> {
                           );
                         },
                       ),
-                    );
+                    ),);
                   });
             })
 

@@ -20,7 +20,6 @@ class _searchBarState extends State<searchBar> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       // color: Colors.black,
       padding: EdgeInsets.fromLTRB(10, 10, 10, 7),

@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
                 autoPlayInterval: Duration(seconds: 3),
                 autoPlayAnimationDuration: Duration(milliseconds: 800),
                 height: 220.0),
-            items: [1, 2, 3, 4, 5].map((i) {
+            items: [1, 2, 3].map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
@@ -138,7 +138,11 @@ class _HomeState extends State<Home> {
                 ),
                 Padding(padding: EdgeInsets.only(top: 5)),
                 CarouselSlider(
-                  options: CarouselOptions(height: 220.0),
+                  options: CarouselOptions(
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 5),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      height: 220.0),
                   items: [1, 2, 3, 4, 5].map((i) {
                     return Builder(
                       builder: (BuildContext context) {
@@ -154,6 +158,7 @@ class _HomeState extends State<Home> {
                     );
                   }).toList(),
                 ),
+                Padding(padding: EdgeInsets.all(10)),
               ],
             ),
           ),
