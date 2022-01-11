@@ -57,6 +57,7 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(' 이달의 베스트 리뷰어', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                Padding(padding: EdgeInsets.only(top: 5)),
                 Container(
                   color: Colors.pink[200],
                   height: 150,
