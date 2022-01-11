@@ -91,12 +91,56 @@ class _searchResultState extends State<searchResult> {
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
                     return Container(
-                      height: 110,
-                      child:Card(
-                      elevation: 6,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      child: ListTile(
+                      height: 130,
+                      child: Card(
+                        elevation: 6,
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => reviewList.reviewListInfo(result[index]['title'],result[index]['director'],)),
+                            );
+                          },
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Container(
+                                    child: get_urlIsNull(result[index]['image'])
+                                        ? Image.asset(
+                                            'images/noImage.png',
+                                            fit: BoxFit.cover,
+                                          )
+                                        : FadeInImage.assetNetwork(
+                                            placeholder: 'images/loading.jpg',
+                                            image: result[index]['image']
+                                                .toString(),
+                                            fit: BoxFit.cover,
+                                          )),
+                                Container(
+                                  width: 200,
+                                  child: Column(
+                                    children: [
+                                      Html(
+                                          data: '<b>' +
+                                              result[index]['title']
+                                                  .toString() +
+                                              '</b>'),
+                                      Html(
+                                        data: result[index]['subtitle'],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        /*
+                      ListTile(
                         leading:Container(
                         child:ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
@@ -123,9 +167,8 @@ class _searchResultState extends State<searchResult> {
                             child: Html(
                               data: '<b>'+result[index]['title'].toString()+'</b>')
                         ),
-                        subtitle: Html(
-                          data: result[index]['subtitle'],
-                        ),
+
+                        subtitle: Html(  data: result[index]['subtitle'],),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -134,9 +177,13 @@ class _searchResultState extends State<searchResult> {
                           );
                         },
                       ),
-                    ),);
+                          */
+
+                      ),
+                    );
                   });
-            })
+            }
+            )
 
         /*
       body: Container(
