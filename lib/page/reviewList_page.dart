@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 import 'writeReview_page.dart';
-import 'writeReview_page_test.dart';
 import '../main.dart';
 
 class reviewList extends StatefulWidget {
@@ -54,6 +53,7 @@ class _reviewListState extends State<reviewList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text("loading"));
           }
+
           return
             ListView.builder(
               itemCount: snapshot.data.docs.length,
@@ -71,8 +71,21 @@ class _reviewListState extends State<reviewList> {
                               snapshot.data.docs[index]['content'])),
                     );
                   },
+                  
                   title: Text(snapshot.data.docs[index]['title']),
-                  subtitle: Text(snapshot.data.docs[index]['content'],),
+                  subtitle: Text(snapshot.data.docs[index]['content']),
+                  trailing: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.favorite, color: Colors.pink[300],),
+                        Text("N", style: TextStyle(
+                          color: Colors.pink[300],
+                          fontSize: 12
+                        ),)                           
+                      ],),
+                  ),
+                            
 
                 ),);
               },
@@ -97,7 +110,6 @@ class _reviewListState extends State<reviewList> {
         backgroundColor: Colors.pink[200],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    
     );
   }
 }
