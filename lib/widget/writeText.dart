@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
+import '../page/writeReview_page.dart';
 
 class wirteText extends StatefulWidget {
-  wirteText({Key? key}) : super(key: key);
+  int maxline=0;
+  double fieldHeight=0;
+  String returnPage ='';
+  
+  wirteText(this.maxline, this.fieldHeight, this.returnPage);
+
   @override
-  _wirteTextState createState() => _wirteTextState();
+  _wirteTextState createState() => _wirteTextState(maxline, fieldHeight, returnPage);
 }
-final TextEditingController _contentEditingController = TextEditingController();
-String content='';
 class _wirteTextState extends State<wirteText>{
+  final TextEditingController _contentEditingController = TextEditingController();
+  // String content='';
+  int maxline=0;
+  double fieldHeight=0;
+  String _returnPage ='';
+  _wirteTextState(this.maxline,this.fieldHeight,this._returnPage);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-    height: 300,
+    height: fieldHeight,
     child: TextField(
       controller: _contentEditingController,
       decoration: InputDecoration(
@@ -19,10 +30,14 @@ class _wirteTextState extends State<wirteText>{
           borderSide: BorderSide(color: Colors.white, width: 2.0)
         )
       ),
-      maxLines: 40,
+      maxLines: maxline,
       onChanged: (value){
         setState(() {
-          content=value;
+          switch(_returnPage){
+            case 'writeReview':
+            content_text=value;
+
+          }
         });
       } 
     ),

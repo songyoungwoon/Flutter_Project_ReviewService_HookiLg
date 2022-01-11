@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'reviewList_page.dart';
 import '../main.dart';
 import '../widget/writeText.dart';
-import '../page/showReview_page.dart';
 
 
 class writeReview extends StatefulWidget {
@@ -11,13 +14,41 @@ class writeReview extends StatefulWidget {
   _writeReviewState createState() => _writeReviewState();
 }
 
+String title_text ='';
+String content_text='';
+
 class _writeReviewState extends State<writeReview>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Text("후기 작성"),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          actions: [
+            Center(
+              child: IconButton(
+                icon: Icon(Icons.home),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp()),
+                  );
+                },
+              ),
+            ),
+          ],
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black54,
+        shadowColor: Colors.white24,
+        ),
       body:Container(
         child:Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 60),
+          padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 30),
           child: Column(
             children: [
               Container(
@@ -32,7 +63,7 @@ class _writeReviewState extends State<writeReview>{
                        fontWeight: FontWeight.bold
                     )),
                     SizedBox(height: 10),
-                    wirteText(),
+                    wirteText(40,250,'writeReview'),
                   ],
                 )
               ),
@@ -44,10 +75,8 @@ class _writeReviewState extends State<writeReview>{
                     ElevatedButton.icon(
                       onPressed: (){
                       // BuildContext context;
-                       Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => showReview()),
-                        );
+                       createdata(title_text, content_text);
+                       Navigator.pop(context);
                       },
                       icon: Icon(Icons.add,size:15),
                       label: Text("저장",
@@ -77,7 +106,7 @@ Widget titleSection(){
       children: [
         Text("제목",
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             // color: Colors.pinkAccent
           ),
@@ -90,37 +119,19 @@ Widget titleSection(){
           decoration: InputDecoration(
             hintText: 'Title',
           ),
+          onChanged: (value){
+            title_text=value;
+          },
         )
       ],
     ),
   );
-
 }
 
-
-// Widget saveBtSection(){
-//   return Container(
-//     child: Row(
-//       children: [
-//         Expanded(child: SizedBox(height: 20)),
-//         ElevatedButton.icon(
-//           onPressed: (){
-//             // BuildContext context;
-//             Navigator.push(
-//                   context,
-//                   MaterialPageRoute(builder: (context) => writeReview()),
-//                 );
-//           },
-//           icon: Icon(Icons.add,size:15),
-//           label: Text("저장",
-//           style: TextStyle(fontWeight: FontWeight.bold),),
-//           style: ElevatedButton.styleFrom(
-//             primary: Colors.pink[200]
-//           ),
-//         )
-//       ]
-//     ),
-//   );
-
-// }
-// // 저장버튼 => SRV 페이지 이동
+void createdata(String title_text, String content_text) {
+  final usercol = FirebaseFirestore.instance.collection("review").doc();
+  usercol.set({
+    "title": "$title_text",
+    "content": "$content_text",
+  });
+}

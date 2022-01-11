@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widget/search_bar.dart';
-import '../page/writeReview_page.dart';
+import '../page/reviewList_page.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
           onPressed: (){
             Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => writeReview()),
+                  MaterialPageRoute(builder: (context) => reviewList()),
                 );
           },
           icon: Icon(Icons.auto_stories,

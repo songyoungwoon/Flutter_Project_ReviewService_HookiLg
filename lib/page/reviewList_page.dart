@@ -1,6 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 import 'writeReview_page.dart';
+import 'writeReview_page_test.dart';
 import '../main.dart';
 
 class reviewList extends StatefulWidget {
@@ -35,9 +39,46 @@ class _reviewListState extends State<reviewList> {
             ),
           ),
         ],
-       //backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black54,
+        shadowColor: Colors.white24,
       ),
-      body: Container(),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('review').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("firebase load fail"),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: Text("loading"));
+          }
+          return
+            ListView.builder(
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (ctx, index) {
+                return Card(
+                  elevation: 7,
+                  margin: EdgeInsets.symmetric(vertical: 13, horizontal:15 ),
+                  child:ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => showReview(
+                              snapshot.data.docs[index]['title'],
+                              snapshot.data.docs[index]['content'])),
+                    );
+                  },
+                  title: Text(snapshot.data.docs[index]['title']),
+                  subtitle: Text(snapshot.data.docs[index]['content'],),
+
+                ),);
+              },
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
@@ -45,11 +86,43 @@ class _reviewListState extends State<reviewList> {
             MaterialPageRoute(builder: (context) => writeReview()),
           );
         },
-        label: const Text('리뷰작성', style: TextStyle(color: Colors.white),),
-        icon: const Icon(Icons.add, color: Colors.white,),
-        backgroundColor: Colors.grey,
+        label: const Text(
+          '리뷰작성',
+          style: TextStyle(color: Colors.white, fontSize: 15),
+        ),
+        icon: const Icon(
+          Icons.create,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.pink[200],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    
     );
   }
+}
+
+void createdata(String code, String name, String status) {
+  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
+  usercol.set({
+    "name": "$name",
+    "status": "$status",
+  });
+}
+
+void readdata(String code) {
+  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
+  usercol.get().then((value) => {print(value.data())});
+}
+
+void updatedata(String code, String status) {
+  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
+  usercol.update({
+    "status": "$status",
+  });
+}
+
+void deleteData() {
+  final usercol = FirebaseFirestore.instance.collection("review").doc();
+  usercol.delete();
 }
