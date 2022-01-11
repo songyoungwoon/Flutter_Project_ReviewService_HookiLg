@@ -52,24 +52,57 @@ class _reviewListState extends State<reviewList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text("loading"));
           }
-          return ListView.builder(
-              itemCount: snapshot.data.docs.length,
-              itemBuilder: (ctx, index) {
-                return ListTile(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => showReview(snapshot.data.docs[index]['title'], snapshot.data.docs[index]['content'])),
-                    );
-                  },
-                  title: Text(snapshot.data.docs[index]['title']),
-                  subtitle: Text(snapshot.data.docs[index]['content']),
-                );
-              },
-            );
-
-        },
-      ),
+          return Container(
+              width: 400,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Center(
+                    child: ListView.builder(
+                     itemCount: snapshot.data.docs.length,
+                      itemBuilder: (ctx, index) {
+                        return ListTile(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => showReview(
+                                      snapshot.data.docs[index]['title'],
+                                      snapshot.data.docs[index]['content'])),
+                            );
+                          },
+                          title: Container(
+                              // width: 400,
+                              height: 60,
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: 20, vertical: 9),
+                             decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.pinkAccent)),
+                              alignment: Alignment.center,
+                              child: Row(children: [
+                                Column(
+                                  
+                                  children: [
+                                    Text(snapshot.data.docs[index]['title'],
+                                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+                                    Text(
+                                      snapshot.data.docs[index]['content'],
+                                      
+                                    )
+                                  ],
+                                ),
+                                Expanded(child: SizedBox()),
+                                Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.pink[200],
+                                )
+                              ])),
+                     
+                        );
+                      },
+                   )),
+                  ));
+           },
+        ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
@@ -77,13 +110,17 @@ class _reviewListState extends State<reviewList> {
             MaterialPageRoute(builder: (context) => writeReview()),
           );
         },
-        label: const Text('리뷰작성', style: TextStyle(color: Colors.white,fontSize: 15),
+        label: const Text(
+          '리뷰작성',
+          style: TextStyle(color: Colors.white, fontSize: 15),
         ),
-        icon: const Icon(Icons.create, color: Colors.white,),
+        icon: const Icon(
+          Icons.create,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.pink[200],
-  ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    
     );
   }
 }
