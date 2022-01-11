@@ -50,10 +50,7 @@ class _showReviewState extends State<showReview>{
               child: IconButton(
                 icon: Icon(Icons.home, color: Colors.pinkAccent,),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => FirstHome()),
-                  );
+                  Navigator.pop(context);
                 },
               ),
             ),
@@ -110,7 +107,11 @@ class _showReviewState extends State<showReview>{
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
               SizedBox(width:5),
-              Icon(Icons.question_answer, color: Colors.pink[300],),
+              IconButton(onPressed: (){
+
+              }, icon: Icon(Icons.question_answer, color: Colors.pink[300],),
+              
+              ) ,
               Expanded(child: SizedBox(height: 7)),
               ElevatedButton.icon(
                style: ElevatedButton.styleFrom(

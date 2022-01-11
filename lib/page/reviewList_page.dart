@@ -27,9 +27,16 @@ class _reviewListState extends State<reviewList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('게시판'),
+        title: Text('Review Board',
+        style: TextStyle(
+            color: Colors.grey[800],
+            fontWeight: FontWeight.bold,
+            fontSize: 25
+          ),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios,
+          color: Colors.pinkAccent,),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -37,19 +44,16 @@ class _reviewListState extends State<reviewList> {
         actions: [
           Center(
             child: IconButton(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home, color: Colors.pinkAccent,),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
-                );
+                Navigator.pop(context);
               },
             ),
           ),
         ],
                    
       
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.white,
         foregroundColor: Colors.black54,
         shadowColor: Colors.white24,
       ),
@@ -83,7 +87,7 @@ class _reviewListState extends State<reviewList> {
                                 snapshot.data.docs[index]['content'])),
                       );
                     },
-                    leading: Container(child: Icon(Icons.circle),),
+                    leading: Container(child: Icon(Icons.circle, color: Colors.amber[600],),),
                     title: Text(snapshot.data.docs[index]['title']),
                     // subtitle: Text(snapshot.data.docs[index]['content']),
                     trailing: Container(
@@ -122,6 +126,7 @@ class _reviewListState extends State<reviewList> {
           color: Colors.white,
         ),
         backgroundColor: Colors.pink[200],
+        
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

@@ -12,12 +12,16 @@ class searchBar extends StatefulWidget {
 
 class _searchBarState extends State<searchBar> {
   final TextEditingController _filter = TextEditingController();
+
   FocusNode focusNode = FocusNode();
   bool isFocusNodeTrue = false;
   String _searchText = "";
+  bool isFocusOn = false;
+      FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       // color: Colors.black,
       padding: EdgeInsets.fromLTRB(10, 10, 10, 7),
@@ -47,14 +51,16 @@ class _searchBarState extends State<searchBar> {
                     ? TextButton(
                         child: Text('취소'),
                         onPressed: () {
+                          
                           setState(() {
                             _filter.clear();
                             _searchText = "";
-                            focusNode.unfocus();
+                            //focusNode.unfocus();
                           });
                         },
-                      )
-                    : Icon(Icons.search, color: Colors.black45, size: 20),
+                        child: Text('취소'))
+                    : Icon(Icons.search, color: Colors.pink[300], size: 20),
+
                 suffixIcon: focusNode.hasFocus
                     ? IconButton(
                         icon:
