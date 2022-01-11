@@ -8,7 +8,7 @@ class MyPage extends StatelessWidget {
     return Container(
       child: Center(
         child: Column(
-          children: [
+          children:[
             Container(
               padding: EdgeInsets.only(top: 50),
               child: CircleAvatar(
@@ -23,7 +23,7 @@ class MyPage extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
-                    color: Colors.white),
+                    color: Colors.pink[200]),
               ),
             ),
             Container(
