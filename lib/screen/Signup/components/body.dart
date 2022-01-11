@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/components/already_have_an_account_acheck.dart';
@@ -55,10 +56,59 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "SIGNUP",
-              press: () {
+              press: () async {
 
+                try {
+                  UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                      email: emailController.text,
+                      password: passwordController.text
+                  );
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    //print('The password provided is too weak.');
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('The password provided is too weak.'),
+                      duration: Duration(seconds: 2),
+                      action: SnackBarAction(
+                        label: 'exit',
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
+                      ),
+                    ));
+                  } else if (e.code == 'email-already-in-use') {
+                    //print('The account already exists for that email.');
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('The account already exists for that email.'),
+                      duration: Duration(seconds: 2),
+                      action: SnackBarAction(
+                        label: 'exit',
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
+                      ),
+                    ));
+                  }
+                } catch (e) {
+                  print(e);
+                }
 
+                createuserinfo
+                  (emailController.text,
+                    passwordController.text,
+                    nameController.text,
+                    AgeController.text,
+                    NickNameController.text
+                );
 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginScreen(); //메인페이지로 이동하게 변경
+                    },
+                  ),
+                );
               },
             ),
             SizedBox(height: size.height * 0.03),
@@ -81,9 +131,22 @@ class Body extends StatelessWidget {
     ),
     );
   }
-
-
-
-
-
+}
+void createuserinfo(String email, String password, String name, String age, String nickname) {
+  final usercol = FirebaseFirestore.instance.collection("user_info").doc();
+  usercol.set({
+    "email": "$email",
+    "password": "$password",
+    "name": "$name",
+    "age": "$age",
+    "nickname": "$nickname",
+  });
+}
+Future checkuser(String email) async {
+  var methods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+  if (methods.contains('password')) {
+    return "signupfail";
+  }else {
+    return "signupsuccess";
+  }
 }
