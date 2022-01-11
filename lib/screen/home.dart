@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
               Icons.auto_stories,
               size: 40,
             ),
-            color: Colors.grey[600],
+            color: Colors.pink[200],
           ),
           searchBar(),
           Padding(padding: EdgeInsets.only(top: 20),),
@@ -56,7 +56,13 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(' 이달의 베스트 리뷰어', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                Row(
+                  children: [
+                    SizedBox(width: 5,),
+                    Icon(Icons.person,color: Colors.amber[600],),
+                    Text(' 이달의 베스트 리뷰어', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                  ],
+                ),
                 Container(
                   color: Colors.pink[200],
                   height: 150,
@@ -93,7 +99,13 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(' 이달의 베스트 리뷰', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                Row(
+                  children: [
+                    SizedBox(width: 5,),
+                    Icon(Icons.article,color: Colors.amber[600],),
+                    Text(' 이달의 베스트 리뷰', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                  ],
+                ),
                 Padding(padding: EdgeInsets.only(top: 5)),
                 CarouselSlider(
                   options: CarouselOptions(height: 220.0),

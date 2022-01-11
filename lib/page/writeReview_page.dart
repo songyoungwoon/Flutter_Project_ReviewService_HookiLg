@@ -22,9 +22,15 @@ class _writeReviewState extends State<writeReview>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("후기 작성"),
+          title: Text("Write Review",
+          style: TextStyle(
+            color: Colors.grey[800],
+            fontWeight: FontWeight.bold,
+            fontSize: 25
+          ),),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios,
+            color: Colors.pinkAccent),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -32,7 +38,7 @@ class _writeReviewState extends State<writeReview>{
           actions: [
             Center(
               child: IconButton(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.home, color: Colors.pinkAccent),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -57,13 +63,19 @@ class _writeReviewState extends State<writeReview>{
                   children: [
                     titleSection(),
                     SizedBox(height: 15),
-                    Text("내용",
-                    style: TextStyle(
-                       fontSize: 20,
-                       fontWeight: FontWeight.bold
-                    )),
+                    Row(
+                      children: [
+                        Icon(Icons.create,color: Colors.amber[600]),
+                        SizedBox(width: 5,),
+                        Text("내용",
+                        style: TextStyle(
+                           fontSize: 20,
+                           fontWeight: FontWeight.bold
+                        )),
+                      ],
+                    ),
                     SizedBox(height: 10),
-                    wirteText(40,250,'writeReview'),
+                    wirteText(50,300,'writeReview'),
                   ],
                 )
               ),
@@ -104,24 +116,35 @@ Widget titleSection(){
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("제목",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            // color: Colors.pinkAccent
-          ),
-        ),
-
-        TextField(
-          style: TextStyle(
-            fontSize: 18,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.title,color: Colors.amber[600],),
+            SizedBox(width:5),
+            Text("제목",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          decoration: InputDecoration(
-            hintText: 'Title',
+          ],
+        ),
+      
+        Center(
+          child: Container(
+            width: 320,
+            child: TextField(
+              style: TextStyle(
+                fontSize: 18,
+                ),
+              decoration: InputDecoration(
+                hintText: 'Title',
+              ),
+              onChanged: (value){
+                title_text=value;
+              },
+            ),
           ),
-          onChanged: (value){
-            title_text=value;
-          },
         )
       ],
     ),

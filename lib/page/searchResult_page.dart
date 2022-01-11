@@ -52,9 +52,15 @@ class _searchResultState extends State<searchResult> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(searchText + " " + "검색결과"),
+          title: Text("\""+searchText + "\""+" Results",
+            style: TextStyle(
+            color: Colors.grey[800],
+            fontWeight: FontWeight.bold,
+            fontSize: 25
+          )),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios,),
+            icon: const Icon(Icons.arrow_back_ios,
+            color: Colors.pinkAccent),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -62,7 +68,7 @@ class _searchResultState extends State<searchResult> {
           actions: [
             Center(
               child: IconButton(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.home,color: Colors.pinkAccent),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -100,13 +106,13 @@ class _searchResultState extends State<searchResult> {
                     title:
                     Container(
                         margin: EdgeInsets.only(left: 5),
-                        child: Text(result[index]['title'].toString()))
+                        child: Text(result[index]['title'].toString(),
+                        style: TextStyle(fontWeight: FontWeight.bold),))
                     ,
-                    subtitle: //result[index]['subtitle']
+                    subtitle:
                     Html(
                     data: result[index]['subtitle'],
                     ),
-                    trailing: Icon(Icons.favorite_outline_sharp, size: 18,color: Colors.grey,),
                     onTap: () {
                     Navigator.push(
                     context,
