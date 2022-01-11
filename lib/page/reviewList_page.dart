@@ -139,60 +139,71 @@ class _reviewListState extends State<reviewList> {
                           ],
                         ),
                       ),
-                      ListTile(
-                        title: Text(
-                          snapshot.data.docs[index]['title'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 20),
-                        ),
-                        //subtitle: Text(snapshot.data.docs[index]['content']),
-                        trailing: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.favorite,
-                                color: Colors.pink[300],
-                              ),
-                              Text(
-                                "N",
-                                style: TextStyle(
-                                    color: Colors.pink[300], fontSize: 10),
-                              )
-                            ],
+                      Container(
+                        child: ListTile(
+                          title: Text(
+                            snapshot.data.docs[index]['title'],
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 20),
                           ),
+                          //subtitle: Text(snapshot.data.docs[index]['content']),
+                          trailing: Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 40,
+                                  height: 40,
+                                  child: IconButton(
+                                    icon: Icon(Icons.favorite),
+                                    color: Colors.pink[300],
+                                    iconSize: 25,
+                                    onPressed: () {},
+                                  ),
+                                ),
+                                Text(
+                                  "N",
+                                  style: TextStyle(
+                                      color: Colors.pink[300], fontSize: 10),
+                                ),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => showReview(
+                                      snapshot.data.docs[index]['title'],
+                                      snapshot.data.docs[index]['content'])),
+                            );
+                          },
                         ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => showReview(
-                                    snapshot.data.docs[index]['title'],
-                                    snapshot.data.docs[index]['content'])),
-                          );
-                        },
                       ),
+                      Padding(padding: EdgeInsets.only(top: 10)),
                       Container(
                         alignment: Alignment.topLeft,
                         padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
                         child: Row(
                           children: [
                             Container(
-                              width:180,
-                            height: 150,
-                            child:Text('미리보기 : ' +
-                                snapshot.data.docs[index]['content']),
+                              width: 180,
+                              height: 150,
+                              child: Text('미리보기 : ' +
+                                  snapshot.data.docs[index]['content']),
                             ),
-                          SizedBox(width:10),
-                          Container(
-                            width: 140,
-                            height: 150,
-                            decoration: BoxDecoration(
-                          image: DecorationImage(image: NetworkImage('https://w.namu.la/s/6542d430faf483de81317c1ad99df450eef28b9409d0adbc02e17ca5c72c99a45ea7435a0b335a109f81d2f169867cec26207c7a2a62d2d216457f17d19735a681b4b9ba7b8ce0fa6407ef5e77928495'), fit: BoxFit.cover)
-                              ,
-                          ),
-                          ),
+                            SizedBox(width: 10),
+                            Container(
+                              width: 140,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'https://w.namu.la/s/6542d430faf483de81317c1ad99df450eef28b9409d0adbc02e17ca5c72c99a45ea7435a0b335a109f81d2f169867cec26207c7a2a62d2d216457f17d19735a681b4b9ba7b8ce0fa6407ef5e77928495'),
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
                           ],
                         ),
                       ),
