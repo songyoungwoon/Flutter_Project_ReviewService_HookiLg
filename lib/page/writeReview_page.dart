@@ -9,15 +9,24 @@ import '../widget/writeText.dart';
 
 
 class writeReview extends StatefulWidget {
-  writeReview({Key? key}) : super(key: key);
+  String movie_title = '';
+  String movie_director = '';
+
+  writeReview(this.movie_title, this.movie_director);
+
   @override
-  _writeReviewState createState() => _writeReviewState();
+  _writeReviewState createState() => _writeReviewState(movie_title, movie_director);
 }
 
 String title_text ='';
 String content_text='';
 
 class _writeReviewState extends State<writeReview>{
+  String movie_title = '';
+  String movie_director = '';
+
+  _writeReviewState(this.movie_title, this.movie_director);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +96,7 @@ class _writeReviewState extends State<writeReview>{
                     ElevatedButton.icon(
                       onPressed: (){
                       // BuildContext context;
-                       createdata(title_text, content_text);
+                       createdata(movie_title, movie_director, title_text, content_text);
                        Navigator.pop(context);
                       },
                       icon: Icon(Icons.add,size:15),
@@ -151,9 +160,11 @@ Widget titleSection(){
   );
 }
 
-void createdata(String title_text, String content_text) {
+void createdata(String movie_title, String movie_director, String title_text, String content_text) {
   final usercol = FirebaseFirestore.instance.collection("review").doc();
   usercol.set({
+    "movie_title": "$movie_title",
+    "director": "$movie_director",
     "title": "$title_text",
     "content": "$content_text",
   });

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'reviewList_page.dart';
 
 import 'package:flutter/material.dart';
+
 // import '../main.dart';
 import '../screen/home.dart';
 import 'package:http/http.dart' as http;
@@ -59,8 +60,10 @@ class _searchResultState extends State<searchResult> {
             fontSize: 25
           )),
           leading: IconButton(
+
             icon: const Icon(Icons.arrow_back_ios,
             color: Colors.pinkAccent),
+
             onPressed: () {
               Navigator.pop(context);
             },
@@ -120,11 +123,12 @@ class _searchResultState extends State<searchResult> {
                     );
                     },
                     ),
+
                     );
                   });
             })
 
-      /*
+        /*
       body: Container(
         padding: const EdgeInsets.all(15.0),
         child: Column(
@@ -150,6 +154,6 @@ class _searchResultState extends State<searchResult> {
         ),
       ),
       */
-    );
+        );
   }
 }

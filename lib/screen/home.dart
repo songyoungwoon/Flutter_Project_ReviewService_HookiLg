@@ -63,6 +63,7 @@ class _HomeState extends State<Home> {
                     Text(' 이달의 베스트 리뷰어', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
                   ],
                 ),
+
                 Container(
                   color: Colors.pink[200],
                   height: 150,
