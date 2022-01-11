@@ -2,6 +2,8 @@ import '../page/writeReview_page.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../page/reviewList_page.dart';
+import '../screen/home.dart';
+import '../screen/fristhome.dart';
 
 class showReview extends StatefulWidget {
   String review_title ='';
@@ -23,9 +25,14 @@ class _showReviewState extends State<showReview>{
   Widget build(BuildContext context) {
    return Scaffold(
      appBar: AppBar(
-          title: Text("나의 후기"),
+          title: Text("Review",style: TextStyle(
+            color: Colors.grey[800],
+            fontWeight: FontWeight.bold,
+            fontSize: 25
+          ),),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios,
+            color: Colors.pinkAccent,),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -33,31 +40,33 @@ class _showReviewState extends State<showReview>{
           actions: [
             Center(
               child: IconButton(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.home, color: Colors.pinkAccent,),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
+                    MaterialPageRoute(builder: (context) => FirstHome()),
                   );
                 },
               ),
             ),
           ],
-          backgroundColor: Colors.black12,
+       backgroundColor: Colors.white,
+       foregroundColor: Colors.black54,
+       shadowColor: Colors.white24,
         ),
-     body:Container(
+     body:
+     SingleChildScrollView(
+     
+     child: Container(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical:30, horizontal: 45),
+        padding: EdgeInsets.symmetric(vertical:30, horizontal: 30),
         child: Column(
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-              // Text('title',
-              // style: TextStyle(
-              //   fontSize: 12,
-              // )),
-              Icon(Icons.turned_in_not_sharp),
+              
+              Icon(Icons.turned_in_not_sharp, color: Colors.pinkAccent,),
               SizedBox(width: 5),
               Text(_review_title,
               style: TextStyle(
@@ -69,18 +78,14 @@ class _showReviewState extends State<showReview>{
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                  Container(
                   width: 350,
-                  height: 420,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 2)
-                    ),
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(_review_contents),)
-                )
-
+                ),
             ]),
+                
             SizedBox(height: 5),
             Row(children: [
               Expanded(child: SizedBox(height: 5)),
@@ -101,7 +106,8 @@ class _showReviewState extends State<showReview>{
             ],)
           ]),
         )
-    ) 
+    )
+   )
    );
   }
 

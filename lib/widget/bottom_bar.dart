@@ -4,12 +4,12 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.white,
       child: Container(
         height: 50,
         child: TabBar(
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.white60,
+          labelColor: Colors.black87,
+          unselectedLabelColor: Colors.black26,
           indicatorColor: Colors.transparent,
           tabs: [
             Tab(

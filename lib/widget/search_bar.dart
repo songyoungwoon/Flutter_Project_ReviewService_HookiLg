@@ -19,12 +19,14 @@ class _searchBarState extends State<searchBar> {
   Widget build(BuildContext context) {
     return Container(
       // color: Colors.black,
-      padding: EdgeInsets.fromLTRB(10, 7, 10, 7),
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 7),
+      height: 72,
+      width: 500,
       child: Row(
         children: [
           Expanded(
             flex: 6,
-            child: TextField(
+              child:TextField(
               onSubmitted: (value){
                 Navigator.push(
                   context,
@@ -39,7 +41,7 @@ class _searchBarState extends State<searchBar> {
               controller: _filter,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Colors.white12,
+                fillColor: Colors.blueAccent[99],
                 prefixIcon: focusNode.hasFocus
                     ? TextButton(
                         onPressed: () {
@@ -50,11 +52,11 @@ class _searchBarState extends State<searchBar> {
                           });
                         },
                         child: Text('취소'))
-                    : Icon(Icons.search, color: Colors.white60, size: 20),
+                    : Icon(Icons.search, color: Colors.black45, size: 20),
                 suffixIcon: focusNode.hasFocus
                     ? IconButton(
                         icon:
-                            Icon(Icons.cancel, color: Colors.white60, size: 20),
+                            Icon(Icons.cancel, color: Colors.black26, size: 20),
                         onPressed: () {
                           setState(() {
                             _filter.clear();
@@ -64,7 +66,7 @@ class _searchBarState extends State<searchBar> {
                       )
                     : Container(),
                 hintText: '리뷰나 해석을 보고싶은 영화를 검색하세요.',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.black12),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -79,7 +81,7 @@ class _searchBarState extends State<searchBar> {
                 ),
               ),
             ),
-          ),
+            ),
         ],
       ),
     );

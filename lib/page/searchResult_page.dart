@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'reviewList_page.dart';
 
 import 'package:flutter/material.dart';
-import '../main.dart';
+// import '../main.dart';
+import '../screen/home.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_html/flutter_html.dart';
 
@@ -65,13 +66,15 @@ class _searchResultState extends State<searchResult> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
+                    MaterialPageRoute(builder: (context) => Home()),
                   );
                 },
               ),
             ),
           ],
-          backgroundColor: Colors.black12,
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black54,
+          shadowColor: Colors.white24,
         ),
         body: FutureBuilder(
             future: fetch(),
@@ -82,31 +85,40 @@ class _searchResultState extends State<searchResult> {
               return ListView.builder(
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
-                    return ListTile(
-                      leading: get_urlIsNull(result[index]['image'])
-                          ? Image.asset('images/noImage.png') //Image.asset('images/loading.jpg')
+                    return Card(
+                      elevation: 8,
+                      margin: EdgeInsets.symmetric(vertical: 14, horizontal:20 ),
+                      child:ListTile(
+                      leading:ClipRRect(
+                        borderRadius: BorderRadius.circular(5.0),
+                      child: get_urlIsNull(result[index]['image'])
+                          ? Image.asset(
+                          'images/noImage.png', fit: BoxFit.cover, width: 55, height: 100,) //Image.asset('images/loading.jpg')
                           : FadeInImage.assetNetwork(
-                              placeholder: 'images/loading.jpg',
-                              image: result[index]['image'].toString()),
-                      title: Container(
-                          margin: EdgeInsets.only(left: 5),
-                          child: Text(result[index]['title'].toString())),
-                      subtitle: //result[index]['subtitle']
-                          Html(
-                        data: result[index]['subtitle'],
-                      ),
-                      trailing: Icon(Icons.favorite),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => reviewList()),
-                        );
-                      },
+                          placeholder: 'images/loading.jpg',
+                          image: result[index]['image'].toString(), fit: BoxFit.cover, width: 55, height: 100,),),
+                    title:
+                    Container(
+                        margin: EdgeInsets.only(left: 5),
+                        child: Text(result[index]['title'].toString()))
+                    ,
+                    subtitle: //result[index]['subtitle']
+                    Html(
+                    data: result[index]['subtitle'],
+                    ),
+                    trailing: Icon(Icons.favorite_outline_sharp, size: 18,color: Colors.grey,),
+                    onTap: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => reviewList()),
+                    );
+                    },
+                    ),
                     );
                   });
             })
 
-        /*
+      /*
       body: Container(
         padding: const EdgeInsets.all(15.0),
         child: Column(
@@ -132,6 +144,6 @@ class _searchResultState extends State<searchResult> {
         ),
       ),
       */
-        );
+    );
   }
 }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 import 'writeReview_page.dart';
-import 'writeReview_page_test.dart';
 import '../main.dart';
 
 class reviewList extends StatefulWidget {
@@ -39,7 +38,9 @@ class _reviewListState extends State<reviewList> {
             ),
           ),
         ],
-        //backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black54,
+        shadowColor: Colors.white24,
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('review').snapshots(),
@@ -52,57 +53,45 @@ class _reviewListState extends State<reviewList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text("loading"));
           }
-          return Container(
-              width: 400,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: Center(
-                    child: ListView.builder(
-                     itemCount: snapshot.data.docs.length,
-                      itemBuilder: (ctx, index) {
-                        return ListTile(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => showReview(
-                                      snapshot.data.docs[index]['title'],
-                                      snapshot.data.docs[index]['content'])),
-                            );
-                          },
-                          title: Container(
-                              // width: 400,
-                              height: 60,
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: 20, vertical: 9),
-                             decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.pinkAccent)),
-                              alignment: Alignment.center,
-                              child: Row(children: [
-                                Column(
-                                  
-                                  children: [
-                                    Text(snapshot.data.docs[index]['title'],
-                                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-                                    Text(
-                                      snapshot.data.docs[index]['content'],
-                                      
-                                    )
-                                  ],
-                                ),
-                                Expanded(child: SizedBox()),
-                                Icon(
-                                  Icons.favorite_border,
-                                  color: Colors.pink[200],
-                                )
-                              ])),
-                     
-                        );
-                      },
-                   )),
-                  ));
-           },
-        ),
+
+          return
+            ListView.builder(
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (ctx, index) {
+                return Card(
+                  elevation: 7,
+                  margin: EdgeInsets.symmetric(vertical: 13, horizontal:15 ),
+                  child:ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => showReview(
+                              snapshot.data.docs[index]['title'],
+                              snapshot.data.docs[index]['content'])),
+                    );
+                  },
+                  
+                  title: Text(snapshot.data.docs[index]['title']),
+                  subtitle: Text(snapshot.data.docs[index]['content']),
+                  trailing: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.favorite, color: Colors.pink[300],),
+                        Text("N", style: TextStyle(
+                          color: Colors.pink[300],
+                          fontSize: 12
+                        ),)                           
+                      ],),
+                  ),
+                            
+
+                ),);
+              },
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(

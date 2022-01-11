@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 
 import 'widget/bottom_bar.dart';
 import 'screen/home.dart';
@@ -26,29 +27,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'HookiLg',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.black,
-        accentColor: Colors.white,
+        brightness: Brightness.light,
+        primaryColor: Colors.white,
+        accentColor: Colors.black12,
       ),
-      home: DefaultTabController(
-        length: 4,
-        child: Scaffold(
-          body: TabBarView(
-            physics: NeverScrollableScrollPhysics(),
-            children: <Widget>[
-              Home(),
-              Search(),
-              Container(
-                child: Center(
-                  child: Text('favorites'),
-                ),
-              ),
-              MyPage(),
-            ],
-          ),
-          bottomNavigationBar: BottomBar(),
-        ),
-      ),
+      home: WelcomeScreen(),
     );
   }
 }
