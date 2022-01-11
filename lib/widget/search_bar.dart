@@ -64,7 +64,7 @@ class _searchBarState extends State<searchBar> {
                           });
                         },
                       )
-                    : Container(),
+                    : Text(''),
                 hintText: '리뷰나 해석을 보고싶은 영화를 검색하세요.',
                 labelStyle: TextStyle(color: Colors.black12),
                 focusedBorder: OutlineInputBorder(

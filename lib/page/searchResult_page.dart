@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'reviewList_page.dart';
 
 import 'package:flutter/material.dart';
+
 // import '../main.dart';
 import '../screen/home.dart';
 import 'package:http/http.dart' as http;
@@ -54,7 +55,9 @@ class _searchResultState extends State<searchResult> {
         appBar: AppBar(
           title: Text(searchText + " " + "검색결과"),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios,),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -87,38 +90,51 @@ class _searchResultState extends State<searchResult> {
                   itemBuilder: (context, int index) {
                     return Card(
                       elevation: 8,
-                      margin: EdgeInsets.symmetric(vertical: 14, horizontal:20 ),
-                      child:ListTile(
-                      leading:ClipRRect(
-                        borderRadius: BorderRadius.circular(5.0),
-                      child: get_urlIsNull(result[index]['image'])
-                          ? Image.asset(
-                          'images/noImage.png', fit: BoxFit.cover, width: 55, height: 100,) //Image.asset('images/loading.jpg')
-                          : FadeInImage.assetNetwork(
-                          placeholder: 'images/loading.jpg',
-                          image: result[index]['image'].toString(), fit: BoxFit.cover, width: 55, height: 100,),),
-                    title:
-                    Container(
-                        margin: EdgeInsets.only(left: 5),
-                        child: Text(result[index]['title'].toString()))
-                    ,
-                    subtitle: //result[index]['subtitle']
-                    Html(
-                    data: result[index]['subtitle'],
-                    ),
-                    trailing: Icon(Icons.favorite_outline_sharp, size: 18,color: Colors.grey,),
-                    onTap: () {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => reviewList()),
-                    );
-                    },
-                    ),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+                      child: ListTile(
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: get_urlIsNull(result[index]['image'])
+                              ? Image.asset(
+                                  'images/noImage.png',
+                                  fit: BoxFit.cover,
+                                  width: 55,
+                                  height: 100,
+                                ) //Image.asset('images/loading.jpg')
+                              : FadeInImage.assetNetwork(
+                                  placeholder: 'images/loading.jpg',
+                                  image: result[index]['image'].toString(),
+                                  fit: BoxFit.cover,
+                                  width: 55,
+                                  height: 100,
+                                ),
+                        ),
+                        title: Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: Text(result[index]['title'].toString())),
+                        subtitle: //result[index]['subtitle']
+                            Html(
+                          data: result[index]['subtitle'],
+                        ),
+                        trailing: Icon(
+                          Icons.favorite_outline_sharp,
+                          size: 18,
+                          color: Colors.grey,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => reviewList.reviewListInfo(result[index]['title'],result[index]['director'],)),
+                          );
+                        },
+                      ),
                     );
                   });
             })
 
-      /*
+        /*
       body: Container(
         padding: const EdgeInsets.all(15.0),
         child: Column(
@@ -144,6 +160,6 @@ class _searchResultState extends State<searchResult> {
         ),
       ),
       */
-    );
+        );
   }
 }

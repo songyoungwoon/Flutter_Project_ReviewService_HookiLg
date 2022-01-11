@@ -7,13 +7,22 @@ import 'writeReview_page.dart';
 import '../main.dart';
 
 class reviewList extends StatefulWidget {
-  const reviewList({Key? key}) : super(key: key);
+  String movie_title = '';
+  String movie_director = '';
+
+  reviewList();
+  reviewList.reviewListInfo(this.movie_title, this.movie_director);
 
   @override
-  _reviewListState createState() => _reviewListState();
+  _reviewListState createState() => _reviewListState(movie_title, movie_director);
 }
 
 class _reviewListState extends State<reviewList> {
+  String movie_title = '';
+  String movie_director = '';
+
+  _reviewListState(this.movie_title, this.movie_director);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +52,7 @@ class _reviewListState extends State<reviewList> {
         shadowColor: Colors.white24,
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('review').snapshots(),
+        stream: FirebaseFirestore.instance.collection('review').where("movie_title", isEqualTo: movie_title).where("director", isEqualTo: movie_director).snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -53,7 +62,6 @@ class _reviewListState extends State<reviewList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text("loading"));
           }
-
           return
             ListView.builder(
               itemCount: snapshot.data.docs.length,
@@ -100,7 +108,7 @@ class _reviewListState extends State<reviewList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => writeReview()),
+            MaterialPageRoute(builder: (context) => writeReview(movie_title, movie_director)),
           );
         },
         label: const Text(
