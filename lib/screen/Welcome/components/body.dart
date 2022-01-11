@@ -19,9 +19,20 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "WELCOME TO HOOKILG",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.filter_vintage_rounded, color: Colors.amber[600],),
+                SizedBox(width: 5,),
+                Text(
+                  "WELCOME TO HOOKILG",
+                  style: TextStyle(fontWeight: FontWeight.bold,
+                  color: Colors.pinkAccent),
+                ),
+                SizedBox(width: 5,),
+                Icon(Icons.filter_vintage_rounded, color: Colors.amber[600],),
+
+              ],
             ),
             SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
@@ -45,7 +56,7 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "SIGN UP",
               color: kPrimaryLightColor,
-              textColor: Colors.black,
+              textColor: Colors.black54,
               press: () {
                 Navigator.push(
                   context,

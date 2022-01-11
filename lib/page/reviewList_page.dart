@@ -1,10 +1,8 @@
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 import 'writeReview_page.dart';
-import '../main.dart';
 
 class reviewList extends StatefulWidget {
   String movie_title = '';
@@ -36,26 +34,13 @@ class _reviewListState extends State<reviewList> {
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios,
-          color: Colors.pinkAccent,),
+          color: Color(0xFFF06292),),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        actions: [
-          Center(
-            child: IconButton(
-              icon: Icon(Icons.home, color: Colors.pinkAccent,),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-        ],
-                   
-      
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black54,
-        shadowColor: Colors.white24,
+        shadowColor: Colors.pink[200],
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('review').where("movie_title", isEqualTo: movie_title).where("director", isEqualTo: movie_director).snapshots(),
@@ -73,10 +58,10 @@ class _reviewListState extends State<reviewList> {
               itemCount: snapshot.data.docs.length,
               itemBuilder: (ctx, index) {
                 return Card(
+                  shadowColor: Colors.pink[100],
                   elevation: 7,
                   margin: EdgeInsets.symmetric(vertical: 13, horizontal:15 ),
                   child:Container(
-                    // height: 80,
                     child: ListTile(
                     onTap: () {
                       Navigator.push(
@@ -88,8 +73,8 @@ class _reviewListState extends State<reviewList> {
                       );
                     },
                     leading: Container(child: Icon(Icons.circle, color: Colors.amber[600],),),
-                    title: Text(snapshot.data.docs[index]['title']),
-                    // subtitle: Text(snapshot.data.docs[index]['content']),
+                    title: Text(snapshot.data.docs[index]['title'],
+                    style: TextStyle(fontWeight: FontWeight.bold),),
                     trailing: Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,7 +88,7 @@ class _reviewListState extends State<reviewList> {
                         ],),
                     ),
                               
-
+                
                 ),
                   ),);
               },
@@ -119,16 +104,16 @@ class _reviewListState extends State<reviewList> {
         },
         label: const Text(
           '리뷰작성',
-          style: TextStyle(color: Colors.white, fontSize: 15),
+          style: TextStyle(color: Colors.white, 
+          fontSize: 15, fontWeight: FontWeight.bold),
         ),
         icon: const Icon(
           Icons.create,
           color: Colors.white,
         ),
-        backgroundColor: Colors.pink[200],
-        
+        backgroundColor: Colors.pink[300],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

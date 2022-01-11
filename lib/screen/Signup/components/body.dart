@@ -24,9 +24,20 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "SIGNUP",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.favorite, color: Colors.pink[300],),
+                Text(
+                  "Wellcome",
+                  style: TextStyle(
+                    color: Colors.pinkAccent,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+                ),
+                Icon(Icons.favorite, color: Colors.pink[300],),
+
+              ],
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(

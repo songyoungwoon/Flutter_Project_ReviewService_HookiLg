@@ -39,27 +39,14 @@ class _writeReviewState extends State<writeReview>{
           ),),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios,
-            color: Colors.pinkAccent),
+            color: Color(0xFFF06292)),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          actions: [
-            Center(
-              child: IconButton(
-                icon: Icon(Icons.home, color: Colors.pinkAccent),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
-                  );
-                },
-              ),
-            ),
-          ],
+         
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black54,
-        shadowColor: Colors.white24,
+        shadowColor: Colors.pink[200],
         ),
       body:Container(
         child:Padding(
@@ -73,18 +60,21 @@ class _writeReviewState extends State<writeReview>{
                     titleSection(),
                     SizedBox(height: 15),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(Icons.create,color: Colors.amber[600]),
-                        SizedBox(width: 5,),
+                        Icon(Icons.create,color: Colors.amber[600], size: 30,),
+                        SizedBox(width: 10,),
                         Text("내용",
                         style: TextStyle(
                            fontSize: 20,
                            fontWeight: FontWeight.bold
                         )),
+                        // Expanded(child: SizedBox()),
+                        
                       ],
                     ),
                     SizedBox(height: 10),
-                    wirteText(50,300,'writeReview'),
+                    wirteText(50,350,300,'writeReview'),
                   ],
                 )
               ),
@@ -92,18 +82,19 @@ class _writeReviewState extends State<writeReview>{
               Container(
                 child: Row(
                   children: [
-                    Expanded(child: SizedBox(height: 20)),
-                    ElevatedButton.icon(
+                    IconButton(onPressed: (){
+                          //d add Image 
+                        }, icon: Icon(Icons.image, color: Colors.pink[300],size: 30,)),
+                    Expanded(child: SizedBox()),
+                    ElevatedButton(
                       onPressed: (){
-                      // BuildContext context;
                        createdata(movie_title, movie_director, title_text, content_text);
                        Navigator.pop(context);
                       },
-                      icon: Icon(Icons.add,size:15),
-                      label: Text("저장",
+                      child: Text("저장",
                         style: TextStyle(fontWeight: FontWeight.bold)),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.pink[200]
+                        primary: Colors.pink[300]
                       ),
                     )
                   ]
@@ -122,14 +113,15 @@ final TextEditingController _titleEditingController = TextEditingController();
 
 Widget titleSection(){
   return Container(
+    
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Icon(Icons.title,color: Colors.amber[600],),
-            SizedBox(width:5),
+            Icon(Icons.title,color: Colors.amber[600],size: 30,),
+            SizedBox(width:10),
             Text("제목",
               style: TextStyle(
                 fontSize: 20,

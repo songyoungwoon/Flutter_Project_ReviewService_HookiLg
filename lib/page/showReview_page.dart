@@ -1,9 +1,4 @@
-// import '../page/writeReview_page.dart';
 import 'package:flutter/material.dart';
-// import '../main.dart';
-import '../page/reviewList_page.dart';
-// import '../screen/home.dart';
-import '../screen/fristhome.dart';
 import '../widget/writeText.dart';
 
 
@@ -40,24 +35,14 @@ class _showReviewState extends State<showReview>{
           ),),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios,
-            color: Colors.pinkAccent,),
+            color: Color(0xFFF06292),),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          actions: [
-            Center(
-              child: IconButton(
-                icon: Icon(Icons.home, color: Colors.pinkAccent,),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-          ],
+         
        backgroundColor: Colors.white,
-       foregroundColor: Colors.black54,
-       shadowColor: Colors.white24,
+       shadowColor: Colors.pink[200],
         ),
      body:
      SingleChildScrollView(
@@ -71,7 +56,7 @@ class _showReviewState extends State<showReview>{
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 
-              Icon(Icons.turned_in_not_sharp, color: Colors.pinkAccent,),
+              Icon(Icons.turned_in_outlined, color: Colors.amber[600],size: 30,),
               SizedBox(width: 5),
               Text(_review_title,
               style: TextStyle(
@@ -81,11 +66,11 @@ class _showReviewState extends State<showReview>{
               Expanded(child: SizedBox(height: 10),),
 
               IconButton(onPressed: (){
-
-              }, icon: Icon(Icons.upgrade,color: Colors.pinkAccent,)),
+                    // 수정
+              }, icon: Icon(Icons.upgrade,color: Colors.pink[300],)),
               IconButton(onPressed: (){
-
-              }, icon: Icon(Icons.delete,color: Colors.pinkAccent,))
+                    //삭제
+              }, icon: Icon(Icons.delete,color: Colors.pink[300],))
 
 
             ]),
@@ -97,43 +82,28 @@ class _showReviewState extends State<showReview>{
                   width: 350,
                   child: Padding(
                     padding: EdgeInsets.all(10),
-                    child: Text(_review_contents),)
+                    child: Text(_review_contents, 
+                    style: TextStyle(fontSize: 15 )
+                    ),)
                 ),
             ]),
 
             SizedBox(height: 5),
-            Divider(color: Colors.pink,thickness: 2,),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-              SizedBox(width:5),
-              IconButton(onPressed: (){
-
-              }, icon: Icon(Icons.question_answer, color: Colors.pink[300],),
-              
-              ) ,
-              Expanded(child: SizedBox(height: 7)),
-              ElevatedButton.icon(
-               style: ElevatedButton.styleFrom(
-                        primary: Colors.pink[200]
-                      ),
-                onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => reviewList()),
-                  );
-              }, icon: Icon(Icons.list,
-              ),
-               label: Text('목록',
-               style: TextStyle(fontSize: 14))
-               ),
-              SizedBox(width:5),
-
-            ],
-            ),
-            SizedBox(height: 5),
+            Divider(color: Colors.amber[600],thickness: 2,),
             
-            wirteText(2,60,'writeReply')
+            SizedBox(height: 10),
+
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 5,),
+                wirteText(2,295,60,'writeReply'),
+                IconButton(onPressed: (){
+
+                }, icon:Icon(Icons.chat_bubble, color: Colors.pink[300],))
+              ],
+            )
             
 
           ]),

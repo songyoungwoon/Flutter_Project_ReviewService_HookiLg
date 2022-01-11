@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
               Icons.auto_stories,
               size: 40,
             ),
-            color: Colors.pink[200],
+            color: Colors.pink[300],
           ),
           searchBar(),
           Padding(padding: EdgeInsets.only(top: 20),),

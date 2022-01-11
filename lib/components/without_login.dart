@@ -18,7 +18,7 @@ class WithoutLogin extends StatelessWidget {
           onTap: press,
           child: Text("use wiithout an account.",
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.amber[600],
               fontWeight: FontWeight.bold,
             ),
           ),

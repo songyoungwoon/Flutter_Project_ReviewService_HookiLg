@@ -59,7 +59,7 @@ class _searchResultState extends State<searchResult> {
                   fontWeight: FontWeight.bold,
                   fontSize: 25)),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.pinkAccent),
+            icon: const Icon(Icons.arrow_back_ios, color:  Color(0xFFF06292)),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -67,7 +67,7 @@ class _searchResultState extends State<searchResult> {
           actions: [
             Center(
               child: IconButton(
-                icon: Icon(Icons.home, color: Colors.pinkAccent),
+                icon: Icon(Icons.home, color: Colors.pink[300]),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -78,8 +78,7 @@ class _searchResultState extends State<searchResult> {
             ),
           ],
           backgroundColor: Colors.white,
-          foregroundColor: Colors.black54,
-          shadowColor: Colors.white24,
+          shadowColor: Colors.pink[200],
         ),
         body: FutureBuilder(
             future: fetch(),
@@ -91,6 +90,7 @@ class _searchResultState extends State<searchResult> {
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
                     return Card(
+                      shadowColor: Colors.pink[100],
                       elevation: 8,
                       margin:
                           EdgeInsets.symmetric(vertical: 14, horizontal: 20),
