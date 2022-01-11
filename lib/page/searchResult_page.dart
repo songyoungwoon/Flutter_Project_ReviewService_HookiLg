@@ -91,9 +91,9 @@ class _searchResultState extends State<searchResult> {
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
                     return Card(
-                      elevation: 8,
+                      elevation: 6,
                       margin:
-                          EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       child: ListTile(
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
@@ -112,6 +112,7 @@ class _searchResultState extends State<searchResult> {
                                   height: 100,
                                 ),
                         ),
+                        trailing: Icon(Icons.arrow_forward_ios_rounded, size: 18,),
                         title: Container(
                             margin: EdgeInsets.only(left: 5),
                             child: Text(
