@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/components/authentication.dart';
+import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/widget/appbar_widget.dart';
 import 'package:fp_review_service_hookilg/widget/button_widget.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
@@ -72,9 +74,14 @@ class _MyPageState extends State<MyPage> {
         onClicked: () {},
       );
     Widget buildProfileModifyButton() => ButtonWidget(
-        text: '내 프로필 수정하기',
-        isBold: false,
-        onClicked: () {},
+        text: 'log out',
+        isBold: true,
+        onClicked: () {
+          Route route = MaterialPageRoute(builder: (context) => WelcomeScreen());
+          Navigator.pushReplacement(
+            context, route
+          );
+        },
       );
 
   Widget buildAbout(User user) => Container(
