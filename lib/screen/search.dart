@@ -41,44 +41,44 @@ class _SearchState extends State<Search> {
                   )),
                   ListTile(leading: Text('1', style: TextStyle(color: Colors.pink[300], 
                   fontWeight: FontWeight.bold,fontSize: 20))
-                  , title:Text('김혜진',style: TextStyle(fontWeight: FontWeight.bold))),
+                  , title:Text('특송',style: TextStyle(fontWeight: FontWeight.bold))),
                   
 
                   ListTile(leading: Text('2', style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20)), 
-                  title:Text('이나현')),
+                  title:Text('하우스 오브 구찌')),
 
                   ListTile(leading: Text('3',style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20) ), 
-                  title:Text('김유진 군면제')),
+                  title:Text('스타워즈')),
 
                   ListTile(leading: Text('4',style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20)), 
-                  title:Text('21세 정모양 인성논란')),
+                  title:Text('경관의 피')),
 
                   ListTile(leading: Text('5',style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20)), 
-                  title:Text('정민경 새내기 강제탈출')),
+                  title:Text('스파이더맨: 노 웨이 홈')),
                   
                   ListTile(leading: Text('6',style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20)), 
-                  title:Text('송모씨 내맘대로 할거야 말리지 마')),
+                  title:Text('해리포터')),
                   
                   ListTile(leading: Text('7',style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20)), 
-                  title:Text('까까까까까만 선글라스')),
+                  title:Text('라푼젤')),
                   
                   ListTile(leading: Text('8',style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20)), 
-                  title:Text('스노우볼 인성논란')),
+                  title:Text('티탄')),
                   
                   ListTile(leading: Text('9',style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20)), 
-                  title:Text('2학 밥 맛있는 거좀')),
+                  title:Text('위대한 쇼맨')),
                   
                   ListTile(leading: Text('10',style: TextStyle(color: Colors.amber[600], 
                   fontWeight: FontWeight.bold,fontSize: 20)), 
-                  title:Text('예미나녜! 화냤녜!')),
+                  title:Text('씽2게더')),
                 ],
               ),
             )

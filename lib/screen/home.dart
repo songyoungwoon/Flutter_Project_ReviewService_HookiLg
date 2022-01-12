@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_html/flutter_html.dart';
-
 import '../widget/search_bar.dart';
 import '../page/reviewList_page.dart';
 
@@ -41,14 +40,21 @@ class _HomeState extends State<Home> {
                 autoPlayInterval: Duration(seconds: 3),
                 autoPlayAnimationDuration: Duration(milliseconds: 800),
                 height: 220.0),
-            items: [1, 2, 3].map((i) {
+
+            items: [
+            // 'images/ban/ban_1.png',
+            // 'images/ban/ban_2.png', 
+            // 'images/ban/ban_3.png'
+            1,2,3
+            ].map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.symmetric(horizontal: 5.0),
                       decoration: BoxDecoration(color: Colors.blueGrey[50]),
-                      child: Text(
+                      child: 
+                      Text(
                         'image $i',
                         style: TextStyle(fontSize: 16.0),
                       ));

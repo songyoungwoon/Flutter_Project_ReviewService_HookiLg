@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 import 'writeReview_page.dart';
+import 'writeReviewTest_page.dart';
 
 class reviewList extends StatefulWidget {
   String movie_title = '';
@@ -50,7 +51,7 @@ class _reviewListState extends State<reviewList> {
         shadowColor: Colors.pink[200],
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
+        stream:FirebaseFirestore.instance
             .collection('review')
             .where("movie_title", isEqualTo: movie_title)
             .where("director", isEqualTo: movie_director)
@@ -77,14 +78,16 @@ class _reviewListState extends State<reviewList> {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                        padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
                         child: Row(
                           children: [
                             CircleAvatar(
                               radius: 25,
+                              
+                              backgroundColor: Colors.amber[600]
                             ),
                             Container(
-                              padding: EdgeInsets.fromLTRB(10, 0, 5, 5),
+                              padding: EdgeInsets.fromLTRB(15, 0, 5, 5),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -98,26 +101,43 @@ class _reviewListState extends State<reviewList> {
                                 ],
                               ),
                             ),
-                            SizedBox(width: 140),
-                            Container(
+                            Expanded(child: SizedBox()),
+                             Container(
                               child: Row(
                                 children: [
                                   spoilerIstrue
-                                      ? Text(
-                                          '스포포함',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400),
-                                        )
+                                      ? Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.circle,color: Colors.red,size: 10,),
+                                          SizedBox(width: 2,),
+                                          Text(
+                                              '스포포함',
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                        ],
+                                      )
                                       : Text(''),
                                   SizedBox(width: 5),
                                   endingAnalysisIstrue
-                                      ? Text(
-                                          '결말해석',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400),
-                                        )
+                                      ? Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.circle,color: Colors.indigo,size: 10,),
+                                          SizedBox(width: 2,),
+                                          Text(
+                                              '결말해석',
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          SizedBox(width: 5),
+
+                                        ],
+                                      )
+                                      
                                       : Text(''),
                                 ],
                               ),
@@ -125,12 +145,14 @@ class _reviewListState extends State<reviewList> {
                           ],
                         ),
                       ),
+                      Container(width: 350,height: 0.5, color: Colors.pink[200],),
                       Container(
+                        padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
                         child: ListTile(
                           title: Text(
                             snapshot.data.docs[index]['title'],
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 20),
+                                fontWeight: FontWeight.bold, fontSize: 20),
                           ),
                           //subtitle: Text(snapshot.data.docs[index]['content']),
                           trailing: Container(
@@ -169,8 +191,9 @@ class _reviewListState extends State<reviewList> {
                       ),
                       Padding(padding: EdgeInsets.only(top: 10)),
                       Container(
-                        alignment: Alignment.topLeft,
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
+                        // alignment: Alignment.topLeft,
+                        padding: EdgeInsets.fromLTRB(25, 0, 15, 15),
+
                         child: Row(
                           children: [
                             Container(
@@ -206,7 +229,8 @@ class _reviewListState extends State<reviewList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => writeReview(movie_title, movie_director)),
+              // builder: (context) => writeReview(movie_title, movie_director)),
+               builder: (context) => writeReviewTest()),
           );
         },
         label: const Text(
