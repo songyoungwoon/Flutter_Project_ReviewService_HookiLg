@@ -37,7 +37,7 @@ class _MyPageState extends State<MyPage> {
           const SizedBox(height: 2),
           buildName(user),
           const SizedBox(height: 10),
-          Center(child: buildProfileModifyButton()),
+          Center(child: buildProfileEditButton()),
           ]
           ),
           ],
@@ -45,7 +45,7 @@ class _MyPageState extends State<MyPage> {
           const SizedBox(height: 30),
           NumbersWidget(),
           const SizedBox(height: 24),
-          buildMyReviewButton(),
+          buildlogoutButton(),
           const SizedBox(height: 48),
           buildAbout(user),
 
@@ -68,12 +68,12 @@ class _MyPageState extends State<MyPage> {
         ],
       );
 
-  Widget buildMyReviewButton() => ButtonWidget(
-        text: 'My Review',
+  Widget buildProfileEditButton() => ButtonWidget(
+        text: '프로필 수정',
         isBold: true,
         onClicked: () {},
       );
-    Widget buildProfileModifyButton() => ButtonWidget(
+    Widget buildlogoutButton() => ButtonWidget(
         text: 'log out',
         isBold: true,
         onClicked: () {

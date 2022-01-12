@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
                 ],
               ),
               SizedBox(height: size.height * 0.03),
-              Icon(Icons.auto_stories, size: 100),
+              Icon(Icons.auto_stories, size: 100,color: Color(0xFFF06292),),
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
                 controller: emailController,
