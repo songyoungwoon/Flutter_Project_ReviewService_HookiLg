@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 import 'writeReview_page.dart';
+import 'writeReviewTest_page.dart';
 
 class reviewList extends StatefulWidget {
   String movie_title = '';
@@ -50,7 +51,7 @@ class _reviewListState extends State<reviewList> {
         shadowColor: Colors.pink[200],
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
+        stream:FirebaseFirestore.instance
             .collection('review')
             .where("movie_title", isEqualTo: movie_title)
             .where("director", isEqualTo: movie_director)
@@ -205,7 +206,8 @@ class _reviewListState extends State<reviewList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => writeReview(movie_title, movie_director)),
+              // builder: (context) => writeReview(movie_title, movie_director)),
+               builder: (context) => writeReviewTest()),
           );
         },
         label: const Text(
@@ -235,8 +237,9 @@ void createdata(String code, String name, String status) {
 
 void readdata(String code) {
   final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
-  usercol.get().then((value) => {print(value.data())});
-}
+  usercol.get().then((value) => {print(value.data())}
+  );
+  }
 
 void updatedata(String code, String status) {
   final usercol = FirebaseFirestore.instance.collection("players").doc("$code");

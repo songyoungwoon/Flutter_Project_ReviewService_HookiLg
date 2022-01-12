@@ -90,7 +90,7 @@ class _searchResultState extends State<searchResult> {
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
 
-                    return Container(
+                    return SingleChildScrollView(
                       child: Card(
                         shadowColor: Colors.pink[100],
                         elevation: 6,
@@ -118,7 +118,8 @@ class _searchResultState extends State<searchResult> {
                                             image: result[index]['image']
                                                 .toString(),
                                             fit: BoxFit.cover,
-                                          )),
+                                          )
+                                ),
                                 Container(
                                   width: 200,
                                   child: Column(
