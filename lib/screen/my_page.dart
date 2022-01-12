@@ -72,7 +72,7 @@ class _MyPageState extends State<MyPage> {
         onClicked: () {},
       );
     Widget buildProfileModifyButton() => ButtonWidget(
-        text: '내 프로필 수정하기',
+        text: 'log out',
         isBold: true,
         onClicked: () {},
       );
