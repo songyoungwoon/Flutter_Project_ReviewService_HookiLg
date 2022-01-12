@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fp_review_service_hookilg/components/rounded_button.dart';
+import 'package:fp_review_service_hookilg/components/without_login.dart';
 import 'package:fp_review_service_hookilg/screen/Login/login_screen.dart';
 import 'package:fp_review_service_hookilg/screen/Signup/signup_screen.dart';
+import 'package:fp_review_service_hookilg/screen/fristhome.dart';
 
 import '../../../constants.dart';
 
@@ -17,9 +19,20 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "WELCOME TO HOOKILG",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.filter_vintage_rounded, color: Colors.amber[600],),
+                SizedBox(width: 5,),
+                Text(
+                  "WELCOME TO HOOKILG",
+                  style: TextStyle(fontWeight: FontWeight.bold,
+                  color: Colors.pinkAccent),
+                ),
+                SizedBox(width: 5,),
+                Icon(Icons.filter_vintage_rounded, color: Colors.amber[600],),
+
+              ],
             ),
             SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
@@ -43,13 +56,26 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "SIGN UP",
               color: kPrimaryLightColor,
-              textColor: Colors.black,
+              textColor: Colors.black54,
               press: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
                       return SignUpScreen();
+                    },
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: size.height * 0.0001),
+            WithoutLogin(
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FirstHome();
                     },
                   ),
                 );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/screen/search.dart';
 import 'package:fp_review_service_hookilg/widget/bottom_bar.dart';
-
+import 'favorites.dart';
 import 'home.dart';
 import 'my_page.dart';
 
@@ -21,11 +21,7 @@ class _FirstHome extends State<FirstHome> {
           children: <Widget>[
             Home(),
             Search(),
-            Container(
-              child: Center(
-                child: Text('favorites'),
-              ),
-            ),
+            favoriteLsit(),
             MyPage(),
           ],
         ),

@@ -9,42 +9,44 @@ import '../widget/writeText.dart';
 
 
 class writeReview extends StatefulWidget {
-  writeReview({Key? key}) : super(key: key);
+  String movie_title = '';
+  String movie_director = '';
+
+  writeReview(this.movie_title, this.movie_director);
+
   @override
-  _writeReviewState createState() => _writeReviewState();
+  _writeReviewState createState() => _writeReviewState(movie_title, movie_director);
 }
 
 String title_text ='';
 String content_text='';
 
 class _writeReviewState extends State<writeReview>{
+  String movie_title = '';
+  String movie_director = '';
+
+  _writeReviewState(this.movie_title, this.movie_director);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("후기 작성"),
+          title: Text("Write Review",
+          style: TextStyle(
+            color: Colors.grey[800],
+            fontWeight: FontWeight.bold,
+            fontSize: 25
+          ),),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios,
+            color: Color(0xFFF06292)),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          actions: [
-            Center(
-              child: IconButton(
-                icon: Icon(Icons.home),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
-                  );
-                },
-              ),
-            ),
-          ],
+         
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black54,
-        shadowColor: Colors.white24,
+        shadowColor: Colors.pink[200],
         ),
       body:Container(
         child:Padding(
@@ -57,13 +59,22 @@ class _writeReviewState extends State<writeReview>{
                   children: [
                     titleSection(),
                     SizedBox(height: 15),
-                    Text("내용",
-                    style: TextStyle(
-                       fontSize: 20,
-                       fontWeight: FontWeight.bold
-                    )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.create,color: Colors.amber[600], size: 30,),
+                        SizedBox(width: 10,),
+                        Text("내용",
+                        style: TextStyle(
+                           fontSize: 20,
+                           fontWeight: FontWeight.bold
+                        )),
+                        // Expanded(child: SizedBox()),
+                        
+                      ],
+                    ),
                     SizedBox(height: 10),
-                    wirteText(40,250,'writeReview'),
+                    wirteText(50,350,300,'writeReview'),
                   ],
                 )
               ),
@@ -71,18 +82,19 @@ class _writeReviewState extends State<writeReview>{
               Container(
                 child: Row(
                   children: [
-                    Expanded(child: SizedBox(height: 20)),
-                    ElevatedButton.icon(
+                    IconButton(onPressed: (){
+                          //d add Image 
+                        }, icon: Icon(Icons.image, color: Colors.pink[300],size: 30,)),
+                    Expanded(child: SizedBox()),
+                    ElevatedButton(
                       onPressed: (){
-                      // BuildContext context;
-                       createdata(title_text, content_text);
+                       createdata(movie_title, movie_director, title_text, content_text);
                        Navigator.pop(context);
                       },
-                      icon: Icon(Icons.add,size:15),
-                      label: Text("저장",
+                      child: Text("저장",
                         style: TextStyle(fontWeight: FontWeight.bold)),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.pink[200]
+                        primary: Colors.pink[300]
                       ),
                     )
                   ]
@@ -101,36 +113,50 @@ final TextEditingController _titleEditingController = TextEditingController();
 
 Widget titleSection(){
   return Container(
+    
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("제목",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            // color: Colors.pinkAccent
-          ),
-        ),
-
-        TextField(
-          style: TextStyle(
-            fontSize: 18,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.title,color: Colors.amber[600],size: 30,),
+            SizedBox(width:10),
+            Text("제목",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          decoration: InputDecoration(
-            hintText: 'Title',
+          ],
+        ),
+      
+        Center(
+          child: Container(
+            width: 320,
+            child: TextField(
+              style: TextStyle(
+                fontSize: 18,
+                ),
+              decoration: InputDecoration(
+                hintText: 'Title',
+              ),
+              onChanged: (value){
+                title_text=value;
+              },
+            ),
           ),
-          onChanged: (value){
-            title_text=value;
-          },
         )
       ],
     ),
   );
 }
 
-void createdata(String title_text, String content_text) {
+void createdata(String movie_title, String movie_director, String title_text, String content_text) {
   final usercol = FirebaseFirestore.instance.collection("review").doc();
   usercol.set({
+    "movie_title": "$movie_title",
+    "director": "$movie_director",
     "title": "$title_text",
     "content": "$content_text",
   });

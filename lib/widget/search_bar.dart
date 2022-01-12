@@ -12,8 +12,11 @@ class searchBar extends StatefulWidget {
 
 class _searchBarState extends State<searchBar> {
   final TextEditingController _filter = TextEditingController();
+
   FocusNode focusNode = FocusNode();
+  bool isFocusNodeTrue = false;
   String _searchText = "";
+  bool isFocusOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +29,8 @@ class _searchBarState extends State<searchBar> {
         children: [
           Expanded(
             flex: 6,
-              child:TextField(
-              onSubmitted: (value){
+            child: TextField(
+              onSubmitted: (value) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => searchResult(value)),
@@ -37,22 +40,24 @@ class _searchBarState extends State<searchBar> {
               style: TextStyle(
                 fontSize: 12,
               ),
-              autofocus: true,
+              autofocus: false,
               controller: _filter,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.blueAccent[99],
-                prefixIcon: focusNode.hasFocus
+                prefixIcon:
+                focusNode.hasFocus
                     ? TextButton(
-                        onPressed: () {
-                          setState(() {
-                            _filter.clear();
-                            _searchText = "";
-                            focusNode.unfocus();
-                          });
-                        },
-                        child: Text('취소'))
-                    : Icon(Icons.search, color: Colors.black45, size: 20),
+                  child:Text('취소'),
+                  onPressed: () {
+                    setState(() {
+                      _filter.clear();
+                      _searchText = "";
+                      focusNode.unfocus();
+                    });
+                  },)
+                    : Icon(Icons.search, color: Colors.pink[300], size: 20),
+
                 suffixIcon: focusNode.hasFocus
                     ? IconButton(
                         icon:
@@ -64,7 +69,7 @@ class _searchBarState extends State<searchBar> {
                           });
                         },
                       )
-                    : Container(),
+                    : Text(''),
                 hintText: '리뷰나 해석을 보고싶은 영화를 검색하세요.',
                 labelStyle: TextStyle(color: Colors.black12),
                 focusedBorder: OutlineInputBorder(
@@ -81,12 +86,10 @@ class _searchBarState extends State<searchBar> {
                 ),
               ),
             ),
-            ),
+          ),
         ],
       ),
     );
-
-
 
     // ------------------------------------------------
     /* open sorce search_bar  don't use
@@ -103,8 +106,8 @@ class _searchBarState extends State<searchBar> {
     */
   }
 
-  // --------------------------------------------------
-  /* open sorce search_bar  don't use
+// --------------------------------------------------
+/* open sorce search_bar  don't use
   Widget buildFloatingSearchBar() {
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;

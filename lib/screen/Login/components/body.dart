@@ -7,9 +7,12 @@ import 'package:fp_review_service_hookilg/screen/Signup/signup_screen.dart';
 import 'package:fp_review_service_hookilg/screen/fristhome.dart';
 
 class Body extends StatelessWidget {
-  const Body({
+  Body({
     Key? key,
   }) : super(key: key);
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +23,31 @@ class Body extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                "Hookilg LOGIN",
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.star,color:Colors.amber[300]),
+                  Text(
+                    "Hi, FABULOUS YOU!",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color:Colors.amber[600] ),
+                  ),
+                  Icon(Icons.star,color:Colors.amber[300]),
+
+                ],
               ),
               SizedBox(height: size.height * 0.03),
-              Icon(Icons.auto_stories, size: 100),
+              Icon(Icons.auto_stories, size: 100, color: Colors.pinkAccent,),
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
+                controller: emailController,
                 hintText: "Your Email",
                 onChanged: (value) {},
               ),
               RoundedPasswordField(
+                controller: passwordController,
                 onChanged: (value) {},
               ),
               RoundedButton(
