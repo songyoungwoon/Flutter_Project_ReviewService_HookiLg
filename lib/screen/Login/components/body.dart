@@ -32,7 +32,8 @@ class Body extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color:Colors.amber[600] ),
+                      fontFamily: 'EliceDigitalBaeum',
+                      color:Colors.indigo[300] ),
                   ),
                   Icon(Icons.star,color:Colors.amber[300]),
 

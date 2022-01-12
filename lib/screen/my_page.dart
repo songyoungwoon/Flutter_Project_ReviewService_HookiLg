@@ -4,7 +4,7 @@ import 'package:fp_review_service_hookilg/widget/appbar_widget.dart';
 import 'package:fp_review_service_hookilg/widget/button_widget.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
-import 'package:fp_review_service_hookilg/model/user.dart';
+import 'package:fp_review_service_hookilg/model/user_mypage.dart';
 import 'package:fp_review_service_hookilg/utils/user_preferences.dart';
 
 
@@ -68,12 +68,12 @@ class _MyPageState extends State<MyPage> {
 
   Widget buildMyReviewButton() => ButtonWidget(
         text: 'My Review',
-        isBold: false,
+        isBold: true,
         onClicked: () {},
       );
     Widget buildProfileModifyButton() => ButtonWidget(
         text: '내 프로필 수정하기',
-        isBold: true,
+        isBold: false,
         onClicked: () {},
       );
 
