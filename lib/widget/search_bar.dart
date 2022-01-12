@@ -71,7 +71,8 @@ class _searchBarState extends State<searchBar> {
                       )
                     : Text(''),
                 hintText: '리뷰나 해석을 보고싶은 영화를 검색하세요.',
-                labelStyle: TextStyle(color: Colors.black12),
+                //hintStyle: FontWeight.bold,
+                labelStyle: TextStyle(color: Colors.black12,),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.all(Radius.circular(10)),

@@ -1,5 +1,5 @@
 
-import 'package:fp_review_service_hookilg/model/user.dart';
+import 'package:fp_review_service_hookilg/model/user_mypage.dart';
 
 class UserPreferences {
   static const myUser = User(
