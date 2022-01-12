@@ -15,23 +15,24 @@ class RoundedPasswordField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool _isobscure = true;
     return TextFieldContainer(
       child: TextField(
         controller: controller,
         style: TextStyle(color: Colors.black),
-        obscureText: true,
+        obscureText: _isobscure, //비밀번호가 보이냐 안보이냐
         onChanged: onChanged,
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
           hintText: "Password",
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: TextStyle(color: Colors.grey,fontFamily: 'EliceDigitalBaeum'),
           icon: Icon(
             Icons.lock,
-            color: Colors.amber[600],
+            color: Colors.amber[500],
           ),
           suffixIcon: Icon(
             Icons.visibility,
-            color: Colors.amber[600],
+            color: Colors.indigo[100],
           ),
           border: InputBorder.none,
         ),

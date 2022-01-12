@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/components/authentication.dart';
+import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/widget/appbar_widget.dart';
 import 'package:fp_review_service_hookilg/widget/button_widget.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
-import 'package:fp_review_service_hookilg/model/user.dart';
+import 'package:fp_review_service_hookilg/model/user_mypage.dart';
 import 'package:fp_review_service_hookilg/utils/user_preferences.dart';
 
 
@@ -68,13 +70,18 @@ class _MyPageState extends State<MyPage> {
 
   Widget buildMyReviewButton() => ButtonWidget(
         text: 'My Review',
-        isBold: false,
+        isBold: true,
         onClicked: () {},
       );
     Widget buildProfileModifyButton() => ButtonWidget(
-        text: '내 프로필 수정하기',
+        text: 'log out',
         isBold: true,
-        onClicked: () {},
+        onClicked: () {
+          Route route = MaterialPageRoute(builder: (context) => WelcomeScreen());
+          Navigator.pushReplacement(
+            context, route
+          );
+        },
       );
 
   Widget buildAbout(User user) => Container(

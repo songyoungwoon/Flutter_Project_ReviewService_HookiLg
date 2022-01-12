@@ -26,11 +26,11 @@ class Body extends StatelessWidget {
                 SizedBox(width: 5,),
                 Text(
                   "WELCOME TO HOOKILG",
-                  style: TextStyle(fontWeight: FontWeight.bold,
-                  color: Colors.pinkAccent),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'EliceDigitalBaeum',
+                  color: Colors.indigo[300]),
                 ),
                 SizedBox(width: 5,),
-                Icon(Icons.filter_vintage_rounded, color: Colors.amber[600],),
+                Icon(Icons.filter_vintage_rounded, color: Colors.amber[500],),
 
               ],
             ),
