@@ -18,6 +18,8 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     final user = UserPreferences.myUser;
 
+
+
     return Scaffold(
       appBar: buildAppBar(context),
       body: ListView(

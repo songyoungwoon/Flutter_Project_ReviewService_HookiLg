@@ -74,6 +74,22 @@ class Body extends StatelessWidget {
                       email: emailController.text,
                       password: passwordController.text
                   );
+                  createuserinfo
+                    (emailController.text,
+                      passwordController.text,
+                      nameController.text,
+                      AgeController.text,
+                      NickNameController.text
+                  );
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginScreen(); //메인페이지로 이동하게 변경
+                      },
+                    ),
+                  );
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {
                     //print('The password provided is too weak.');
@@ -103,23 +119,6 @@ class Body extends StatelessWidget {
                 } catch (e) {
                   print(e);
                 }
-
-                createuserinfo
-                  (emailController.text,
-                    passwordController.text,
-                    nameController.text,
-                    AgeController.text,
-                    NickNameController.text
-                );
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen(); //메인페이지로 이동하게 변경
-                    },
-                  ),
-                );
               },
             ),
             SizedBox(height: size.height * 0.03),
@@ -151,13 +150,7 @@ void createuserinfo(String email, String password, String name, String age, Stri
     "name": "$name",
     "age": "$age",
     "nickname": "$nickname",
+    "profileimg": 'images/profile.jpg',
+
   });
-}
-Future checkuser(String email) async {
-  var methods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
-  if (methods.contains('password')) {
-    return "signupfail";
-  }else {
-    return "signupsuccess";
-  }
 }
