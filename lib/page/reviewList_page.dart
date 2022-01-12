@@ -55,6 +55,7 @@ class _reviewListState extends State<reviewList> {
             .where("movie_title", isEqualTo: movie_title)
             .where("director", isEqualTo: movie_director)
             .snapshots(),
+                 // snapshot.data.docs[index]['title'],
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -225,25 +226,25 @@ class _reviewListState extends State<reviewList> {
   }
 }
 
-void createdata(String code, String name, String status) {
-  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
-  usercol.set({
-    "name": "$name",
-    "status": "$status",
-  });
-}
+// void createdata(String code, String name, String status) {
+//   final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
+//   usercol.set({
+//     "name": "$name",
+//     "status": "$status",
+//   });
+// }
 
-void readdata(String code) {
-  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
-  usercol.get().then((value) => {print(value.data())});
-}
+// void readdata(String code) {
+//   final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
+//   usercol.get().then((value) => {print(value.data())});
+// }
 
-void updatedata(String code, String status) {
-  final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
-  usercol.update({
-    "status": "$status",
-  });
-}
+// void updatedata(String code, String status) {
+//   final usercol = FirebaseFirestore.instance.collection("players");
+//   usercol.update({
+//     "status": "$status",
+//   });
+// }
 
 void deleteData() {
   final usercol = FirebaseFirestore.instance.collection("review").doc();
