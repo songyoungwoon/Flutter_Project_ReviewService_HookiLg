@@ -20,11 +20,7 @@ class _HomeState extends State<Home> {
         child: ListView(children: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => reviewList()),
-              );
-            },
+              },
             icon: Icon(
               Icons.auto_stories,
               size: 40,

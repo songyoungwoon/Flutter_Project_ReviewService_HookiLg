@@ -1,10 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fp_review_service_hookilg/page/showReview_page.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'writeReview_page.dart';
 import 'writeReviewTest_page.dart';
+import 'showReview_page.dart';
+import 'showReviewTest_page.dart';
 
 class reviewList extends StatefulWidget {
   String movie_title = '';
@@ -19,6 +21,10 @@ class reviewList extends StatefulWidget {
       _reviewListState(movie_title, movie_director);
 }
 
+int add(int num) {
+  return num;
+}
+
 class _reviewListState extends State<reviewList> {
   String movie_title = '';
   String movie_director = '';
@@ -26,6 +32,8 @@ class _reviewListState extends State<reviewList> {
   bool endingAnalysisIstrue = true;
 
   _reviewListState(this.movie_title, this.movie_director);
+
+  int a = add(5);
 
   @override
   Widget build(BuildContext context) {
@@ -39,22 +47,22 @@ class _reviewListState extends State<reviewList> {
               fontSize: 25),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios,
-          color: Color(0xFFF06292),),
-
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Color(0xFFF06292),
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-
         backgroundColor: Colors.white,
         shadowColor: Colors.pink[200],
       ),
       body: StreamBuilder(
-        stream:FirebaseFirestore.instance
+        stream: FirebaseFirestore.instance
             .collection('review')
             .where("movie_title", isEqualTo: movie_title)
-            .where("director", isEqualTo: movie_director)
+            .where("movie_director", isEqualTo: movie_director)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
@@ -65,7 +73,6 @@ class _reviewListState extends State<reviewList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text("loading"));
           }
-
           return ListView.builder(
             itemCount: snapshot.data.docs.length,
             itemBuilder: (ctx, index) {
@@ -128,7 +135,7 @@ class _reviewListState extends State<reviewList> {
                       Container(
                         child: ListTile(
                           title: Text(
-                            snapshot.data.docs[index]['title'],
+                            snapshot.data.docs[index]['review_title'],
                             style: TextStyle(
                                 fontWeight: FontWeight.w700, fontSize: 20),
                           ),
@@ -160,9 +167,7 @@ class _reviewListState extends State<reviewList> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => showReview(
-                                      snapshot.data.docs[index]['title'],
-                                      snapshot.data.docs[index]['content'])),
+                                  builder: (context) => showReviewTest(snapshot.data.docs[index]['review_title'], snapshot.data.docs[index]['date_time'], snapshot.data.docs[index]['review_content'])),
                             );
                           },
                         ),
@@ -176,18 +181,21 @@ class _reviewListState extends State<reviewList> {
                             Container(
                               width: 180,
                               height: 150,
-                              child: Text('미리보기 : ' +
-                                  snapshot.data.docs[index]['content']),
+                              child: Text(
+                                  snapshot.data.docs[index]['review_brief']),
                             ),
                             SizedBox(width: 10),
                             Container(
                               width: 140,
                               height: 150,
                               decoration: BoxDecoration(
-                                image: DecorationImage(
+                                color: Colors.pink[200]
+                                /*
+                                  image: DecorationImage(
                                     image: NetworkImage(
                                         'https://w.namu.la/s/6542d430faf483de81317c1ad99df450eef28b9409d0adbc02e17ca5c72c99a45ea7435a0b335a109f81d2f169867cec26207c7a2a62d2d216457f17d19735a681b4b9ba7b8ce0fa6407ef5e77928495'),
                                     fit: BoxFit.cover),
+                                */
                               ),
                             ),
                           ],
@@ -206,21 +214,21 @@ class _reviewListState extends State<reviewList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              // builder: (context) => writeReview(movie_title, movie_director)),
-               builder: (context) => writeReviewTest()),
+                // builder: (context) => writeReview(movie_title, movie_director)),
+                builder: (context) =>
+                    writeReviewTest(movie_title, movie_director)),
           );
         },
         label: const Text(
           '리뷰작성',
-          style: TextStyle(color: Colors.white, 
-          fontSize: 15, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
         ),
         icon: const Icon(
           Icons.create,
           color: Colors.white,
         ),
         backgroundColor: Colors.pink[300],
-
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
@@ -237,9 +245,8 @@ void createdata(String code, String name, String status) {
 
 void readdata(String code) {
   final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
-  usercol.get().then((value) => {print(value.data())}
-  );
-  }
+  usercol.get().then((value) => {print(value.data())});
+}
 
 void updatedata(String code, String status) {
   final usercol = FirebaseFirestore.instance.collection("players").doc("$code");

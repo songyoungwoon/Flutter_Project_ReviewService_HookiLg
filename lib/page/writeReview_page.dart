@@ -8,7 +8,6 @@ import 'reviewList_page.dart';
 import '../main.dart';
 import '../widget/writeText.dart';
 
-
 class writeReview extends StatefulWidget {
   String movie_title = '';
   String movie_director = '';
