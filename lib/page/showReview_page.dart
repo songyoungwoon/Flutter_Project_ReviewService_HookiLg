@@ -16,13 +16,13 @@ class showReview extends StatefulWidget {
 String replyString = '';
 
 class _showReviewState extends State<showReview> {
-  String _review_title = '';
-  String _review_contents = '';
+  String review_title = '';
+  String review_contents = '';
 
   List<String> dropdownList = ['modify', 'delete'];
   String selectedValue = 'modify';
 
-  _showReviewState(this._review_title, this._review_contents);
+  _showReviewState(this.review_title, this.review_contents);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _showReviewState extends State<showReview> {
 
               Icon(Icons.turned_in_outlined, color: Colors.amber[600],size: 30,),
               SizedBox(width: 5),
-              Text(_review_title,
+              Text(review_title,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold
@@ -84,7 +84,7 @@ class _showReviewState extends State<showReview> {
                   width: 350,
                   child: Padding(
                     padding: EdgeInsets.all(10),
-                    child: Text(_review_contents, 
+                    child: Text(review_contents,
                     style: TextStyle(fontSize: 15 )
                     ),)
                 ),
