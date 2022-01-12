@@ -30,7 +30,7 @@ class RoundedInputExtraField extends StatelessWidget {
             color: Colors.amber[600],
           ),
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: TextStyle(color: Colors.grey,fontFamily: 'EliceDigitalBaeum'),
           border: InputBorder.none,
         ),
       ),
