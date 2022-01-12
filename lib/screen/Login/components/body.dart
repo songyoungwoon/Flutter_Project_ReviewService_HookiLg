@@ -63,13 +63,9 @@ class Body extends StatelessWidget {
               SizedBox(height: size.height * 0.01),
               AlreadyHaveAnAccountCheck(
                 press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SignUpScreen();
-                      },
-                    ),
+                  Route route = MaterialPageRoute(builder: (context) => SignUpScreen());
+                  Navigator.pushReplacement(
+                      context, route
                   );
                 },
               ),
