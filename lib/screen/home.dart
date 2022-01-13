@@ -37,11 +37,7 @@ class _HomeState extends State<Home> {
                 autoPlayAnimationDuration: Duration(milliseconds: 800),
                 height: 220.0),
 
-            items: [
-            // 'images/ban/ban_1.png',
-            // 'images/ban/ban_2.png', 
-            // 'images/ban/ban_3.png'
-            1,2,3
+            items: [1,2,3
             ].map((i) {
               return Builder(
                 builder: (BuildContext context) {
@@ -49,7 +45,7 @@ class _HomeState extends State<Home> {
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.symmetric(horizontal: 5.0),
                       decoration: BoxDecoration(color: Colors.blueGrey[50],
-                      image: DecorationImage(image: AssetImage('images/ban_$i.jpg'))),
+                      image: DecorationImage(image: AssetImage('images/ban_$i.jpg'),fit: BoxFit.cover)),
                   );
                 },
               );
