@@ -111,7 +111,6 @@ class _MyPageState extends State<MyPage> {
                   children: [
                      Expanded(child: SizedBox()),
                     ProfileWidget(
-                      
                       imagePath: snapshot.data.docs[index]['imagePath'],
                       onClicked: () async {},
                     ),
@@ -202,7 +201,6 @@ class _MyPageState extends State<MyPage> {
                   children: [
                      Expanded(child: SizedBox()),
                     ProfileWidget(
-                      
                       imagePath: '/images/profile.jpg',
                       onClicked: () async {},
                     ),

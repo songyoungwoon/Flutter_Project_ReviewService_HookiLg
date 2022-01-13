@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 
 import 'package:fp_review_service_hookilg/screen/my_page.dart';
+import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
 // import 'writeReview_page.dart';
 import 'writeReviewTest_page.dart';
 // import 'showReview_page.dart';
@@ -108,7 +109,7 @@ class _reviewListState extends State<reviewList> {
                             CircleAvatar(
                                 radius: 25,
                                 backgroundImage: NetworkImage(snapshot.data.docs[index]['imagePath']),
-                                backgroundColor: Colors.amber[600]),
+                                backgroundColor: Colors.amber[600],),
                             Container(
                               padding: EdgeInsets.fromLTRB(15, 0, 5, 5),
                               child: Column(
