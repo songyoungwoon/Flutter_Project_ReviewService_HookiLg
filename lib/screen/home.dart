@@ -48,12 +48,9 @@ class _HomeState extends State<Home> {
                   return Container(
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(color: Colors.blueGrey[50]),
-                      child: 
-                      Text(
-                        'image $i',
-                        style: TextStyle(fontSize: 16.0),
-                      ));
+                      decoration: BoxDecoration(color: Colors.blueGrey[50],
+                      image: DecorationImage(image: AssetImage('images/ban_$i.jpg'))),
+                  );
                 },
               );
             }).toList(),
