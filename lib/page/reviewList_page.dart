@@ -30,6 +30,7 @@ class _reviewListState extends State<reviewList> {
   String movie_director = '';
   bool spoilerIstrue = true;
   bool endingAnalysisIstrue = true;
+  bool thumbnailIstrue = false;
 
   _reviewListState(this.movie_title, this.movie_director);
 
@@ -150,8 +151,7 @@ class _reviewListState extends State<reviewList> {
                                           SizedBox(width: 5),
 
                                         ],
-                                      )
-                                      
+                                  )
                                       : Text(''),
                                 ],
                               ),
