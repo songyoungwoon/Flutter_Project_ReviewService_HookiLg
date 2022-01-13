@@ -27,13 +27,13 @@ class _MyPageState extends State<MyPage> {
         children: [
           Row ( //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children :[
-            SizedBox(width: 55,),
+            SizedBox(width: 45,),
           ProfileWidget(
             imagePath: user.imagePath,
             onClicked: () async {},
           ),
           const SizedBox(height: 24),
-          SizedBox(width: 55,),
+          SizedBox(width: 45,),
           Container(
             child: Column( mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center,
               children :[
@@ -54,7 +54,7 @@ class _MyPageState extends State<MyPage> {
           buildProfileEditButton(),
           const SizedBox(height: 48),
           buildAbout(user),
-          const SizedBox(height:130,),
+          const SizedBox(height:120,),
           Container(child:Row(
             children: [
             // Expanded(child:SizedBox())
@@ -71,12 +71,12 @@ class _MyPageState extends State<MyPage> {
         children: [
           Text(
             user.name,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, fontFamily: 'EliceDigitalBaeum'),
           ),
           const SizedBox(height: 4),
           Text(
             '나의 한줄 소개',
-            style: TextStyle(color: Colors.grey, fontSize: 15),
+            style: TextStyle(color: Colors.grey, fontSize: 15, fontFamily: 'EliceDigitalBaeum'),
           )
         ],
       );

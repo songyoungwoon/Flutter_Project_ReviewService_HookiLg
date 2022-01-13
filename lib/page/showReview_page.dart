@@ -33,7 +33,8 @@ class _showReviewState extends State<showReview> {
             style: TextStyle(
                 color: Colors.grey[800],
                 fontWeight: FontWeight.bold,
-                fontSize: 25),
+                fontSize: 25,
+                ),
           ),
           leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios,

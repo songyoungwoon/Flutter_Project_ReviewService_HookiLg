@@ -44,7 +44,8 @@ class _reviewListState extends State<reviewList> {
           style: TextStyle(
               color: Colors.grey[800],
               fontWeight: FontWeight.bold,
-              fontSize: 25),
+              fontSize: 26,
+              fontFamily: 'EliceDigitalBaeum'),
         ),
         leading: IconButton(
           icon: const Icon(
@@ -102,9 +103,12 @@ class _reviewListState extends State<reviewList> {
                                     'name',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 20),
+                                        fontSize: 22,
+                                        fontFamily: 'NanumBarun'),
                                   ),
-                                  Text('level'),
+                                  SizedBox(height: 8,),
+                                  Text('level',
+                                  style: TextStyle(fontFamily: 'NanumBarun'),),
                                 ],
                               ),
                             ),
@@ -122,7 +126,9 @@ class _reviewListState extends State<reviewList> {
                                               '스포포함',
                                               style: TextStyle(
                                                   fontSize: 10,
-                                                  fontWeight: FontWeight.w400),
+                                                  fontWeight: FontWeight.w400,
+                                                  //fontFamily: 'NanumBarun',
+                                                  ),
                                             ),
                                         ],
                                       )
@@ -138,7 +144,8 @@ class _reviewListState extends State<reviewList> {
                                               '결말해석',
                                               style: TextStyle(
                                                   fontSize: 10,
-                                                  fontWeight: FontWeight.w400),
+                                                  fontWeight: FontWeight.w400,
+                                                  ),
                                             ),
                                           SizedBox(width: 5),
 
@@ -158,7 +165,7 @@ class _reviewListState extends State<reviewList> {
                           title: Text(
                             snapshot.data.docs[index]['review_title'],
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.bold, fontSize: 20,),
                           ),
                           //subtitle: Text(snapshot.data.docs[index]['content']),
                           trailing: Container(
@@ -179,7 +186,9 @@ class _reviewListState extends State<reviewList> {
                                 Text(
                                   "N",
                                   style: TextStyle(
-                                      color: Colors.pink[300], fontSize: 10),
+                                      color: Colors.amberAccent[700], fontSize: 11,
+                                      fontFamily: 'NanumBarun',
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -212,7 +221,7 @@ class _reviewListState extends State<reviewList> {
                               width: 132,
                               height: 150,
                               decoration: BoxDecoration(
-                                color: Colors.pink[200]
+                                color: Colors.indigo[50]
                                 /*
                                   image: DecorationImage(
                                     image: NetworkImage(
@@ -245,7 +254,8 @@ class _reviewListState extends State<reviewList> {
         label: const Text(
           '리뷰작성',
           style: TextStyle(
-              color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+              color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold,
+              fontFamily: 'NanumBarun'),
         ),
         icon: const Icon(
           Icons.create,
