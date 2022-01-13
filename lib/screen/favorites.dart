@@ -37,7 +37,8 @@ class _favoriteLsitState extends State<favoriteLsit> {
         style: TextStyle(
             color: Colors.grey[800],
             fontWeight: FontWeight.bold,
-            fontSize: 25
+            fontSize: 25,
+            fontFamily: 'EliceDigitalBaeum'
           ),
         ),
         leading: Icon(Icons.favorite, color: Colors.pink[300],),
@@ -76,7 +77,8 @@ class _favoriteLsitState extends State<favoriteLsit> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('${titles[index]}', 
-                    style:TextStyle(fontWeight: FontWeight.bold) ,)
+                    style:TextStyle(fontWeight: FontWeight.bold,
+                    fontFamily: 'NanumBarun') ,)
                   ]
                 )
               ),
@@ -86,7 +88,7 @@ class _favoriteLsitState extends State<favoriteLsit> {
                     
                   }
                 },
-                icon: Icon(Icons.favorite, color: Colors.pink,),),
+                icon: Icon(Icons.favorite, color: Colors.pink[200],),),
             ),
           );
           

@@ -89,6 +89,12 @@ flutter:
        fonts:
          - asset: fonts/EliceDigitalBaeum_Bold.ttf
          - asset: fonts/EliceDigitalBaeum_Regular.ttf
+ 
+     - family: NanumBarun
+       fonts:
+         - asset: fonts/NanumBarunGothic.ttf
+         - asset: fonts/NanumBarunGothicBold.ttf
+  #       - asset: fonts/EliceDigitalBaeum_Regular.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

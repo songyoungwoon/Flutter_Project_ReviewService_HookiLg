@@ -35,7 +35,8 @@ class _writeReviewTestState extends State<writeReviewTest> {
           style: TextStyle(
               color: Colors.grey[800],
               fontWeight: FontWeight.bold,
-              fontSize: 25),
+              fontSize: 25,
+              fontFamily: 'EliceDigitalBaeum'),
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Color(0xFFF06292)),
@@ -47,14 +48,14 @@ class _writeReviewTestState extends State<writeReviewTest> {
                 return AlertDialog(
                   title: Row(
                     children: [
-                      Icon(Icons.notifications),
-                      Text('확인'),
+                      Icon(Icons.notifications,color: Color(0xFFF06292)),
+                      Text(' 확인',style: TextStyle(fontFamily: 'EliceDigitalBaeum'),),
                     ],
                   ),
-                  content: Text('작성을 취소하시겠습니까?'),
+                  content: Text('작성을 취소하시겠습니까?',style:TextStyle(fontFamily: 'EliceDigitalBaeum')),
                   actions: [
                     FlatButton(
-                      child: Text('예'),
+                      child: Text('예',style:TextStyle(fontFamily: 'EliceDigitalBaeum')),
                       onPressed: () {
                         review_title = '';
                         Navigator.of(context).pop('YES');
@@ -62,7 +63,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
                       },
                     ),
                     FlatButton(
-                      child: Text('아니오'),
+                      child: Text('아니오',style:TextStyle(fontFamily: 'EliceDigitalBaeum')),
                       onPressed: () {
                         Navigator.of(context).pop('No');
                       },
@@ -78,14 +79,14 @@ class _writeReviewTestState extends State<writeReviewTest> {
           IconButton(
             icon: Icon(
               Icons.photo_album,
-              color: Colors.pink[200],
+              color: Colors.green[200],
             ),
             onPressed: () {},
           ),
           IconButton(
             icon: Icon(
               Icons.save,
-              color: Colors.pink[200],
+              color: Colors.indigo[200],
             ),
             onPressed: () async {
               String result = await showDialog(
@@ -95,14 +96,14 @@ class _writeReviewTestState extends State<writeReviewTest> {
                   return AlertDialog(
                     title: Row(
                       children: [
-                        Icon(Icons.notifications),
-                        Text('확인'),
+                        Icon(Icons.notifications, color: Color(0xFFF06292)),
+                        Text(' 확인',style:TextStyle(fontFamily: 'EliceDigitalBaeum')),
                       ],
                     ),
-                    content: Text('저장하시겠습니까?'),
+                    content: Text('저장하시겠습니까?',style:TextStyle(fontFamily: 'EliceDigitalBaeum')),
                     actions: [
                       FlatButton(
-                        child: Text('예'),
+                        child: Text('예',style:TextStyle(fontFamily: 'EliceDigitalBaeum')),
                         onPressed: () {
                           // 저장하기
                           var json = jsonEncode(_controller.document.toDelta().toJson());
@@ -125,7 +126,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
                         },
                       ),
                       FlatButton(
-                        child: Text('아니오'),
+                        child: Text('아니오',style:TextStyle(fontFamily: 'EliceDigitalBaeum')),
                         onPressed: () {
                           Navigator.of(context).pop('No');
                         },
@@ -155,7 +156,9 @@ class _writeReviewTestState extends State<writeReviewTest> {
                     child: Text(
                       '제목',
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 20,
+                          fontFamily: 'EliceDigitalBaeum',
+                          ),
                     ),
                   ),
                   Center(
@@ -165,6 +168,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
                         autofocus: true,
                         style: TextStyle(
                           fontSize: 18,
+                          fontFamily: 'EliceDigitalBaeum'
                         ),
                         decoration: InputDecoration(
                           hintText: '제목을 입력하세요.',
@@ -181,7 +185,8 @@ class _writeReviewTestState extends State<writeReviewTest> {
                     child: Text(
                       '간략 소개',
                       style:
-                      TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                      TextStyle(fontWeight: FontWeight.w600, fontSize: 16,
+                      fontFamily: 'EliceDigitalBaeum'),
                     ),
                   ),
                   Center(
@@ -190,6 +195,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
                       child: TextField(
                         style: TextStyle(
                           fontSize: 16,
+                          fontFamily: 'EliceDigitalBaeum'
                         ),
                         decoration: InputDecoration(
                           hintText: '간략한 소개를 입력하세요.',

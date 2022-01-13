@@ -48,7 +48,8 @@ class _showReviewTestState extends State<showReviewTest> {
           style: TextStyle(
               color: Colors.grey[800],
               fontWeight: FontWeight.bold,
-              fontSize: 25),
+              fontSize: 25,
+              fontFamily: 'EliceDigitalBaeum'),
         ),
         leading: IconButton(
           icon: const Icon(
@@ -105,8 +106,15 @@ class _showReviewTestState extends State<showReviewTest> {
                             SizedBox(width: 10),
                             Container(
                               child: Column(children: [
-                                Text('name'),
-                                Text('level'),
+                                Text('name',style: TextStyle(
+                                  fontFamily: 'NanumBarun',
+                                  fontSize: 19,
+                                ),),
+                                SizedBox(height: 5,),
+                                Text('level',style: TextStyle(
+                                  fontFamily: 'NanumBarun',
+                                  fontSize: 13
+                                ),),
                               ]),
                             ),
                             SizedBox(width: 120),
@@ -124,7 +132,8 @@ class _showReviewTestState extends State<showReviewTest> {
                         child: Text(
                           snapshot.data.docs[index]['review_title'],
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold, fontSize: 20,
+                              fontFamily: 'NanumBarun'),
                         ),
                       ),
                       Visibility(
