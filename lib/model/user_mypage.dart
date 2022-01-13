@@ -1,15 +1,33 @@
-class User {
-  final String imagePath;
-  final String name;
-  final String email;
-  final String about;
-  final bool isDarkMode;
+class UserInformation {
+  String imagePath;
+  String name;
+  String email;
+  String about;
+  String nickname;
+  String age;
 
-  const User({
-    required this.imagePath,
-    required this.name,
-    required this.email,
-    required this.about,
-    required this.isDarkMode,
-  });
+  UserInformation(
+    this.imagePath,
+      this.name,
+    this.email,
+    this.about,
+    this.age,
+    this.nickname
+  );
+
+  void setUserInfo(String imagePath, String name, String email, String about, String nickname, String age){
+    this.imagePath = imagePath;
+    this.name = name;
+    this.email = email;
+    this.about = about;
+    this.nickname = nickname;
+    this.age = age;
+  }
+
+  void clearUser(){
+    // clear
+  }
+  //
+
+
 }
