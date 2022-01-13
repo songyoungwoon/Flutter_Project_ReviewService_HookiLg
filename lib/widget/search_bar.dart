@@ -110,24 +110,7 @@ class _searchBarState extends State<searchBar> {
   }
 }
 
-// void createOrUpdate( String _searchData) {
-//   final usercol = FirebaseFirestore.instance.collection("searchData");
-//   usercol.set({
-//     "count": "$_searchData",
-//   });
-// }
 
-// void updatedata(String code, String status) {
-//   final usercol = FirebaseFirestore.instance.collection("players").doc("$code");
-//   usercol.update({
-//     "status": "$status",
-//   });
-// }
-
-// void deleteData() {
-//   final usercol = FirebaseFirestore.instance.collection("review").doc();
-//   usercol.delete();
-// }
 class MLPage extends StatefulWidget {
   @override
   State createState() {

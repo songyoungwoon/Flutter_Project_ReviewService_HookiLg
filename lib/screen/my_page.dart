@@ -1,11 +1,9 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/components/authentication.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
-import 'package:fp_review_service_hookilg/widget/appbar_widget.dart';
-import 'package:fp_review_service_hookilg/widget/button_widget.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
 import 'package:fp_review_service_hookilg/model/user_mypage.dart';
@@ -19,26 +17,46 @@ class MyPage extends StatefulWidget {
 
 UserInformation my_user = UserInformation('', '', '', '', '', '');
 
+List<String> titles =<String>[
+  '라푼젤의 마법의 머리카락',
+  '엄청난 사랑의 결말',
+  '날 쏘고 가라',
+  '혼자왔어?',
+  '가지마...ㅜㅜ',
+  '엘사와 안나의.',
+  '트롤의 음악으로 하는 세계 대통합',
+  '미워할수 없는 악당 로키'
+];
+
 class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
-    // final user = UserPreferences.myUser;
-
-    // var currentUser = FirebaseAuth.instance.currentUser;
+    
 
     String? useremail = FirebaseAuth.instance.currentUser!.email;
-    /*
-    @override
-    void initState() async{
-      super.initState();
-      var data = await FirebaseFirestore.instance.collection("user_info").where('email', isEqualTo : useremail).snapshots().first;
-      print(data);
-    }
 
-    initState();
-*/  int num = 0;
+    int num = 0;
     return Scaffold(
-      appBar: buildAppBar(context),
+
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Icon(Icons.home, color: Colors.pink[300],),
+        title:Row(
+          children: [
+            Expanded(child: SizedBox()),
+            IconButton(onPressed: (){
+              
+            }, icon: Icon(Icons.mode,color: Colors.indigo[300])),
+            // SizedBox(width: 5,)
+            IconButton(onPressed: (){
+              Route route =
+                MaterialPageRoute(builder: (context) => WelcomeScreen());
+              Navigator.pushReplacement(context, route);
+
+            }, icon: Icon(Icons.logout_outlined, color: Colors.indigo[300],)),
+          ],
+        ),
+      ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection("user_info")
@@ -71,79 +89,188 @@ class _MyPageState extends State<MyPage> {
                 'anonymous');
           }
 
+
           if(isLogin) {
             return ListView.builder(
-              itemCount: 1,
-              itemBuilder: (ctx, index) {
-                return Container(
-                    child: Column(
-                      children:
-                      [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            itemCount: 1,
+            itemBuilder: (ctx, index) {
+              return Container(
+                child: Column(
+                children:
+              [
+                SizedBox(height: 30,),
+                Row(
+                  children: [
+                     Expanded(child: SizedBox()),
+                    ProfileWidget(
+                      
+                      imagePath: snapshot.data.docs[index]['imagePath'],
+                      onClicked: () async {},
+                    ),
+                    const SizedBox(height: 24),
+                    Container(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            ProfileWidget(
-                              imagePath: snapshot.data.docs[index]['imagePath'],
-                              onClicked: () async {},
+                            const SizedBox(height: 2),
+                            buildName(snapshot.data.docs[index]['name']),
+                            buildAbout(snapshot.data.docs[index]['about']),
+
+                            const SizedBox(height: 10),
+                          ]),
+                    ),
+                    Expanded(child: SizedBox()),
+
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Container(color: Colors.pink[200],height: 1,width: 380,),
+                const SizedBox(height: 10),
+                NumbersWidget(),
+                const SizedBox(height: 10),
+                Container(color: Colors.pink[200],height: 1,width: 380,),
+                SizedBox(height: 10,),
+                Row(
+                  children: [
+                    SizedBox(width: 20,),
+                    Text("나의 리뷰",style:TextStyle(
+                      fontSize: 20, color: Colors.pink[300], 
+                      fontFamily: 'NanumBarun',
+                      fontWeight: FontWeight.bold
+                    ),),
+                    SizedBox(width: 5,),
+                    Icon(Icons.list, color: Colors.pink[300],size: 30,),
+                    SizedBox(height: 5,),
+                    Expanded(child: SizedBox())
+                  ],
+                ),
+                SizedBox(height: 10,),
+                Container(
+                  height: 200,
+                  width: 370,
+                  child: ListView.builder(
+                    itemCount: titles.length,
+                    itemBuilder: (BuildContext context, int index){
+                      return Card(
+                        shadowColor: Colors.pink[100],
+                        elevation: 4,
+                        // margin: EdgeInsets.symmetric(vertical: 14),
+                        child: ListTile(
+                          title: Container(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.title, color: Colors.amber[600],),
+                                SizedBox(width: 5,),
+                                Text('${titles[index]}',
+                                style:TextStyle(fontWeight: FontWeight.bold,
+                                fontFamily: 'NanumBarun') ,
+                                )
+                              ],
                             ),
-                            const SizedBox(height: 24),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const SizedBox(height: 2),
-                                  buildName(snapshot.data.docs[index]['name']),
-                                  const SizedBox(height: 10),
-                                  Center(child: buildProfileModifyButton()),
-                                ]),
-                          ],
-                        ),
-                        const SizedBox(height: 30),
-                        NumbersWidget(),
-                        const SizedBox(height: 24),
-                        // buildMyReviewButton(),
-                        const SizedBox(height: 48),
-                        buildAbout(snapshot.data.docs[index]['about']),
-                      ],
-                    ));
-              },
-            );
+                          ),
+                        )
+                      );
+                    }
+                    ),
+                ),
+                SizedBox(height: 200,)
+              ],
+                ));
+            },
+
+              );
           }
           else {
             return ListView.builder(
-              itemCount: 1,
-              itemBuilder: (ctx, index) {
-                return Container(
-                    child: Column(
-                      children:
-                      [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            itemCount: 1,
+            itemBuilder: (ctx, index) {
+              return Container(
+                child: Column(
+                children:
+              [
+                SizedBox(height: 30,),
+                Row(
+                  children: [
+                     Expanded(child: SizedBox()),
+                    ProfileWidget(
+                      
+                      imagePath: '/images/profile.jpg',
+                      onClicked: () async {},
+                    ),
+                    const SizedBox(height: 24),
+                    Container(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            ProfileWidget(
-                              imagePath: '/images/profile.jpg',
-                              onClicked: () async {},
+                            const SizedBox(height: 2),
+                            buildName("Anonymous"),
+                            buildAbout("익명의 사용자입니다"),
+
+                            const SizedBox(height: 10),
+                          ]),
+                    ),
+                    Expanded(child: SizedBox()),
+
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Container(color: Colors.pink[200],height: 1,width: 380,),
+                const SizedBox(height: 10),
+                NumbersWidget(),
+                const SizedBox(height: 10),
+                Container(color: Colors.pink[200],height: 1,width: 380,),
+                SizedBox(height: 10,),
+                Row(
+                  children: [
+                    SizedBox(width: 20,),
+                    Text("나의 리뷰",style:TextStyle(
+                      fontSize: 20, color: Colors.pink[300], 
+                      fontFamily: 'NanumBarun',
+                      fontWeight: FontWeight.bold
+                    ),),
+                    SizedBox(width: 5,),
+                    Icon(Icons.list, color: Colors.pink[300],size: 30,),
+                    SizedBox(height: 5,),
+                    Expanded(child: SizedBox())
+                  ],
+                ),
+                SizedBox(height: 10,),
+                Container(
+                  height: 200,
+                  width: 370,
+                  child: ListView.builder(
+                    itemCount: titles.length,
+                    itemBuilder: (BuildContext context, int index){
+                      return Card(
+                        shadowColor: Colors.pink[100],
+                        elevation: 4,
+                        // margin: EdgeInsets.symmetric(vertical: 14),
+                        child: ListTile(
+                          title: Container(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.title, color: Colors.amber[600],),
+                                SizedBox(width: 5,),
+                                Text('${titles[index]}',
+                                style:TextStyle(fontWeight: FontWeight.bold,
+                                fontFamily: 'NanumBarun') ,
+                                )
+                              ],
                             ),
-                            const SizedBox(height: 24),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const SizedBox(height: 2),
-                                  buildName('anonymous'),
-                                  const SizedBox(height: 10),
-                                  Center(child: buildProfileModifyButton()),
-                                ]),
-                          ],
-                        ),
-                        const SizedBox(height: 30),
-                        NumbersWidget(),
-                        const SizedBox(height: 24),
-                        // buildMyReviewButton(),
-                        const SizedBox(height: 48),
-                        buildAbout('anonymous'),
-                      ],
-                    ));
-              },
-            );
+                          ),
+                        )
+                      );
+                    }
+                    ),
+                ),
+                SizedBox(height: 200,)
+              ],
+                ));
+            },
+
+              );
           }
         },
       ),
@@ -153,49 +280,34 @@ class _MyPageState extends State<MyPage> {
   Widget buildName(String name) {
     return Column(
       children: [
-        Text(
-          name,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Icon(Icons.person, color: Colors.amber[600],size: 30,),
+            Text(
+              name,
+              style: TextStyle(fontWeight: FontWeight.bold, 
+              fontSize: 24, fontFamily: 'NanumBarun'),
+            ),
+          ],
         ),
         const SizedBox(height: 4),
-        Text(
-          '나의 한줄 소개를 적어주세요!',
-          style: TextStyle(color: Colors.grey, fontSize: 15),
-        )
+        
       ],
     );
   }
 
-  Widget buildProfileEditButton() => ButtonWidget(
-        text: '프로필 수정',
-        isBold: true,
-        onClicked: () {},
-      );
 
-  Widget buildProfileModifyButton() => ButtonWidget(
-        text: 'log out',
-       isBold: true,
-        onClicked: () {
-          FirebaseAuth.instance.signOut();
-          Route route =
-              MaterialPageRoute(builder: (context) => WelcomeScreen());
-          Navigator.pushReplacement(context, route);
-        },
-      );
 
   Widget buildAbout(String name) => Container(
         padding: EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'About',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
+            
             Text(
               name,
-              style: TextStyle(fontSize: 16, height: 1.4),
+              style: TextStyle(fontSize: 12, height: 1.4, fontFamily: 'NanumBarun'),
             ),
           ],
         ),
