@@ -7,13 +7,9 @@ import 'package:fp_review_service_hookilg/widget/appbar_widget.dart';
 import 'package:fp_review_service_hookilg/widget/button_widget.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
-<<<<<<< HEAD
-=======
 import 'package:fp_review_service_hookilg/model/user_mypage.dart';
-import 'package:fp_review_service_hookilg/utils/user_preferences.dart';
->>>>>>> e79fc543788973dc8e1fdb585916e2c0578b76a7
 
-import '../model/user.dart';
+import '../model/user_mypage.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -42,7 +38,6 @@ class _MyPageState extends State<MyPage> {
 */  int num = 0;
     return Scaffold(
       appBar: buildAppBar(context),
-<<<<<<< HEAD
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection("user_info")
@@ -86,7 +81,7 @@ class _MyPageState extends State<MyPage> {
                 const SizedBox(height: 30),
                 NumbersWidget(),
                 const SizedBox(height: 24),
-                buildMyReviewButton(),
+               // buildMyReviewButton(),
                 const SizedBox(height: 48),
                 buildAbout(snapshot.data.docs[index]['about']),
               ],
@@ -94,54 +89,10 @@ class _MyPageState extends State<MyPage> {
             },
               );
         },
-=======
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        children: [
-          Row ( //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children :[
-          SizedBox(width: 45,),
-          ProfileWidget(
-            imagePath: user.imagePath,
-            onClicked: () async {},
-          ),
-          const SizedBox(height: 24),
-          SizedBox(width: 30,),
-          Container (
-            padding: EdgeInsets.fromLTRB(5, 15, 10, 15),
-            child: Column( //mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center,
-              children :[
-            const SizedBox(height: 10),
-            buildName(user),
-            const SizedBox(height: 5),
-            //Center(child: buildProfileEditButton()),
-            ]
-            ),
-          ),
-          //SizedBox(width: 40,)
-          ],
-          ),
-          const SizedBox(height: 30),
-          NumbersWidget(),
-          const SizedBox(height: 24),
-          buildProfileEditButton(),
-          const SizedBox(height: 48),
-          buildAbout(user),
-          const SizedBox(height:120,),
-          Container(child:Row(
-            children: [
-            // Expanded(child:SizedBox())
-            SizedBox(width: 280,),
-            buildlogoutButton()
-          ],),
-          ),
-        ],
->>>>>>> e79fc543788973dc8e1fdb585916e2c0578b76a7
       ),
     );
   }
 
-<<<<<<< HEAD
   Widget buildName(String name) {
     return Column(
       children: [
@@ -157,36 +108,16 @@ class _MyPageState extends State<MyPage> {
       ],
     );
   }
-=======
-  Widget buildName(User user) => Column(
-        children: [
-          Text(
-            user.name,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, fontFamily: 'EliceDigitalBaeum'),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            '나의 한줄 소개',
-            style: TextStyle(color: Colors.grey, fontSize: 15, fontFamily: 'EliceDigitalBaeum'),
-          )
-        ],
-      );
->>>>>>> e79fc543788973dc8e1fdb585916e2c0578b76a7
 
   Widget buildProfileEditButton() => ButtonWidget(
         text: '프로필 수정',
         isBold: true,
         onClicked: () {},
       );
-<<<<<<< HEAD
 
   Widget buildProfileModifyButton() => ButtonWidget(
         text: 'log out',
-=======
-    Widget buildlogoutButton() => ButtonWidget(
-        text: 'logout',
->>>>>>> e79fc543788973dc8e1fdb585916e2c0578b76a7
-        isBold: true,
+       isBold: true,
         onClicked: () {
           Route route =
               MaterialPageRoute(builder: (context) => WelcomeScreen());
