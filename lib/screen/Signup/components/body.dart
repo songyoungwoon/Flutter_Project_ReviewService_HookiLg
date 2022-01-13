@@ -150,7 +150,7 @@ void createuserinfo(String email, String password, String name, String age, Stri
     "name": "$name",
     "age": "$age",
     "nickname": "$nickname",
-    "profileimg": 'images/profile.jpg',
+    "imagePath": 'https://firebasestorage.googleapis.com/v0/b/reviewservicehookilg.appspot.com/o/profile.jpg?alt=media&token=f76f7985-5f5d-44d1-8689-f507c41558aa',
 
   });
 }
