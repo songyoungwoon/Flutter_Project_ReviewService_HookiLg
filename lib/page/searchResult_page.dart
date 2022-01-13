@@ -5,7 +5,8 @@ import 'reviewList_page.dart';
 import 'package:flutter/material.dart';
 
 // import '../main.dart';
-import '../screen/home.dart';
+// import '../screen/home.dart';
+import '../screen/fristhome.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_html/flutter_html.dart';
 
@@ -53,7 +54,7 @@ class _searchResultState extends State<searchResult> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("\"" + searchText + "\"" + " Results",
+          title: Text("\"" + searchText + "\"의 검색결과",
               style: TextStyle(
                   color: Colors.grey[800],
                   fontWeight: FontWeight.bold,
@@ -70,10 +71,10 @@ class _searchResultState extends State<searchResult> {
               child: IconButton(
                 icon: Icon(Icons.home, color: Colors.indigo[200]),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Home()),
-                  );
+                  Route route =
+                      MaterialPageRoute(builder: (context) => FirstHome());
+                  Navigator.pushReplacement(context, route);
+                 
                 },
               ),
             ),
