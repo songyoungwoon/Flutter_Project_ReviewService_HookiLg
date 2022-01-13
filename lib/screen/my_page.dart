@@ -27,15 +27,16 @@ class _MyPageState extends State<MyPage> {
         children: [
           Row ( //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children :[
-            SizedBox(width: 45,),
+          SizedBox(width: 45,),
           ProfileWidget(
             imagePath: user.imagePath,
             onClicked: () async {},
           ),
           const SizedBox(height: 24),
-          SizedBox(width: 45,),
-          Container(
-            child: Column( mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center,
+          SizedBox(width: 30,),
+          Container (
+            padding: EdgeInsets.fromLTRB(5, 15, 10, 15),
+            child: Column( //mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center,
               children :[
             const SizedBox(height: 10),
             buildName(user),
@@ -47,7 +48,6 @@ class _MyPageState extends State<MyPage> {
           //SizedBox(width: 40,)
           ],
           ),
-          
           const SizedBox(height: 30),
           NumbersWidget(),
           const SizedBox(height: 24),
