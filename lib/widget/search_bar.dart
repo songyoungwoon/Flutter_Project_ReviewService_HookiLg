@@ -137,7 +137,7 @@ class CameraWidgetState extends State {
   bool isFace = false;
   bool isPose = false;
   ui.Image? _image;
-  List<String> ml_search = [''];
+//  List<String> ml_search = [''];
 
   Future<void> _showChoiceDialog(BuildContext context) {
     return showDialog(
@@ -146,14 +146,14 @@ class CameraWidgetState extends State {
           return AlertDialog(
             title: Text(
               "Choose option",
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: Colors.pink[200]),
             ),
             content: SingleChildScrollView(
               child: ListBody(
                 children: [
                   Divider(
                     height: 1,
-                    color: Colors.blue,
+                    color: Colors.pink[200],
                   ),
                   ListTile(
                     onTap: () {
@@ -162,12 +162,12 @@ class CameraWidgetState extends State {
                     title: Text("Gallery"),
                     leading: Icon(
                       Icons.account_box,
-                      color: Colors.blue,
+                      color: Colors.pink[200],
                     ),
                   ),
                   Divider(
                     height: 1,
-                    color: Colors.blue,
+                    color: Colors.pink[200],
                   ),
                 ],
               ),
@@ -181,44 +181,49 @@ class CameraWidgetState extends State {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("SWF ML Tutorial"),
-        backgroundColor: Colors.lightBlueAccent,
+        leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){Navigator.pop(context);},color: Colors.black,),
+        title: Text("SWF ML Tutorial",style: TextStyle(color: Colors.black),),
+        backgroundColor: Colors.white,
       ),
       body: Center(
         child: ListView(
           children: [
             Card(
+              margin: EdgeInsets.all(10),
               child: (imageFile == null)
-                  ? Text("Choose Image")
+                  ? Text("Choose Image", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
                   : Image.file(File(imageFile!.path)),
             ),
             MaterialButton(
+              height: 50,
               textColor: Colors.white,
-              color: Colors.lightBlueAccent,
+              color: Colors.pink[50],
               onPressed: () {
                 _showChoiceDialog(context);
               },
-              child: Text("Select Image"),
+              child: Text("Select Image", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w300),),
             ),
+            Padding(padding: EdgeInsets.only(top: 10)),
             MaterialButton(
+              height: 50,
               textColor: Colors.white,
-              color: Colors.lightBlueAccent,
+              color: Colors.pink[50],
               onPressed: () {
                 setState(() {
                   getText(imageFile!);
                 });
               },
-              child: Text("Text Recognition"),
+              child: Text("Text Recognition",style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w300)),
             ),
+            Padding(padding: EdgeInsets.all(5)),
             StreamBuilder(
               stream: streamController.stream,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  ml_search.add(snapshot.data.toString());
+                  return Text(snapshot.data.toString());
                 } else {
-                  return Text('Text Recogniation Ready');
+                  return Text('Text Recogniation Ready',);
                 }
-                return Text('');
               },
             )
           ],
@@ -226,26 +231,21 @@ class CameraWidgetState extends State {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          if(keyWords![0] != null){
           Navigator.push(context, MaterialPageRoute(
             // builder: (context) => writeReview(movie_title, movie_director)),
               builder: (context) =>
                   searchResult(keyWords![0])),
-          );
+          );}
         },
-        label: const Text(
-          '사진으로 검색',
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'NanumBarun'),
-        ),
+        label: Container(),
         icon: const Icon(
-          Icons.photo,
+          Icons.search,
           color: Colors.white,
         ),
         backgroundColor: Colors.pink[300],
-      ),
+      )
+      ,floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 

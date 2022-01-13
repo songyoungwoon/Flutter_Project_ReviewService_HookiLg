@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/components/authentication.dart';
+import 'package:fp_review_service_hookilg/page/editProfile.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
@@ -45,10 +46,17 @@ class _MyPageState extends State<MyPage> {
           children: [
             Expanded(child: SizedBox()),
             IconButton(onPressed: (){
-              
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  // builder: (context) => writeReview(movie_title, movie_director)),
+                    builder: (context) =>
+                        editProfile()),
+              );
             }, icon: Icon(Icons.mode,color: Colors.indigo[300])),
             // SizedBox(width: 5,)
             IconButton(onPressed: (){
+              my_user.clearUser();
               Route route =
                 MaterialPageRoute(builder: (context) => WelcomeScreen());
               Navigator.pushReplacement(context, route);
@@ -81,9 +89,9 @@ class _MyPageState extends State<MyPage> {
                 snapshot.data.docs[num]['age']);
           } else {
             my_user.setUserInfo(
-                '/images/profile.jpg',
+                'images/profile.jpg',
                 'anonymous',
-                'anonymous@gmail.com',
+                '',
                 'anonymous',
                 'anonymous',
                 'anonymous');
