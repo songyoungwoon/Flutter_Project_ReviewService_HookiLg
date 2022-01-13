@@ -21,10 +21,19 @@ class _MyPageState extends State<MyPage> {
     final user = UserPreferences.myUser;
 
     return Scaffold(
-      appBar: buildAppBar(context),
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
+          SizedBox(height: 10,),
+          Row(children: [
+            Expanded(child: SizedBox()),
+            IconButton(onPressed: (){
+
+            }, icon: Icon(Icons.more_vert_outlined, color: Colors.pink[300],)),
+            SizedBox(width: 7,)
+          ],
+          ),
+          // SizedBox(height: 50,),
           Row ( //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children :[
           SizedBox(width: 45,),
@@ -40,18 +49,29 @@ class _MyPageState extends State<MyPage> {
               children :[
             const SizedBox(height: 10),
             buildName(user),
+            SizedBox(height: 5,),
+            Container(
+              height: 19,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                shadowColor: Colors.indigo[200],
+                onPrimary: Colors.indigo[300],
+                primary: Colors.pink[50],
+                ),
+                onPressed: (){
+
+              }, child: Text('프로필 수정',style: TextStyle(fontWeight:FontWeight.bold, fontFamily: 'EliceDigitalBaeum'))),
+            ),
             const SizedBox(height: 5),
-            //Center(child: buildProfileEditButton()),
             ]
             ),
           ),
-          //SizedBox(width: 40,)
           ],
           ),
           const SizedBox(height: 30),
           NumbersWidget(),
           const SizedBox(height: 24),
-          buildProfileEditButton(),
+          Container(color: Colors.red, height: 1,),
           const SizedBox(height: 48),
           buildAbout(user),
           const SizedBox(height:120,),
@@ -81,11 +101,7 @@ class _MyPageState extends State<MyPage> {
         ],
       );
 
-  Widget buildProfileEditButton() => ButtonWidget(
-        text: '프로필 수정',
-        isBold: true,
-        onClicked: () {},
-      );
+ 
     Widget buildlogoutButton() => ButtonWidget(
         text: 'logout',
         isBold: true,
@@ -102,11 +118,8 @@ class _MyPageState extends State<MyPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'About',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
+            
+            
             Text(
               user.about,
               style: TextStyle(fontSize: 16, height: 1.4),
