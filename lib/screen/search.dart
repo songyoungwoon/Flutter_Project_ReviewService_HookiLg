@@ -27,7 +27,6 @@ class _SearchState extends State<Search> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(child: Text('data')),
                   Padding(padding: EdgeInsets.all(12)),
                   searchBar(),
                   Container(padding:EdgeInsets.only(left: 15),

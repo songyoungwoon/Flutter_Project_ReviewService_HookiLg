@@ -31,7 +31,7 @@ class BottomBar extends StatelessWidget {
               Icons.favorite,
               size: 16,
             ),
-            child:Text('Favorites'),
+            child:Text('Favorites',style: TextStyle(fontSize: 13),),
           ),
           Tab(
             icon: Icon(

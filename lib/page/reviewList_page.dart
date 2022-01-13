@@ -12,8 +12,7 @@ class reviewList extends StatefulWidget {
   String movie_title = '';
   String movie_director = '';
 
-  reviewList();
-
+  //reviewList();
   reviewList.reviewListInfo(this.movie_title, this.movie_director);
 
   @override
@@ -209,7 +208,8 @@ class _reviewListState extends State<reviewList> {
                             ),
                             SizedBox(width: 10),
                             Container(
-                              width: 140,
+                              alignment: Alignment.centerLeft,
+                              width: 132,
                               height: 150,
                               decoration: BoxDecoration(
                                 color: Colors.pink[200]
