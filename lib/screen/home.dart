@@ -107,7 +107,7 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 7,),
+                              SizedBox(height: 9,),
                               Text((index + 1).toString() + '위',style: TextStyle(fontFamily: 'EliceDigitalBaeum',),),
                             ],
                           ),

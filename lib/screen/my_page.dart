@@ -25,30 +25,43 @@ class _MyPageState extends State<MyPage> {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          Row ( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Row ( //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children :[
+            SizedBox(width: 55,),
           ProfileWidget(
             imagePath: user.imagePath,
             onClicked: () async {},
           ),
           const SizedBox(height: 24),
-          Column( crossAxisAlignment: CrossAxisAlignment.center,
-            children :[
-          const SizedBox(height: 2),
-          buildName(user),
-          const SizedBox(height: 10),
-          Center(child: buildProfileModifyButton()),
-          ]
+          SizedBox(width: 55,),
+          Container(
+            child: Column( mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center,
+              children :[
+            const SizedBox(height: 10),
+            buildName(user),
+            const SizedBox(height: 5),
+            //Center(child: buildProfileEditButton()),
+            ]
+            ),
           ),
+          //SizedBox(width: 40,)
           ],
           ),
+          
           const SizedBox(height: 30),
           NumbersWidget(),
           const SizedBox(height: 24),
-          buildMyReviewButton(),
+          buildProfileEditButton(),
           const SizedBox(height: 48),
           buildAbout(user),
-
+          const SizedBox(height:130,),
+          Container(child:Row(
+            children: [
+            // Expanded(child:SizedBox())
+            SizedBox(width: 280,),
+            buildlogoutButton()
+          ],),
+          ),
         ],
       ),
     );
@@ -68,13 +81,13 @@ class _MyPageState extends State<MyPage> {
         ],
       );
 
-  Widget buildMyReviewButton() => ButtonWidget(
-        text: 'My Review',
+  Widget buildProfileEditButton() => ButtonWidget(
+        text: '프로필 수정',
         isBold: true,
         onClicked: () {},
       );
-    Widget buildProfileModifyButton() => ButtonWidget(
-        text: 'log out',
+    Widget buildlogoutButton() => ButtonWidget(
+        text: 'logout',
         isBold: true,
         onClicked: () {
           Route route = MaterialPageRoute(builder: (context) => WelcomeScreen());
