@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/page/textrecognition.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 
 import '../widget/search_bar.dart';
+
 import '../page/searchResult_page.dart';
+import '';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -238,7 +241,11 @@ class _SearchState extends State<Search> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          getImageFromGallery();
+          Navigator.push(context, MaterialPageRoute(
+            // builder: (context) => writeReview(movie_title, movie_director)),
+              builder: (context) =>
+                 MLPage()),
+          );
         },
         label: const Text(
           '사진으로 검색',
