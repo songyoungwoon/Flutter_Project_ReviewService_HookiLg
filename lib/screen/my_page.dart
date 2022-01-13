@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/components/authentication.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/widget/appbar_widget.dart';
 import 'package:fp_review_service_hookilg/widget/button_widget.dart';
@@ -44,50 +45,98 @@ class _MyPageState extends State<MyPage> {
             .where('email', isEqualTo: useremail)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          my_user.setUserInfo(
-              snapshot.data.docs[num]['imagePath'],
-              snapshot.data.docs[num]['name'],
-              snapshot.data.docs[num]['email'],
-              snapshot.data.docs[num]['about'],
-              snapshot.data.docs[num]['nickname'],
-              snapshot.data.docs[num]['age']);
+          if(isLogin) {
+            my_user.setUserInfo(
+                snapshot.data.docs[num]['imagePath'],
+                snapshot.data.docs[num]['name'],
+                snapshot.data.docs[num]['email'],
+                snapshot.data.docs[num]['about'],
+                snapshot.data.docs[num]['nickname'],
+                snapshot.data.docs[num]['age']);
+          } else {
+            my_user.setUserInfo(
+                '/images/profile.jpg',
+                'anonymous',
+                'anonymous@gmail.com',
+                'anonymous',
+                'anonymous',
+                'anonymous');
+          }
 
-
-          return ListView.builder(
-            itemCount: 1,
-            itemBuilder: (ctx, index) {
-              return Container(
-                child: Column(
-                children:
-              [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ProfileWidget(
-                      imagePath: snapshot.data.docs[index]['imagePath'],
-                      onClicked: () async {},
-                    ),
-                    const SizedBox(height: 24),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: 2),
-                          buildName(snapshot.data.docs[index]['name']),
-                          const SizedBox(height: 10),
-                          Center(child: buildProfileModifyButton()),
-                        ]),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                NumbersWidget(),
-                const SizedBox(height: 24),
-               // buildMyReviewButton(),
-                const SizedBox(height: 48),
-                buildAbout(snapshot.data.docs[index]['about']),
-              ],
-                )  );
-            },
-              );
+          if(isLogin) {
+            return ListView.builder(
+              itemCount: 1,
+              itemBuilder: (ctx, index) {
+                return Container(
+                    child: Column(
+                      children:
+                      [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ProfileWidget(
+                              imagePath: snapshot.data.docs[index]['imagePath'],
+                              onClicked: () async {},
+                            ),
+                            const SizedBox(height: 24),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const SizedBox(height: 2),
+                                  buildName(snapshot.data.docs[index]['name']),
+                                  const SizedBox(height: 10),
+                                  Center(child: buildProfileModifyButton()),
+                                ]),
+                          ],
+                        ),
+                        const SizedBox(height: 30),
+                        NumbersWidget(),
+                        const SizedBox(height: 24),
+                        // buildMyReviewButton(),
+                        const SizedBox(height: 48),
+                        buildAbout(snapshot.data.docs[index]['about']),
+                      ],
+                    ));
+              },
+            );
+          }
+          else {
+            return ListView.builder(
+              itemCount: 1,
+              itemBuilder: (ctx, index) {
+                return Container(
+                    child: Column(
+                      children:
+                      [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ProfileWidget(
+                              imagePath: '/images/profile.jpg',
+                              onClicked: () async {},
+                            ),
+                            const SizedBox(height: 24),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const SizedBox(height: 2),
+                                  buildName('anonymous'),
+                                  const SizedBox(height: 10),
+                                  Center(child: buildProfileModifyButton()),
+                                ]),
+                          ],
+                        ),
+                        const SizedBox(height: 30),
+                        NumbersWidget(),
+                        const SizedBox(height: 24),
+                        // buildMyReviewButton(),
+                        const SizedBox(height: 48),
+                        buildAbout('anonymous'),
+                      ],
+                    ));
+              },
+            );
+          }
         },
       ),
     );
@@ -119,6 +168,7 @@ class _MyPageState extends State<MyPage> {
         text: 'log out',
        isBold: true,
         onClicked: () {
+          FirebaseAuth.instance.signOut();
           Route route =
               MaterialPageRoute(builder: (context) => WelcomeScreen());
           Navigator.pushReplacement(context, route);

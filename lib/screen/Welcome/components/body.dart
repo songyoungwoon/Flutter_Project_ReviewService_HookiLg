@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fp_review_service_hookilg/components/authentication.dart';
 import 'package:fp_review_service_hookilg/components/rounded_button.dart';
 import 'package:fp_review_service_hookilg/components/without_login.dart';
 import 'package:fp_review_service_hookilg/screen/Login/login_screen.dart';
@@ -71,6 +73,8 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.0001),
             WithoutLogin(
               press: () {
+                FirebaseAuth.instance.signInAnonymously();
+                isLogin = false;
                 Navigator.push(
                   context,
                   MaterialPageRoute(
