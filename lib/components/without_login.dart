@@ -20,6 +20,7 @@ class WithoutLogin extends StatelessWidget {
             style: TextStyle(
               color: Colors.amber[600],
               fontWeight: FontWeight.bold,
+              fontFamily: 'EliceDigitalBaeum'
             ),
           ),
         ),

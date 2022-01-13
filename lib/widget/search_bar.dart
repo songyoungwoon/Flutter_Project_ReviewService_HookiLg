@@ -50,7 +50,8 @@ class _searchBarState extends State<searchBar> {
                 prefixIcon:
                 focusNode.hasFocus
                     ? TextButton(
-                  child:Text('취소'),
+                  child:Text('취소',
+                  style: TextStyle(fontFamily: 'NanumBarun'),),
                   onPressed: () {
                     setState(() {
                       _filter.clear();
@@ -73,7 +74,7 @@ class _searchBarState extends State<searchBar> {
                       )
                     : Text(''),
                 hintText: '리뷰나 해석을 보고싶은 영화를 검색하세요.',
-                //hintStyle: FontWeight.bold,
+                hintStyle: TextStyle(fontFamily: 'EliceDigitalBaeum'),
                 labelStyle: TextStyle(color: Colors.black12,),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
