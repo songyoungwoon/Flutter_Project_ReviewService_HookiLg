@@ -45,6 +45,14 @@ class _MyPageState extends State<MyPage> {
             .where('email', isEqualTo: useremail)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("firebase load fail"),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: Text("loading"));
+          }
           if(isLogin) {
             my_user.setUserInfo(
                 snapshot.data.docs[num]['imagePath'],

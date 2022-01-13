@@ -91,7 +91,7 @@ class _reviewListState extends State<reviewList> {
                           children: [
                             CircleAvatar(
                               radius: 25,
-                              
+                              //backgroundImage: AssetImage(snapshot.data.docs[index]['imagePath']),
                               backgroundColor: Colors.amber[600]
                             ),
                             Container(
@@ -100,7 +100,7 @@ class _reviewListState extends State<reviewList> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'name',
+                                    snapshot.data.docs[index]['user_name'],
                                     style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 22,

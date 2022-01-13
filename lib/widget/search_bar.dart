@@ -231,14 +231,7 @@ class CameraWidgetState extends State {
               stream: streamController.stream,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  print(snapshot.data);
                   ml_search.add(snapshot.data.toString());
-                  /*
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => searchResult(movTitle)));
-                */
                 } else {
                   return Text('Text Recogniation Ready');
                 }

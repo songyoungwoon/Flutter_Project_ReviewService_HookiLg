@@ -6,6 +6,8 @@ import 'dart:convert';
 
 import 'package:flutter_quill/flutter_quill.dart' as fq;
 
+import '../screen/my_page.dart';
+
 int a = 0;
 
 class writeReviewTest extends StatefulWidget {
@@ -108,14 +110,21 @@ class _writeReviewTestState extends State<writeReviewTest> {
                           // 저장하기
                           var json = jsonEncode(_controller.document.toDelta().toJson());
                           // db 저장
+                          /*
+                          String imagePath;
+                          String name;
+                          String email;
+                          String about;
+                          String nickname;
+                          String age;      */
                           final usercol = FirebaseFirestore.instance.collection("review").doc();
                           usercol.set({
                             "movie_title": "$movie_title",
                             "movie_director": "$movie_director",
-                            //"user_key":"$user_key",
-                            //"user_name":"$user_name",
-                            //"user_level":"$user_level",
-                            //"user_photo" : "$user_photo",
+                            "user_email":my_user.email,
+                            "user_name": my_user.name,
+                            //"user_level":my_user.level,
+                            "user_photo" : my_user.imagePath,
                             "review_title":"$review_title",
                             "review_brief":"$review_brief",
                             "review_content":"$json",
