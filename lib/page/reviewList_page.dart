@@ -2,11 +2,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 
+import 'package:fp_review_service_hookilg/screen/my_page.dart';
+import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
 // import 'writeReview_page.dart';
 import 'writeReviewTest_page.dart';
 // import 'showReview_page.dart';
 import 'showReviewTest_page.dart';
+import '../screen/fristhome.dart';
 
 class reviewList extends StatefulWidget {
   String movie_title = '';
@@ -56,6 +60,19 @@ class _reviewListState extends State<reviewList> {
             Navigator.pop(context);
           },
         ),
+        actions: [
+          Center(
+            child: IconButton(
+              icon: Icon(Icons.home, color: Colors.indigo[200]),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FirstHome()),
+                );
+              },
+            ),
+          ),
+        ],
         backgroundColor: Colors.white,
         shadowColor: Colors.pink[200],
       ),
@@ -65,7 +82,7 @@ class _reviewListState extends State<reviewList> {
             .where("movie_title", isEqualTo: movie_title)
             .where("movie_director", isEqualTo: movie_director)
             .snapshots(),
-                 // snapshot.data.docs[index]['title'],
+        // snapshot.data.docs[index]['title'],
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -90,67 +107,83 @@ class _reviewListState extends State<reviewList> {
                         child: Row(
                           children: [
                             CircleAvatar(
-                              radius: 25,
-                              
-                              backgroundColor: Colors.amber[600]
-                            ),
+                                radius: 25,
+                                backgroundImage: NetworkImage(snapshot.data.docs[index]['imagePath']),
+                                backgroundColor: Colors.amber[600],),
                             Container(
                               padding: EdgeInsets.fromLTRB(15, 0, 5, 5),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'name',
+                                    snapshot.data.docs[index]['user_name'],
                                     style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 22,
                                         fontFamily: 'NanumBarun'),
                                   ),
-                                  SizedBox(height: 8,),
-                                  Text('level',
-                                  style: TextStyle(fontFamily: 'NanumBarun'),),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    'level',
+                                    style: TextStyle(fontFamily: 'NanumBarun'),
+                                  ),
                                 ],
                               ),
                             ),
                             Expanded(child: SizedBox()),
-                             Container(
+                            Container(
                               child: Row(
                                 children: [
                                   spoilerIstrue
                                       ? Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.circle,color: Colors.red,size: 10,),
-                                          SizedBox(width: 2,),
-                                          Text(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.circle,
+                                              color: Colors.red,
+                                              size: 10,
+                                            ),
+                                            SizedBox(
+                                              width: 2,
+                                            ),
+                                            Text(
                                               '스포포함',
                                               style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400,
-                                                  //fontFamily: 'NanumBarun',
-                                                  ),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400,
+                                                //fontFamily: 'NanumBarun',
+                                              ),
                                             ),
-                                        ],
-                                      )
+                                          ],
+                                        )
                                       : Text(''),
                                   SizedBox(width: 5),
                                   endingAnalysisIstrue
                                       ? Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.circle,color: Colors.indigo,size: 10,),
-                                          SizedBox(width: 2,),
-                                          Text(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.circle,
+                                              color: Colors.indigo,
+                                              size: 10,
+                                            ),
+                                            SizedBox(
+                                              width: 2,
+                                            ),
+                                            Text(
                                               '결말해석',
                                               style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400,
-                                                  ),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400,
+                                              ),
                                             ),
-                                          SizedBox(width: 5),
-
-                                        ],
-                                  )
+                                            SizedBox(width: 5),
+                                          ],
+                                        )
                                       : Text(''),
                                 ],
                               ),
@@ -158,14 +191,20 @@ class _reviewListState extends State<reviewList> {
                           ],
                         ),
                       ),
-                      Container(width: 350,height: 0.5, color: Colors.pink[200],),
+                      Container(
+                        width: 350,
+                        height: 0.5,
+                        color: Colors.pink[200],
+                      ),
                       Container(
                         padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
                         child: ListTile(
                           title: Text(
                             snapshot.data.docs[index]['review_title'],
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20,),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
                           //subtitle: Text(snapshot.data.docs[index]['content']),
                           trailing: Container(
@@ -186,7 +225,8 @@ class _reviewListState extends State<reviewList> {
                                 Text(
                                   "N",
                                   style: TextStyle(
-                                      color: Colors.amberAccent[700], fontSize: 11,
+                                      color: Colors.amberAccent[700],
+                                      fontSize: 11,
                                       fontFamily: 'NanumBarun',
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -197,7 +237,11 @@ class _reviewListState extends State<reviewList> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => showReviewTest(snapshot.data.docs[index]['review_title'], snapshot.data.docs[index]['date_time'], snapshot.data.docs[index]['review_content'])),
+                                  builder: (context) => showReviewTest(
+                                      snapshot.data.docs[index]['review_title'],
+                                      snapshot.data.docs[index]['date_time'],
+                                      snapshot.data.docs[index]
+                                          ['review_content'])),
                             );
                           },
                         ),
@@ -220,15 +264,14 @@ class _reviewListState extends State<reviewList> {
                               alignment: Alignment.centerLeft,
                               width: 132,
                               height: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.indigo[50]
-                                /*
+                              decoration: BoxDecoration(color: Colors.indigo[50]
+                                  /*
                                   image: DecorationImage(
                                     image: NetworkImage(
                                         'https://w.namu.la/s/6542d430faf483de81317c1ad99df450eef28b9409d0adbc02e17ca5c72c99a45ea7435a0b335a109f81d2f169867cec26207c7a2a62d2d216457f17d19735a681b4b9ba7b8ce0fa6407ef5e77928495'),
                                     fit: BoxFit.cover),
                                 */
-                              ),
+                                  ),
                             ),
                           ],
                         ),
@@ -242,19 +285,65 @@ class _reviewListState extends State<reviewList> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                // builder: (context) => writeReview(movie_title, movie_director)),
-                builder: (context) =>
-                    writeReviewTest(movie_title, movie_director)),
-          );
+        onPressed: () async {
+          print(my_user.email);
+          if (my_user.email != '') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  // builder: (context) => writeReview(movie_title, movie_director)),
+                  builder: (context) =>
+                      writeReviewTest(movie_title, movie_director)),
+            );
+          } else {
+            String result = await showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Row(
+                    children: [
+                      Icon(Icons.notifications, color: Color(0xFFF06292)),
+                      Text(' 확인',
+                          style: TextStyle(fontFamily: 'EliceDigitalBaeum')),
+                    ],
+                  ),
+                  content: Text('로그인 후 이용하세요.',
+                      style: TextStyle(fontFamily: 'EliceDigitalBaeum')),
+                  actions: [
+                    FlatButton(
+                      child: Text('로그인',
+                          style: TextStyle(fontFamily: 'EliceDigitalBaeum')),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              // builder: (context) => writeReview(movie_title, movie_director)),
+                              builder: (context) =>
+                                  WelcomeScreen()),
+                        );
+                      },
+                    ),
+                    FlatButton(
+                      child: Text('취소',
+                          style: TextStyle(fontFamily: 'EliceDigitalBaeum')),
+                      onPressed: () {
+                        Navigator.of(context).pop('No');
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          }
         },
         label: const Text(
           '리뷰작성',
           style: TextStyle(
-              color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
               fontFamily: 'NanumBarun'),
         ),
         icon: const Icon(
@@ -267,7 +356,6 @@ class _reviewListState extends State<reviewList> {
     );
   }
 }
-
 
 void deleteData() {
   final usercol = FirebaseFirestore.instance.collection("review").doc();

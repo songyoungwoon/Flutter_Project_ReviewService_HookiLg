@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/components/authentication.dart';
+import 'package:fp_review_service_hookilg/page/editProfile.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
@@ -45,10 +46,18 @@ class _MyPageState extends State<MyPage> {
           children: [
             Expanded(child: SizedBox()),
             IconButton(onPressed: (){
-              
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  // builder: (context) => writeReview(movie_title, movie_director)),
+                    builder: (context) =>
+                        editProfile()),
+              );
             }, icon: Icon(Icons.mode,color: Colors.pink[300])),
             // SizedBox(width: 5,)
             IconButton(onPressed: (){
+              my_user.clearUser();
               Route route =
                 MaterialPageRoute(builder: (context) => WelcomeScreen());
               Navigator.pushReplacement(context, route);
@@ -63,6 +72,16 @@ class _MyPageState extends State<MyPage> {
             .where('email', isEqualTo: useremail)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("firebase load fail"),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: Text("loading"));
+          }
+          if(isLogin) {
             my_user.setUserInfo(
                 snapshot.data.docs[num]['imagePath'],
                 snapshot.data.docs[num]['name'],
@@ -70,7 +89,8 @@ class _MyPageState extends State<MyPage> {
                 snapshot.data.docs[num]['about'],
                 snapshot.data.docs[num]['nickname'],
                 snapshot.data.docs[num]['age']);
-         
+            }
+
 
 
           if(isLogin) {
@@ -82,6 +102,7 @@ class _MyPageState extends State<MyPage> {
                 snapshot.data.docs[index]['about']
               ),
 
+
               );
           }
           else {
@@ -89,9 +110,9 @@ class _MyPageState extends State<MyPage> {
             itemCount: 1,
             itemBuilder: (ctx, index) => buildUserInfo(anonymousImgPath,'Anonymous','익명의 사용자 입니다.'),
 
-              );
+            );
           }
-        },
+        }
       ),
     );
   }

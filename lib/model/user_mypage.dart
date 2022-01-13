@@ -1,10 +1,10 @@
 class UserInformation {
-  String imagePath;
-  String name;
-  String email;
-  String about;
-  String nickname;
-  String age;
+  String imagePath = '';
+  String name = '';
+  String email = '';
+  String about = '';
+  String nickname = '';
+  String age = '';
 
   UserInformation(
     this.imagePath,
@@ -25,7 +25,13 @@ class UserInformation {
   }
 
   void clearUser(){
-    // clear
+    this.imagePath = '';
+    this.name = '';
+    this.email = '';
+    this.about = '';
+    this.nickname = '';
+    this.age = '';
+
   }
   //
 

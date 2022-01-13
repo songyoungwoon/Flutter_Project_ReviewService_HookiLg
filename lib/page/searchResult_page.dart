@@ -1,14 +1,15 @@
+import 'package:flutter/material.dart';
 import 'dart:convert';
 
-import 'reviewList_page.dart';
 
-import 'package:flutter/material.dart';
 
-// import '../main.dart';
-// import '../screen/home.dart';
-import '../screen/fristhome.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_html/flutter_html.dart';
+
+// import '../main.dart';
+import 'reviewList_page.dart';
+import '../screen/fristhome.dart';
+
 
 class searchResult extends StatefulWidget {
   String searchText;
@@ -75,6 +76,7 @@ class _searchResultState extends State<searchResult> {
                       MaterialPageRoute(builder: (context) => FirstHome());
                   Navigator.pushReplacement(context, route);
                  
+
                 },
               ),
             ),
