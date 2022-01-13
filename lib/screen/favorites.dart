@@ -14,10 +14,10 @@ class favoriteLsit extends StatefulWidget {
 }
 
 List<String> titles =<String>[
-  'when will my life begin',
-  'loving you girl',
+  'When will my life begin',
+  'Loving you girl',
   'Happy Ending',
-  'like 1999',
+  'Like 1999',
   'CAN\'T STOP THE FEELING',
   'ex I never hed',
   'Play with Fire',
@@ -37,7 +37,8 @@ class _favoriteLsitState extends State<favoriteLsit> {
         style: TextStyle(
             color: Colors.grey[800],
             fontWeight: FontWeight.bold,
-            fontSize: 25
+            fontSize: 25,
+            fontFamily: 'EliceDigitalBaeum'
           ),
         ),
         leading: Icon(Icons.favorite, color: Colors.pink[300],),
@@ -55,6 +56,7 @@ class _favoriteLsitState extends State<favoriteLsit> {
             child: ListTile(
               leading: ClipRect(
                 child: Container(
+                  
                   width: 55,
                   height: 100,
                   decoration: BoxDecoration(
@@ -74,8 +76,9 @@ class _favoriteLsitState extends State<favoriteLsit> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Titles ${titles[index]}', 
-                    style:TextStyle(fontWeight: FontWeight.bold) ,)
+                    Text('${titles[index]}', 
+                    style:TextStyle(fontWeight: FontWeight.bold,
+                    fontFamily: 'NanumBarun') ,)
                   ]
                 )
               ),
@@ -85,7 +88,7 @@ class _favoriteLsitState extends State<favoriteLsit> {
                     
                   }
                 },
-                icon: Icon(Icons.favorite, color: Colors.pink,),),
+                icon: Icon(Icons.favorite, color: Colors.pink[200],),),
             ),
           );
           

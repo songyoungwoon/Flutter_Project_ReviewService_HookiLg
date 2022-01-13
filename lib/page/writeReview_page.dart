@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
+import 'package:flutter_quill/flutter_quill.dart' as fq;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'reviewList_page.dart';
 import '../main.dart';
 import '../widget/writeText.dart';
-
 
 class writeReview extends StatefulWidget {
   String movie_title = '';
@@ -22,6 +22,8 @@ String title_text ='';
 String content_text='';
 
 class _writeReviewState extends State<writeReview>{
+  fq.QuillController _controller = fq.QuillController.basic();
+
   String movie_title = '';
   String movie_director = '';
 
@@ -54,7 +56,7 @@ class _writeReviewState extends State<writeReview>{
           child: Column(
             children: [
               Container(
-                child: Column(
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     titleSection(),
@@ -74,7 +76,18 @@ class _writeReviewState extends State<writeReview>{
                       ],
                     ),
                     SizedBox(height: 10),
-                    wirteText(50,350,300,'writeReview'),
+
+                    fq.QuillToolbar.basic(controller: _controller),
+                    Expanded(
+                      child: Container(
+                        child: fq.QuillEditor.basic(
+                          controller: _controller,
+                          readOnly: false, // true for view only mode
+                        ),
+                      ),
+                    )
+
+                    //wirteText(50,350,300,'writeReview'),
                   ],
                 )
               ),
@@ -113,7 +126,6 @@ final TextEditingController _titleEditingController = TextEditingController();
 
 Widget titleSection(){
   return Container(
-    
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

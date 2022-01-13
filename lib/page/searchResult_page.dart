@@ -57,7 +57,8 @@ class _searchResultState extends State<searchResult> {
               style: TextStyle(
                   color: Colors.grey[800],
                   fontWeight: FontWeight.bold,
-                  fontSize: 25)),
+                  fontFamily: 'EliceDigitalBaeum',
+                  fontSize: 23)),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios, color:  Color(0xFFF06292)),
             onPressed: () {
@@ -67,7 +68,7 @@ class _searchResultState extends State<searchResult> {
           actions: [
             Center(
               child: IconButton(
-                icon: Icon(Icons.home, color: Colors.pink[300]),
+                icon: Icon(Icons.home, color: Colors.indigo[200]),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -90,7 +91,7 @@ class _searchResultState extends State<searchResult> {
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
 
-                    return Container(
+                    return SingleChildScrollView(
                       child: Card(
                         shadowColor: Colors.pink[100],
                         elevation: 6,
@@ -118,7 +119,8 @@ class _searchResultState extends State<searchResult> {
                                             image: result[index]['image']
                                                 .toString(),
                                             fit: BoxFit.cover,
-                                          )),
+                                          )
+                                ),
                                 Container(
                                   width: 200,
                                   child: Column(

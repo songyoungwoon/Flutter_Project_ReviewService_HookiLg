@@ -41,6 +41,8 @@ dependencies:
   firebase_auth: ^3.3.5
   cloud_firestore: ^3.1.6
   carousel_slider: ^4.0.0
+  flutter_quill: ^3.2.0
+  contentful_rich_text: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,9 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - images/ban_1.jpg
+    - images/ban_2.jpg
+    - images/ban_3.jpg
     - images/profile.jpg
     - images/loading.jpg
     - images/noImage.png
@@ -82,11 +87,17 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+     - family: EliceDigitalBaeum
+       fonts:
+         - asset: fonts/EliceDigitalBaeum_Bold.ttf
+         - asset: fonts/EliceDigitalBaeum_Regular.ttf
+ 
+     - family: NanumBarun
+       fonts:
+         - asset: fonts/NanumBarunGothic.ttf
+         - asset: fonts/NanumBarunGothicBold.ttf
+  #       - asset: fonts/EliceDigitalBaeum_Regular.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

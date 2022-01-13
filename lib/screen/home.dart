@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_html/flutter_html.dart';
-
 import '../widget/search_bar.dart';
 import '../page/reviewList_page.dart';
 
@@ -20,16 +19,12 @@ class _HomeState extends State<Home> {
         child: ListView(children: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => reviewList()),
-              );
-            },
+              },
             icon: Icon(
               Icons.auto_stories,
               size: 40,
             ),
-            color: Colors.pink[300],
+            color: Color(0xFFFF80AB),
           ),
           searchBar(),
           Padding(
@@ -41,22 +36,26 @@ class _HomeState extends State<Home> {
                 autoPlayInterval: Duration(seconds: 3),
                 autoPlayAnimationDuration: Duration(milliseconds: 800),
                 height: 220.0),
-            items: [1, 2, 3].map((i) {
+
+            items: [
+            // 'images/ban/ban_1.png',
+            // 'images/ban/ban_2.png', 
+            // 'images/ban/ban_3.png'
+            1,2,3
+            ].map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(color: Colors.amber),
-                      child: Text(
-                        'image $i',
-                        style: TextStyle(fontSize: 16.0),
-                      ));
+                      decoration: BoxDecoration(color: Colors.blueGrey[50],
+                      image: DecorationImage(image: AssetImage('images/ban_$i.jpg'))),
+                  );
                 },
               );
             }).toList(),
           ),
-          Padding(padding: EdgeInsets.only(top: 10)),
+          Padding(padding: EdgeInsets.only(top: 13)),
           Container(
             padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
             child: Column(
@@ -69,19 +68,22 @@ class _HomeState extends State<Home> {
                     ),
                     Icon(
                       Icons.person,
-                      color: Colors.amber[600],
+                      color: Colors.amber[500],
                     ),
                     Text(
                       ' 이달의 베스트 리뷰어',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'EliceDigitalBaeum'
                       ),
                     ),
+                    
                   ],
                 ),
+                SizedBox(height: 8),
                 Container(
-                  color: Colors.pink[200],
+                  color: Colors.indigo[100],
                   height: 150,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -102,7 +104,8 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
-                              Text((index + 1).toString() + '위'),
+                              SizedBox(height: 9,),
+                              Text((index + 1).toString() + '위',style: TextStyle(fontFamily: 'EliceDigitalBaeum',),),
                             ],
                           ),
                         ),
@@ -113,7 +116,7 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          Padding(padding: EdgeInsets.all(5)),
+          Padding(padding: EdgeInsets.only(bottom:13)),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,18 +128,19 @@ class _HomeState extends State<Home> {
                     ),
                     Icon(
                       Icons.article,
-                      color: Colors.amber[600],
+                      color: Colors.amber[500],
                     ),
                     Text(
                       ' 이달의 베스트 리뷰',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'EliceDigitalBaeum'
                       ),
                     ),
                   ],
                 ),
-                Padding(padding: EdgeInsets.only(top: 5)),
+                Padding(padding: EdgeInsets.only(top: 8)),
                 CarouselSlider(
                   options: CarouselOptions(
                       autoPlay: true,
@@ -149,7 +153,7 @@ class _HomeState extends State<Home> {
                         return Container(
                             width: double.infinity,
                             margin: EdgeInsets.symmetric(horizontal: 5.0),
-                            decoration: BoxDecoration(color: Colors.amber),
+                            decoration: BoxDecoration(color: Colors.pink[50]),
                             child: Text(
                               'image $i',
                               style: TextStyle(fontSize: 16.0),

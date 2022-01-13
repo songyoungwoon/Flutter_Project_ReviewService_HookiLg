@@ -24,12 +24,24 @@ class Body extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                "Hookilg LOGIN",
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.star,color:Colors.amber[300]),
+                  Text(
+                    "Hi, FABULOUS YOU!",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'EliceDigitalBaeum',
+                      color:Colors.indigo[300] ),
+                  ),
+                  Icon(Icons.star,color:Colors.amber[300]),
+
+                ],
               ),
               SizedBox(height: size.height * 0.03),
-              Icon(Icons.auto_stories, size: 100),
+              Icon(Icons.auto_stories, size: 100,color: Color(0xFFF06292),),
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
                 controller: emailController,
@@ -63,13 +75,9 @@ class Body extends StatelessWidget {
               SizedBox(height: size.height * 0.01),
               AlreadyHaveAnAccountCheck(
                 press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SignUpScreen();
-                      },
-                    ),
+                  Route route = MaterialPageRoute(builder: (context) => SignUpScreen());
+                  Navigator.pushReplacement(
+                      context, route
                   );
                 },
               ),

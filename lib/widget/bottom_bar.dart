@@ -7,37 +7,38 @@ class BottomBar extends StatelessWidget {
       
       // color: Colors.white,
       child: TabBar(
-        labelColor: Colors.amber[600],
+        labelColor: Colors.amberAccent[700],
         unselectedLabelColor: Colors.pink[300],
         indicatorColor: Colors.transparent,
+        labelStyle: TextStyle(fontFamily: 'EliceDigitalBaeum',fontWeight: FontWeight.bold),
         tabs: [
           Tab(
             icon: Icon(
               Icons.home,
-              size: 18,
+              size: 16,
             ),
             child:Text('Home'),
           ),
           Tab(
             icon: Icon(
               Icons.search,
-              size: 18,
+              size: 16,
             ),
             child:Text('Search'),
           ),
           Tab(
             icon: Icon(
               Icons.favorite,
-              size: 18,
+              size: 16,
             ),
-            child:Text('Favorites'),
+            child:Text('Favorites',style: TextStyle(fontSize: 13),),
           ),
           Tab(
             icon: Icon(
               Icons.account_circle,
-              size: 18,
+              size: 16,
             ),
-            child:Text('MyPage'),
+            child:Text('My Page'),
           ),
         ],
       ),

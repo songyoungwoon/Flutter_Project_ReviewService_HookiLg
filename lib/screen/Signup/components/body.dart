@@ -29,13 +29,16 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.favorite, color: Colors.pink[300],),
+                SizedBox(width: 8,),
                 Text(
-                  "Wellcome",
+                  " Wellcome",
                   style: TextStyle(
-                    color: Colors.pinkAccent,
+                    color: Colors.indigo[300],
                     fontWeight: FontWeight.bold,
-                    fontSize: 20),
+                    fontFamily: 'EliceDigitalBaeum',
+                    fontSize: 25),
                 ),
+                SizedBox(width: 8,),
                 Icon(Icons.favorite, color: Colors.pink[300],),
 
               ],
@@ -125,13 +128,9 @@ class Body extends StatelessWidget {
             AlreadyHaveAnAccountCheck(
               login: false,
               press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
-                    },
-                  ),
+                Route route = MaterialPageRoute(builder: (context) => LoginScreen());
+                Navigator.pushReplacement(
+                    context, route
                 );
               },
             ),
