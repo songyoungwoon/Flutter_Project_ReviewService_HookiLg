@@ -102,6 +102,7 @@ class _showReviewTestState extends State<showReviewTest> {
                           children: [
                             CircleAvatar(
                               radius: 30,
+                              backgroundImage: NetworkImage(snapshot.data.docs[index]['imagePath']),
                             ),
                             SizedBox(width: 10),
                             Container(

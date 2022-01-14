@@ -266,6 +266,7 @@ class CameraWidgetState extends State {
     final textDetector = GoogleMlKit.vision.textDetector();
     final RecognisedText recognisedText =
         await textDetector.processImage(inputImage);
+    streamController.add(recognisedText.text);
     keyWords = recognisedText.text.split('\n');
     return recognisedText.text;
   }
