@@ -17,14 +17,15 @@ class MyPage extends StatefulWidget {
 }
 
 UserInformation my_user = UserInformation('', '', '', '', '', '');
+String anonymousImgPath ='https://firebasestorage.googleapis.com/v0/b/reviewservicehookilg.appspot.com/o/profile.jpg?alt=media&token=f76f7985-5f5d-44d1-8689-f507c41558aa';
 
 List<String> titles =<String>[
-  '라푼젤의 마법의 머리카락',
-  '엄청난 사랑의 결말',
-  '날 쏘고 가라',
-  '혼자왔어?',
-  '가지마...ㅜㅜ',
-  '엘사와 안나의.',
+  '기생충 영화 해석 및 후기',
+  '고요의 바다 속 숨겨진 연출을 알아보자',
+  '영화 특종의 결말해석',
+  '그 해 여름 밤의, 너를 기억한다',
+  '오감의 끝이 몽환에 감싸여있다',
+  '나는 너와 다른 사람이 되고 말거야',
   '트롤의 음악으로 하는 세계 대통합',
   '미워할수 없는 악당 로키'
 ];
@@ -41,11 +42,11 @@ class _MyPageState extends State<MyPage> {
 
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(Icons.home, color: Colors.pink[300],),
         title:Row(
           children: [
             Expanded(child: SizedBox()),
             IconButton(onPressed: (){
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -53,7 +54,7 @@ class _MyPageState extends State<MyPage> {
                     builder: (context) =>
                         editProfile()),
               );
-            }, icon: Icon(Icons.mode,color: Colors.indigo[300])),
+            }, icon: Icon(Icons.mode,color: Colors.pink[300])),
             // SizedBox(width: 5,)
             IconButton(onPressed: (){
               my_user.clearUser();
@@ -61,7 +62,7 @@ class _MyPageState extends State<MyPage> {
                 MaterialPageRoute(builder: (context) => WelcomeScreen());
               Navigator.pushReplacement(context, route);
 
-            }, icon: Icon(Icons.logout_outlined, color: Colors.indigo[300],)),
+            }, icon: Icon(Icons.logout_outlined, color: Colors.pink[300],)),
           ],
         ),
       ),
@@ -71,6 +72,7 @@ class _MyPageState extends State<MyPage> {
             .where('email', isEqualTo: useremail)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+
           if (snapshot.hasError) {
             return Center(
               child: Text("firebase load fail"),
@@ -87,112 +89,38 @@ class _MyPageState extends State<MyPage> {
                 snapshot.data.docs[num]['about'],
                 snapshot.data.docs[num]['nickname'],
                 snapshot.data.docs[num]['age']);
-          } else {
-            my_user.setUserInfo(
-                'images/profile.jpg',
-                'anonymous',
-                '',
-                'anonymous',
-                'anonymous',
-                'anonymous');
-          }
+            }
+
 
 
           if(isLogin) {
             return ListView.builder(
             itemCount: 1,
-            itemBuilder: (ctx, index) {
-              return Container(
-                child: Column(
-                children:
-              [
-                SizedBox(height: 30,),
-                Row(
-                  children: [
-                     Expanded(child: SizedBox()),
-                    ProfileWidget(
-                      imagePath: snapshot.data.docs[index]['imagePath'],
-                      onClicked: () async {},
-                    ),
-                    const SizedBox(height: 24),
-                    Container(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(height: 2),
-                            buildName(snapshot.data.docs[index]['name']),
-                            buildAbout(snapshot.data.docs[index]['about']),
+            itemBuilder: (ctx, index) => buildUserInfo(
+                snapshot.data.docs[index]['imagePath'],
+                snapshot.data.docs[index]['name'],
+                snapshot.data.docs[index]['about']
+              ),
 
-                            const SizedBox(height: 10),
-                          ]),
-                    ),
-                    Expanded(child: SizedBox()),
-
-                  ],
-                ),
-                const SizedBox(height: 30),
-                Container(color: Colors.pink[200],height: 1,width: 380,),
-                const SizedBox(height: 10),
-                NumbersWidget(),
-                const SizedBox(height: 10),
-                Container(color: Colors.pink[200],height: 1,width: 380,),
-                SizedBox(height: 10,),
-                Row(
-                  children: [
-                    SizedBox(width: 20,),
-                    Text("나의 리뷰",style:TextStyle(
-                      fontSize: 20, color: Colors.pink[300], 
-                      fontFamily: 'NanumBarun',
-                      fontWeight: FontWeight.bold
-                    ),),
-                    SizedBox(width: 5,),
-                    Icon(Icons.list, color: Colors.pink[300],size: 30,),
-                    SizedBox(height: 5,),
-                    Expanded(child: SizedBox())
-                  ],
-                ),
-                SizedBox(height: 10,),
-                Container(
-                  height: 200,
-                  width: 370,
-                  child: ListView.builder(
-                    itemCount: titles.length,
-                    itemBuilder: (BuildContext context, int index){
-                      return Card(
-                        shadowColor: Colors.pink[100],
-                        elevation: 4,
-                        // margin: EdgeInsets.symmetric(vertical: 14),
-                        child: ListTile(
-                          title: Container(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(Icons.title, color: Colors.amber[600],),
-                                SizedBox(width: 5,),
-                                Text('${titles[index]}',
-                                style:TextStyle(fontWeight: FontWeight.bold,
-                                fontFamily: 'NanumBarun') ,
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      );
-                    }
-                    ),
-                ),
-                SizedBox(height: 200,)
-              ],
-                ));
-            },
 
               );
           }
           else {
             return ListView.builder(
             itemCount: 1,
-            itemBuilder: (ctx, index) {
-              return Container(
+            itemBuilder: (ctx, index) => buildUserInfo(anonymousImgPath,'Anonymous','익명의 사용자 입니다.'),
+
+            );
+          }
+        }
+      ),
+    );
+  }
+
+
+
+Widget buildUserInfo(String imgPath, String userName, String shortSen){
+  return Container(
                 child: Column(
                 children:
               [
@@ -201,7 +129,8 @@ class _MyPageState extends State<MyPage> {
                   children: [
                      Expanded(child: SizedBox()),
                     ProfileWidget(
-                      imagePath: '/images/profile.jpg',
+                      
+                      imagePath: imgPath,
                       onClicked: () async {},
                     ),
                     const SizedBox(height: 24),
@@ -210,8 +139,8 @@ class _MyPageState extends State<MyPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(height: 2),
-                            buildName("Anonymous"),
-                            buildAbout("익명의 사용자입니다"),
+                            buildName(userName),
+                            buildAbout(shortSen),
 
                             const SizedBox(height: 10),
                           ]),
@@ -274,14 +203,8 @@ class _MyPageState extends State<MyPage> {
                 SizedBox(height: 200,)
               ],
                 ));
-            },
-
-              );
-          }
-        },
-      ),
-    );
-  }
+           
+}
 
   Widget buildName(String name) {
     return Column(

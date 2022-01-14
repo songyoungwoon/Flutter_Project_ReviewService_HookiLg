@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
                       color: Colors.amber[500],
                     ),
                     Text(
-                      ' 이달의 베스트 리뷰어',
+                      '이주의 베스트 리뷰어',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -101,7 +101,7 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                               SizedBox(height: 9,),
-                              Text((index + 1).toString() + '위',style: TextStyle(fontFamily: 'EliceDigitalBaeum',),),
+                              Text((index + 1).toString() + '위',style: TextStyle(fontFamily: 'EliceDigitalBaeum',fontWeight: FontWeight.bold),),
                             ],
                           ),
                         ),
@@ -120,14 +120,14 @@ class _HomeState extends State<Home> {
                 Row(
                   children: [
                     SizedBox(
-                      width: 5,
+                      width: 10,
                     ),
                     Icon(
                       Icons.article,
                       color: Colors.amber[500],
                     ),
                     Text(
-                      ' 이달의 베스트 리뷰',
+                      ' 이주의 베스트 리뷰',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

@@ -34,7 +34,7 @@ class NumbersWidget extends StatelessWidget {
             SizedBox(height: 2),
             Text(
               text,
-              style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'EliceDigitalBaeum'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'EliceDigitalBaeum',color: Colors.indigo[400]),
             ),
           ],
         ),
