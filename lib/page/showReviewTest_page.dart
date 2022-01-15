@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -20,6 +21,7 @@ class _showReviewTestState extends State<showReviewTest> {
   String review_title = '';
   String date_time = '';
   String review_content = '';
+  int index = 0;
 
   fq.QuillController _controller = fq.QuillController.basic();
   bool ItsMine = false;
@@ -39,19 +41,20 @@ class _showReviewTestState extends State<showReviewTest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           "Review",
           style: TextStyle(
               color: Colors.grey[800],
               fontWeight: FontWeight.bold,
-              fontSize: 25,
+              fontSize: 15,
               fontFamily: 'EliceDigitalBaeum'),
         ),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Color(0xFFF06292),
+            color: Colors.black26,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -62,14 +65,14 @@ class _showReviewTestState extends State<showReviewTest> {
               ? IconButton(
                   icon: Icon(
                     Icons.delete,
-                    color: Color(0xFFF06292),
+                    color: Colors.black26,
                   ),
                   onPressed: () {},
                 )
               : Text(''),
         ],
         backgroundColor: Colors.white,
-        shadowColor: Colors.pink[200],
+        elevation: 0,
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -86,75 +89,84 @@ class _showReviewTestState extends State<showReviewTest> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text("loading"));
           }
-          return ListView.builder(
-              itemCount: snapshot.data.docs.length,
-              itemBuilder: (ctx, index) {
-                return Container(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: NetworkImage(snapshot.data.docs[index]['imagePath']),
+          return SingleChildScrollView(
+            child: Container(
+              color: Colors.white,
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+              child: Column(
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(
+                              snapshot.data.docs[index]['imagePath']),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          child: Column(children: [
+                            Text(
+                              snapshot.data.docs[index]['user_name'],
+                              style: TextStyle(
+                                fontFamily: 'NanumBarun',
+                                fontSize: 19,
+                              ),
                             ),
-                            SizedBox(width: 10),
-                            Container(
-                              child: Column(children: [
-                                Text('name',style: TextStyle(
-                                  fontFamily: 'NanumBarun',
-                                  fontSize: 19,
-                                ),),
-                                SizedBox(height: 5,),
-                                Text('level',style: TextStyle(
-                                  fontFamily: 'NanumBarun',
-                                  fontSize: 13
-                                ),),
-                              ]),
+                            Padding(
+                              padding: EdgeInsets.all(2.5),
                             ),
-                            SizedBox(width: 120),
-                          ],
+                            Text(
+                              'Lv',
+                              style: TextStyle(
+                                  fontFamily: 'NanumBarun', fontSize: 13),
+                            ),
+                          ]),
                         ),
-                        decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Colors.black12, width: 1.0)),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 15),
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          snapshot.data.docs[index]['review_title'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20,
-                              fontFamily: 'NanumBarun'),
-                        ),
-                      ),
-                      Visibility(
-                          visible: isEdit,
-                          child:
-                              fq.QuillToolbar.basic(controller: _controller)),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 110),
-                        child: fq.QuillEditor(
-                          controller: _controller,
-                          readOnly: !isEdit,
-                          expands: false,
-                          scrollController: ScrollController(),
-                          autoFocus: isEdit,
-                          scrollable: true,
-                          focusNode: FocusNode(),
-                          padding: EdgeInsets.zero,
-                        ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                );
-              });
+                  Padding(padding: EdgeInsets.all(10)),
+                  Container(
+                    height: 0.3,
+                    color: Colors.grey,
+                  ),
+                  Padding(padding: EdgeInsets.all(5)),
+                  Container(
+                    padding: EdgeInsets.only(top: 15),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      snapshot.data.docs[index]['review_title'],
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          fontFamily: 'NanumBarun'),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(30),
+                  ),
+                  Visibility(
+                      visible: isEdit,
+                      child: fq.QuillToolbar.basic(controller: _controller)),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 110),
+                    child: fq.QuillEditor(
+                      controller: _controller,
+                      readOnly: !isEdit,
+                      expands: false,
+                      scrollController: ScrollController(),
+                      autoFocus: isEdit,
+                      scrollable: true,
+                      focusNode: FocusNode(),
+                      padding: EdgeInsets.zero,
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+          );
         },
       ),
     );

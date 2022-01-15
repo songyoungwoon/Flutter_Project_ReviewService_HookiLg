@@ -71,7 +71,7 @@ class _searchBarState extends State<searchBar> {
                           });
                         },
                       )
-                    : Icon(Icons.search, color: Colors.pink[300], size: 20),
+                    : Icon(Icons.search, color: Colors.black38, size: 20),
                 suffixIcon: focusNode.hasFocus
                     ? IconButton(
                         icon:

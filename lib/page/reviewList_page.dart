@@ -40,12 +40,11 @@ class _reviewListState extends State<reviewList> {
   bool endingAnalysisIstrue = true;
   bool thumbnailIstrue = false;
 
+  bool _isChecked = false;
   final _valueList = ['인기순', '최신순'];
   var _selectedValue = '인기순';
 
   _reviewListState(this.movie_title, this.movie_director);
-
-  int a = add(5);
 
   @override
   Widget build(BuildContext context) {
@@ -126,11 +125,34 @@ class _reviewListState extends State<reviewList> {
                   children: [
                     // arrange dropdown
                     isFirstTrue
-                        ? Padding(
+                        ? Container(
+                      height: 60,
+                      alignment: Alignment.center,
+                      child:Padding(
                             padding: EdgeInsets.only(right: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
+                                Stack(
+                                  children: [
+                                    Positioned(
+                                      bottom: 35,
+                                      right: 18,
+                                      child: Text(
+                                        '스포방지',
+                                        style: TextStyle(fontSize: 7),
+                                      ),
+                                    ),
+                                    Switch(
+                                      value: _isChecked,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _isChecked = value;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
                                 DropdownButton(
                                     value: _selectedValue,
                                     items: _valueList.map(
@@ -148,10 +170,10 @@ class _reviewListState extends State<reviewList> {
                                       setState(() {
                                         _selectedValue = value.toString();
                                       });
-                                    })
+                                    }),
                               ],
                             ),
-                          )
+                          ),)
                         : Container(),
 
                     // review list
@@ -170,7 +192,7 @@ class _reviewListState extends State<reviewList> {
                                     radius: 15,
                                     backgroundImage: NetworkImage(
                                         snapshot.data.docs[index]['imagePath']),
-                                    backgroundColor: Colors.amber[600],
+                                    backgroundColor: Colors.grey,
                                   ),
                                   Container(
                                     padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -347,7 +369,7 @@ class _reviewListState extends State<reviewList> {
         ),
         icon: const Icon(
           Icons.create,
-          color: Colors.black,
+          color: Colors.redAccent,
           size: 12,
         ),
         backgroundColor: Colors.white,

@@ -57,14 +57,14 @@ class _searchResultState extends State<searchResult> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: Text("\"" + searchText + "\"의 검색결과",
+          title: Text(searchText+' 검색 결과',
               style: TextStyle(
                   color: Colors.grey[800],
                   fontWeight: FontWeight.bold,
                   fontFamily: 'EliceDigitalBaeum',
-                  fontSize: 23)),
+                  fontSize: 15)),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color:  Color(0xFFF06292)),
+            icon: const Icon(Icons.arrow_back_ios, color:  Colors.black26),
             onPressed: () {
               Navigator.pop(context);
             },

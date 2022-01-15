@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
               Icons.auto_stories,
               size: 40,
             ),
-            color: Color(0xFFFF80AB),
+            color: Colors.black54,
           ),
           searchBar(),
           Padding(
