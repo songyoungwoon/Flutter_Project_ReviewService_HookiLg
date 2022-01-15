@@ -43,7 +43,7 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.05),
             RoundedButton(
-              text: "LOGIN",
+              text: "로그인",
               press: () {
                 Navigator.push(
                   context,
@@ -56,7 +56,7 @@ class Body extends StatelessWidget {
               },
             ),
             RoundedButton(
-              text: "SIGN UP",
+              text: "회원가입",
               color: kPrimaryLightColor,
               textColor: Colors.black54,
               press: () {
@@ -71,20 +71,7 @@ class Body extends StatelessWidget {
               },
             ),
             SizedBox(height: size.height * 0.0001),
-            WithoutLogin(
-              press: () {
-                FirebaseAuth.instance.signInAnonymously();
-                isLogin = false;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return FirstHome();
-                    },
-                  ),
-                );
-              },
-            ),
+            WithoutLogin(),
           ],
         ),
        ),

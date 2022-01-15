@@ -1,13 +1,13 @@
+//library
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+//local path
+import 'authentication.dart';
+import '../screen/fristhome.dart';
 
 class WithoutLogin extends StatelessWidget {
-  final bool login;
-  final void Function() press;
-  const WithoutLogin({
-    Key? key,
-    this.login = true,
-    required this.press,
-  }) : super(key: key);
+  bool login = false;
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +15,24 @@ class WithoutLogin extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         GestureDetector(
-          onTap: press,
-          child: Text("use wiithout an account.",
+          onTap: () {
+            FirebaseAuth.instance.signInAnonymously();
+            isLogin = false;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return FirstHome();
+                },
+              ),
+            );
+          },
+          child: Text(
+            "use wiithout an account.",
             style: TextStyle(
-              color: Colors.amber[600],
-              fontWeight: FontWeight.bold,
-              fontFamily: 'EliceDigitalBaeum'
-            ),
+                color: Colors.amber[600],
+                fontWeight: FontWeight.bold,
+                fontFamily: 'EliceDigitalBaeum'),
           ),
         ),
       ],

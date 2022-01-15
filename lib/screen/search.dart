@@ -31,7 +31,9 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        color: Colors.white,
+        child:SingleChildScrollView(
         child: Column(
           children: [
             Center(
@@ -238,6 +240,7 @@ class _SearchState extends State<Search> {
             )
           ],
         ),
+      ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

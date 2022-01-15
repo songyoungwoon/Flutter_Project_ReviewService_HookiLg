@@ -3,9 +3,6 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_quill/flutter_quill.dart' as fq;
-import 'package:contentful_rich_text/contentful_rich_text.dart';
-
-import '../widget/writeText.dart';
 
 class showReviewTest extends StatefulWidget {
   String review_title = '';

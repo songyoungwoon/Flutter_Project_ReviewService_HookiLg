@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -31,22 +30,21 @@ List<String> titles =<String>[
 ];
 
 class _MyPageState extends State<MyPage> {
+  bool isLoginTrue = false;
   @override
   Widget build(BuildContext context) {
-    
-
     String? useremail = FirebaseAuth.instance.currentUser!.email;
 
     int num = 0;
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation: 0.0,
         title:Row(
           children: [
+            //editbutton
             Expanded(child: SizedBox()),
             IconButton(onPressed: (){
-
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -55,7 +53,9 @@ class _MyPageState extends State<MyPage> {
                         editProfile()),
               );
             }, icon: Icon(Icons.mode,color: Colors.pink[300])),
-            // SizedBox(width: 5,)
+
+
+            //logout button
             IconButton(onPressed: (){
               my_user.clearUser();
               Route route =
@@ -66,7 +66,9 @@ class _MyPageState extends State<MyPage> {
           ],
         ),
       ),
-      body: StreamBuilder(
+
+      body:
+      StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection("user_info")
             .where('email', isEqualTo: useremail)
@@ -90,9 +92,6 @@ class _MyPageState extends State<MyPage> {
                 snapshot.data.docs[num]['nickname'],
                 snapshot.data.docs[num]['age']);
             }
-
-
-
           if(isLogin) {
             return ListView.builder(
             itemCount: 1,
@@ -150,11 +149,11 @@ Widget buildUserInfo(String imgPath, String userName, String shortSen){
                   ],
                 ),
                 const SizedBox(height: 30),
-                Container(color: Colors.pink[200],height: 1,width: 380,),
+                Container(color: Colors.grey[200],height: 1,width: 380,),
                 const SizedBox(height: 10),
                 NumbersWidget(),
                 const SizedBox(height: 10),
-                Container(color: Colors.pink[200],height: 1,width: 380,),
+                Container(color: Colors.grey[200],height: 1,width: 380,),
                 SizedBox(height: 10,),
                 Row(
                   children: [
@@ -233,7 +232,6 @@ Widget buildUserInfo(String imgPath, String userName, String shortSen){
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
             Text(
               name,
               style: TextStyle(fontSize: 12, height: 1.4, fontFamily: 'NanumBarun'),

@@ -1,9 +1,13 @@
+//library
 import 'package:flutter/material.dart';
-import 'package:fp_review_service_hookilg/screen/search.dart';
-import 'package:fp_review_service_hookilg/widget/bottom_bar.dart';
-import 'favorites.dart';
+
+//local path
+import '../widget/bottom_bar.dart';
 import 'home.dart';
+import 'search.dart';
+import 'favorites.dart';
 import 'my_page.dart';
+import 'my_page_test.dart';
 
 
 class FirstHome extends StatefulWidget {
@@ -22,7 +26,7 @@ class _FirstHome extends State<FirstHome> {
             Home(),
             Search(),
             favoriteLsit(),
-            MyPage(),
+            myPageTest(),
           ],
         ),
         bottomNavigationBar: BottomBar(),

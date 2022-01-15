@@ -55,6 +55,8 @@ class _searchResultState extends State<searchResult> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
           title: Text("\"" + searchText + "\"의 검색결과",
               style: TextStyle(
                   color: Colors.grey[800],
@@ -81,8 +83,6 @@ class _searchResultState extends State<searchResult> {
               ),
             ),
           ],
-          backgroundColor: Colors.white,
-          shadowColor: Colors.pink[200],
         ),
         body: FutureBuilder(
             future: fetch(),
@@ -93,13 +93,11 @@ class _searchResultState extends State<searchResult> {
               return ListView.builder(
                   itemCount: result.length,
                   itemBuilder: (context, int index) {
-
                     return SingleChildScrollView(
                       child: Card(
-                        shadowColor: Colors.pink[100],
-                        elevation: 6,
+                        elevation: 1,
                         margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            EdgeInsets.symmetric(vertical: 4, horizontal: 0),
                         child: GestureDetector(
                           onTap: (){
                             Navigator.push(

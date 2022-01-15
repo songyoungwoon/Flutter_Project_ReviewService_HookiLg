@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/page/login/login_page.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
+import 'package:fp_review_service_hookilg/screen/my_page_test.dart';
 
 import 'widget/bottom_bar.dart';
 import 'screen/home.dart';
@@ -33,6 +35,8 @@ class _MyAppState extends State<MyApp> {
         accentColor: Colors.black12,
       ),
       home: WelcomeScreen(),
+      //Login(),
+      //myPageTest(),
     );
   }
 }

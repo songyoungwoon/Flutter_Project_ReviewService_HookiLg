@@ -1,6 +1,5 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:fp_review_service_hookilg/page/showReview_page.dart';
 
 
 class favoriteLsit extends StatefulWidget {
@@ -33,6 +32,8 @@ class _favoriteLsitState extends State<favoriteLsit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
         title: Text('My Favorite',
         style: TextStyle(
             color: Colors.grey[800],
@@ -42,10 +43,11 @@ class _favoriteLsitState extends State<favoriteLsit> {
           ),
         ),
         leading: Icon(Icons.favorite, color: Colors.pink[300],),
-        backgroundColor: Colors.white,
-        shadowColor: Colors.pink[200],
+
       ),
-      body: ListView.builder(
+      body: Container(
+        color: Colors.white,
+        child:ListView.builder(
         // padding: EdgeInsets.all(8),
         itemCount: titles.length,
         itemBuilder: (BuildContext context,int index){
@@ -93,7 +95,7 @@ class _favoriteLsitState extends State<favoriteLsit> {
           );
           
         },
-        
+      ),
       ),
     );
   }

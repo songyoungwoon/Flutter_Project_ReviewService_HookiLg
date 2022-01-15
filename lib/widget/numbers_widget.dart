@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class NumbersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
-
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           buildButton(context, '0', '  Lv. '),

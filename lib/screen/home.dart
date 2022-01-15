@@ -15,7 +15,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Container(
+        color: Colors.white,
         child: ListView(children: [
           IconButton(
             onPressed: () {

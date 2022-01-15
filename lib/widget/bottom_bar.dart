@@ -1,5 +1,8 @@
+//library
 import 'package:flutter/material.dart';
-import '../page/showReview_page.dart';
+
+//local path
+
 class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
