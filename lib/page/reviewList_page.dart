@@ -1,9 +1,11 @@
+//library
 // import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 
+//local path
+import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/screen/my_page.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
 
@@ -13,6 +15,7 @@ import 'writeReviewTest_page.dart';
 // import 'showReview_page.dart';
 import 'showReviewTest_page.dart';
 import '../screen/fristhome.dart';
+import 'login/login_page.dart';
 
 class reviewList extends StatefulWidget {
   String movie_title = '';
@@ -37,6 +40,9 @@ class _reviewListState extends State<reviewList> {
   bool endingAnalysisIstrue = true;
   bool thumbnailIstrue = false;
 
+  final _valueList = ['인기순', '최신순'];
+  var _selectedValue = '인기순';
+
   _reviewListState(this.movie_title, this.movie_director);
 
   int a = add(5);
@@ -47,17 +53,17 @@ class _reviewListState extends State<reviewList> {
       appBar: AppBar(
         elevation: 0,
         title: Text(
-          'Review Board',
+          'Review',
           style: TextStyle(
               color: Colors.grey[800],
-              fontWeight: FontWeight.bold,
-              fontSize: 26,
+              fontWeight: FontWeight.w600,
+              fontSize: 15,
               fontFamily: 'EliceDigitalBaeum'),
         ),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Color(0xFFF06292),
+            color: Colors.black26,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -99,7 +105,7 @@ class _reviewListState extends State<reviewList> {
           return ListView.builder(
             itemCount: snapshot.data.docs.length,
             itemBuilder: (ctx, index) {
-              //method
+              //Routing method
               MaterialPageRoute gotoShowReview() {
                 return MaterialPageRoute(
                     builder: (context) => showReviewTest(
@@ -109,126 +115,175 @@ class _reviewListState extends State<reviewList> {
               }
 
               // 리뷰 유저 정보 받아와야됨
-              return Card(
-                elevation: 0,
-                margin: EdgeInsets.symmetric(vertical: 6, horizontal: 0),
-                child: Container(
-                  child: Column(
-                    children: [
-                      // user profile
-                      Container(
-                        padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
-                        child: Row(
+
+              // arrange bar boolean
+              bool isFirstTrue = false;
+              if (index == 0) {
+                isFirstTrue = true;
+              }
+              return Container(
+                child: Column(
+                  children: [
+                    // arrange dropdown
+                    isFirstTrue
+                        ? Padding(
+                            padding: EdgeInsets.only(right: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                DropdownButton(
+                                    value: _selectedValue,
+                                    items: _valueList.map(
+                                      (value) {
+                                        return DropdownMenuItem(
+                                          value: value,
+                                          child: Text(
+                                            value,
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                        );
+                                      },
+                                    ).toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _selectedValue = value.toString();
+                                      });
+                                    })
+                              ],
+                            ),
+                          )
+                        : Container(),
+
+                    // review list
+                    Card(
+                      elevation: 0,
+                      margin: EdgeInsets.symmetric(vertical: 6, horizontal: 0),
+                      child: Container(
+                        child: Column(
                           children: [
-                            CircleAvatar(
-                              radius: 15,
-                              backgroundImage: NetworkImage(
-                                  snapshot.data.docs[index]['imagePath']),
-                              backgroundColor: Colors.amber[600],
-                            ),
+                            // user profile
                             Container(
-                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
+                              child: Row(
                                 children: [
-                                  Text(
-                                    snapshot.data.docs[index]['user_name'],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                        fontFamily: 'NanumBarun'),
+                                  CircleAvatar(
+                                    radius: 15,
+                                    backgroundImage: NetworkImage(
+                                        snapshot.data.docs[index]['imagePath']),
+                                    backgroundColor: Colors.amber[600],
                                   ),
-                                  SizedBox(
-                                    height: 5,
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          snapshot.data.docs[index]
+                                              ['user_name'],
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                              fontFamily: 'NanumBarun'),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          'Lv',
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontFamily: 'NanumBarun'),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Text(
-                                    'Lv',
-                                    style: TextStyle(
-                                        fontSize: 10, fontFamily: 'NanumBarun'),
+                                  Expanded(child: SizedBox()),
+                                  Container(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          snapshot.data.docs[index]
+                                              ['date_time'],
+                                          style: TextStyle(fontSize: 8),
+                                        ),
+                                        Padding(padding: EdgeInsets.all(5)),
+                                        spoilerIstrue
+                                            ? Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.circle,
+                                                    size: 6,
+                                                    color: Colors.red,
+                                                  ),
+                                                  Text(
+                                                    '스포포함',
+                                                    style:
+                                                        TextStyle(fontSize: 8),
+                                                  )
+                                                ],
+                                              )
+                                            : Container(),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
-                            Expanded(child: SizedBox()),
+
+                            // line
                             Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    snapshot.data.docs[index]['date_time'],
-                                    style: TextStyle(fontSize: 8),
-                                  ),
-                                  Padding(padding: EdgeInsets.all(5)),
-                                  spoilerIstrue
-                                      ? Row(
-                                          children: [
-                                            Icon(
-                                              Icons.circle,
-                                              size: 6,
-                                              color: Colors.red,
-                                            ),
-                                            Text(
-                                              '스포포함',
-                                              style: TextStyle(fontSize: 8),
-                                            )
-                                          ],
-                                        )
-                                      : Container(),
-                                ],
-                              ),
+                              width: 350,
+                              height: 0.1,
+                              color: Colors.grey,
                             ),
+
+                            // review title
+                            Container(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                alignment: Alignment.centerLeft,
+                                child: TextButton(
+                                  child: Text(
+                                    snapshot.data.docs[index]['review_title'],
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(context, gotoShowReview());
+                                  },
+                                )),
+
+                            // review brief
+                            Container(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                alignment: Alignment.centerLeft,
+                                child: TextButton(
+                                  child: Text(
+                                    snapshot.data.docs[index]['review_brief'],
+                                    style: TextStyle(
+                                        fontSize: 13, color: Colors.black),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(context, gotoShowReview());
+                                  },
+                                )),
+
+                            Padding(padding: EdgeInsets.only(top: 10)),
+                            // review image
                           ],
                         ),
                       ),
-
-                      // line
-                      Container(
-                        width: 350,
-                        height: 0.1,
-                        color: Colors.grey,
-                      ),
-
-                      // review title
-                      Container(
-                          padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                          alignment: Alignment.centerLeft,
-                          child: TextButton(
-                            child: Text(
-                              snapshot.data.docs[index]['review_title'],
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            onPressed: () {
-                              Navigator.push(context, gotoShowReview());
-                            },
-                          )),
-
-
-                      // review brief
-                      Container(
-                          padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                          alignment: Alignment.centerLeft,
-                          child: TextButton(
-                            child: Text(
-                              snapshot.data.docs[index]['review_brief'],
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.black),
-                            ),
-                            onPressed: () {
-                              Navigator.push(context, gotoShowReview());
-                            },
-                          )),
-
-
-                      Padding(padding: EdgeInsets.only(top: 10)),
-                      // review image
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               );
             },
           );
         },
       ),
+
+      // review create button
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           print(my_user.email);
@@ -265,7 +320,7 @@ class _reviewListState extends State<reviewList> {
                           context,
                           MaterialPageRoute(
                               // builder: (context) => writeReview(movie_title, movie_director)),
-                              builder: (context) => WelcomeScreen()),
+                              builder: (context) => Login()),
                         );
                       },
                     ),
@@ -285,16 +340,18 @@ class _reviewListState extends State<reviewList> {
         label: const Text(
           '리뷰작성',
           style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
+              color: Colors.black,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
               fontFamily: 'NanumBarun'),
         ),
         icon: const Icon(
           Icons.create,
-          color: Colors.white,
+          color: Colors.black,
+          size: 12,
         ),
-        backgroundColor: Colors.pink[300],
+        backgroundColor: Colors.white,
+        hoverColor: Colors.black,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
