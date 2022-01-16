@@ -8,7 +8,7 @@ import 'package:fp_review_service_hookilg/components/rounded_password_field.dart
 import 'package:fp_review_service_hookilg/screen/Signup/signup_screen.dart';
 import 'package:fp_review_service_hookilg/screen/fristhome.dart';
 
-import 'package:fp_review_service_hookilg/model/user_mypage.dart';
+import 'package:fp_review_service_hookilg/model/user_info.dart';
 
 UserInformation my_user = UserInformation('', '', '', '', '', '');
 

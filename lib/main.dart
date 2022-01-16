@@ -37,10 +37,10 @@ class _MyAppState extends State<MyApp> {
         accentColor: Colors.black12,
       ),
       home:
-      reviewList.reviewListInfo('기생충', '봉준호'),
+      //reviewList.reviewListInfo('기생충', '봉준호'),
       //writeReviewTest('기생충', '봉준호'),
       //WelcomeScreen(),
-      //Login(),
+      Login(),
       //myPageTest(),
     );
   }

@@ -95,13 +95,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
           },
         ),
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.photo_album,
-              color: Colors.black38,
-            ),
-            onPressed: () {},
-          ),
+          // save button
           IconButton(
             icon: Icon(
               Icons.save,
@@ -176,7 +170,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
         elevation: 0,
       ),
       body: Container(
-        //color: Colors.white,
+        color: Colors.white,
         child: Container(
           child: Column(
             children: [
@@ -235,7 +229,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
               ),
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  margin: EdgeInsets.fromLTRB(20, 15, 20, 0),
                   child: fq.QuillEditor.basic(
                     controller: _controller,
                     readOnly: false, // true for view only mode

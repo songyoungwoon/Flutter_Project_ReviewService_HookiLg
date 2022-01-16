@@ -1,9 +1,18 @@
 //library
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fp_review_service_hookilg/model/user_info.dart';
+
+//firebase
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //local path
 import '../../constants.dart';
+import '../../screen/fristhome.dart';
+import 'authentication.dart';
+import 'signup_page.dart';
+
+UserInformation user_info = UserInformation('', '', '', '', '', '');
 
 class Login extends StatefulWidget {
   @override
@@ -50,15 +59,15 @@ class _LoginState extends State<Login> {
             Padding(padding: EdgeInsets.all(30)),
             SvgPicture.asset(
               "images/icons/chat.svg",
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.20,
             ),
-            Padding(padding: EdgeInsets.all(20)),
+            Padding(padding: EdgeInsets.all(10)),
 
             // email text field
             Padding(padding: EdgeInsets.all(5)),
             Container(
               width: 300,
-              height: 55,
+              height: 45,
               padding: EdgeInsets.all(10),
               child: Center(
                 child: TextField(
@@ -76,10 +85,11 @@ class _LoginState extends State<Login> {
             Padding(padding: EdgeInsets.all(5)),
             Container(
               width: 300,
-              height: 55,
+              height: 45,
               padding: EdgeInsets.all(10),
               child: Center(
                 child: TextField(
+                  obscureText: true,
                   controller: _passwordController,
                   style: TextStyle(color: Colors.black),
                   //onChanged: onChanged,
@@ -90,23 +100,48 @@ class _LoginState extends State<Login> {
               decoration: _textFieldBoxDecoration(),
             ),
 
-            // press button
+            // press login button
             Padding(padding: EdgeInsets.all(5)),
             Container(
               child: MaterialButton(
-                minWidth: 150,
-                height: 50,
-                color: Colors.pink[200],
+                minWidth: 120,
+                height: 35,
+                color: Colors.white,
                 child: Text('로그인'),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)),
-                onPressed: () {},
+                onPressed: () {
+                  AuthenticationHelper()
+                      .signIn(
+                          email: _emailController.text,
+                          password: _passwordController.text)
+                      .then((result) {
+                    if (result == null) {
+                      final usercol = FirebaseFirestore.instance.collection("user_info").doc().get().then((value) =>
+                      {
+                        print(value.data())
+                      }
+                      );
+                          //.where('email', isEqualTo: _emailController.text).get();
+
+
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => FirstHome()));
+                    } else {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          result,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ));
+                    }
+                  });
+                },
               ),
             ),
 
             // no login textbutton
             Padding(padding: EdgeInsets.all(5)),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -115,11 +150,17 @@ class _LoginState extends State<Login> {
                     '로그인 없이 이용하기',
                     style: _textButtonStyle(),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => FirstHome()));
+                  },
                 ),
 
                 Padding(padding: EdgeInsets.all(1)),
-                Text('/', style: _textButtonStyle(),),
+                Text(
+                  '/',
+                  style: _textButtonStyle(),
+                ),
                 Padding(padding: EdgeInsets.all(1)),
 
                 // sign up text button
@@ -128,7 +169,10 @@ class _LoginState extends State<Login> {
                     '회원가입',
                     style: _textButtonStyle(),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => SignUp()));
+                  },
                 ),
               ],
             ),
@@ -138,14 +182,13 @@ class _LoginState extends State<Login> {
     );
   }
 
-
-
   // common methods :: Decoration & Style
   InputDecoration _textFieldDecoration(hintText, icon) {
     return InputDecoration(
       icon: Icon(
         icon,
         color: Colors.amber[500],
+        size: 15,
       ),
       hintText: hintText,
       hintStyle: _textFieldStyle(),
@@ -155,7 +198,7 @@ class _LoginState extends State<Login> {
 
   BoxDecoration _textFieldBoxDecoration() {
     return BoxDecoration(
-      color: Colors.pink[50],
+      color: Colors.white,
       borderRadius: BorderRadius.circular(50.0),
     );
   }
@@ -164,7 +207,7 @@ class _LoginState extends State<Login> {
     return TextStyle(
         color: Colors.black38,
         fontWeight: FontWeight.bold,
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'EliceDigitalBaeum');
   }
 
@@ -172,9 +215,7 @@ class _LoginState extends State<Login> {
     return TextStyle(
         color: Colors.indigo[300],
         fontWeight: FontWeight.bold,
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'EliceDigitalBaeum');
   }
-
-
 }

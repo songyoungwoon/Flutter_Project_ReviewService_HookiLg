@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //local path
 import '../page/editProfile.dart';
 import '../page/login/login_page.dart';
+import '../page/login/authentication.dart';
 
 class myPageTest extends StatefulWidget {
   const myPageTest({Key? key}) : super(key: key);
@@ -46,6 +47,7 @@ class _myPageTestState extends State<myPageTest> {
             ),
             onPressed: () {
               //my_user.clearUser();
+              AuthenticationHelper().signOut();
               Route route = MaterialPageRoute(builder: (context) => Login());
               Navigator.pushReplacement(context, route);
             },

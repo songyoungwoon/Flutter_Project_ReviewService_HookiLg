@@ -16,6 +16,7 @@ import 'writeReviewTest_page.dart';
 import 'showReviewTest_page.dart';
 import '../screen/fristhome.dart';
 import 'login/login_page.dart';
+import '../page/login/authentication.dart';
 
 class reviewList extends StatefulWidget {
   String movie_title = '';
@@ -292,7 +293,9 @@ class _reviewListState extends State<reviewList> {
                                 )),
 
                             Padding(padding: EdgeInsets.only(top: 10)),
+
                             // review image
+
                           ],
                         ),
                       ),
@@ -308,8 +311,7 @@ class _reviewListState extends State<reviewList> {
       // review create button
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
-          print(my_user.email);
-          if (my_user.email != '') {
+          if (isLogin == true) {
             Navigator.push(
               context,
               MaterialPageRoute(

@@ -6,9 +6,9 @@ import 'package:fp_review_service_hookilg/page/editProfile.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
-import 'package:fp_review_service_hookilg/model/user_mypage.dart';
+import 'package:fp_review_service_hookilg/model/user_info.dart';
 
-import '../model/user_mypage.dart';
+import '../model/user_info.dart';
 
 class MyPage extends StatefulWidget {
   @override
