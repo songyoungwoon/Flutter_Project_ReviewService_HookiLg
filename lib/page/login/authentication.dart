@@ -13,7 +13,6 @@ class AuthenticationHelper {
   Future signIn({required String email, required String password}) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      print(isLogin);
       isLogin = true;
       useremail = email;
 

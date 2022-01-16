@@ -8,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 //local path
-import 'authentication.dart';
 import 'login_page.dart';
 
 class SignUp extends StatefulWidget {
@@ -189,7 +188,7 @@ class _SignUpState extends State<SignUp> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Login(); //메인페이지로 이동하게 변경
+                            return Login();
                           },
                         ),
                       );

@@ -117,7 +117,7 @@ class _LoginState extends State<Login> {
                           password: _passwordController.text)
                       .then((result) {
                     if (result == null) {
-                      final usercol = FirebaseFirestore.instance.collection("user_info").doc().get().then((value) =>
+                      final usercol = FirebaseFirestore.instance.collection("user_info").doc(_emailController.text).get().then((value) =>
                       {
                         print(value.data())
                       }
