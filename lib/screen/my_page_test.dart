@@ -65,15 +65,16 @@ class _myPageTestState extends State<myPageTest> {
                 alignment: Alignment.center,
                 child: CircleAvatar(
                   radius: 50,
+                  backgroundImage: NetworkImage(user_info.imagePath),
                 ),
               ),
 
-              // name
+              // nickname
               Container(
                   padding: EdgeInsets.all(10),
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    'name',
+                    user_info.nickname,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                   )),
 
@@ -90,7 +91,7 @@ class _myPageTestState extends State<myPageTest> {
                   Expanded(
                     flex: 3,
                     child: Container(
-                        alignment: Alignment.center, child: Text('Lv')),
+                        alignment: Alignment.center, child: Text(user_info.level.toString()+' '+'Lv')),
                   ),
                   Container(
                     color: Colors.grey[200],
@@ -101,7 +102,7 @@ class _myPageTestState extends State<myPageTest> {
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Text('팔로워'),
+                      child: Text((user_info.follower.length-1).toString()+' '+'팔로워'),
                     ),
                   ),
                   Container(
@@ -113,7 +114,7 @@ class _myPageTestState extends State<myPageTest> {
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Text('팔로잉'),
+                      child: Text((user_info.following.length-1).toString()+' '+'팔로잉'),
                     ),
                   ),
                 ],

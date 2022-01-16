@@ -12,7 +12,7 @@ import '../../screen/fristhome.dart';
 import 'authentication.dart';
 import 'signup_page.dart';
 
-UserInformation user_info = UserInformation('', '', '', '', '', '');
+UserInformation user_info = UserInformation();
 
 class Login extends StatefulWidget {
   @override
@@ -117,13 +117,23 @@ class _LoginState extends State<Login> {
                           password: _passwordController.text)
                       .then((result) {
                     if (result == null) {
-                      final usercol = FirebaseFirestore.instance.collection("user_info").doc(_emailController.text).get().then((value) =>
-                      {
-                        print(value.data())
-                      }
-                      );
-                          //.where('email', isEqualTo: _emailController.text).get();
-
+                      final usercol = FirebaseFirestore.instance
+                          .collection("user_info")
+                          .doc(_emailController.text)
+                          .get()
+                          .then((value) => {
+                                user_info.setUserInfo(
+                                    value['email'],
+                                    value['name'],
+                                    value['birthdate'],
+                                    value['nickname'],
+                                    value['about'],
+                                    value['level'],
+                                    value['imagePath'],
+                                    value['follower'],
+                                    value['following'],
+                                    value['review'])
+                              });
 
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => FirstHome()));

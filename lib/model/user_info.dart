@@ -1,27 +1,28 @@
 class UserInformation {
-  String imagePath = '';
-  String name = '';
   String email = '';
-  String about = '';
+  String name = '';
+  String birthdate = '';
   String nickname = '';
-  String age = '';
+  String about = '';
+  int level = 0;
+  String imagePath = '';
+  List follower = [];
+  List following = [];
+  List review = [];
 
-  UserInformation(
-    this.imagePath,
-      this.name,
-    this.email,
-    this.about,
-    this.age,
-    this.nickname
-  );
+  UserInformation();
 
-  void setUserInfo(String imagePath, String name, String email, String about, String nickname, String age){
-    this.imagePath = imagePath;
-    this.name = name;
+  void setUserInfo(String email, String name, String birthdate, String nickname, String about, int level, String imagePath, List follower, List following, List review){
     this.email = email;
-    this.about = about;
+    this.name = name;
+    this.birthdate = birthdate;
     this.nickname = nickname;
-    this.age = age;
+    this.about = about;
+    this.imagePath = imagePath;
+    this.level = level;
+    this.follower = follower;
+    this.following = following;
+    this.review = review;
   }
 
   void clearUser(){
@@ -30,8 +31,7 @@ class UserInformation {
     this.email = '';
     this.about = '';
     this.nickname = '';
-    this.age = '';
-
+    this.birthdate = '';
   }
   //
 

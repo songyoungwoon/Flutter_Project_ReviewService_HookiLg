@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fp_review_service_hookilg/page/login/login_page.dart';
 
 import '../screen/my_page.dart';
 
@@ -11,10 +12,10 @@ class editProfile extends StatefulWidget {
 }
 
 class _editProfileState extends State<editProfile> {
-  String changed_name = my_user.name;
-  String changed_age = my_user.age;
-  String changed_about = my_user.about;
-  String changed_imagePath = my_user.imagePath;
+  String changed_name = user_info.name;
+  String changed_birthdate = user_info.birthdate;
+  String changed_about = user_info.about;
+  String changed_imagePath = user_info.imagePath;
 
   @override
   void update() {}
@@ -60,7 +61,7 @@ class _editProfileState extends State<editProfile> {
               ),
             ),
             onChanged: (value) {
-              changed_age = value;
+              changed_birthdate = value;
             },
           ),
           Text('변경할 상태 메세지를 입력하세요.'),

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/components/authentication.dart';
 import 'package:fp_review_service_hookilg/page/editProfile.dart';
+import 'package:fp_review_service_hookilg/page/login/login_page.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/widget/numbers_widget.dart';
 import 'package:fp_review_service_hookilg/widget/profile_widget.dart';
@@ -15,7 +16,6 @@ class MyPage extends StatefulWidget {
   _MyPageState createState() => _MyPageState();
 }
 
-UserInformation my_user = UserInformation('', '', '', '', '', '');
 String anonymousImgPath ='https://firebasestorage.googleapis.com/v0/b/reviewservicehookilg.appspot.com/o/profile.jpg?alt=media&token=f76f7985-5f5d-44d1-8689-f507c41558aa';
 
 List<String> titles =<String>[
@@ -57,7 +57,7 @@ class _MyPageState extends State<MyPage> {
 
             //logout button
             IconButton(onPressed: (){
-              my_user.clearUser();
+              user_info.clearUser();
               Route route =
                 MaterialPageRoute(builder: (context) => WelcomeScreen());
               Navigator.pushReplacement(context, route);
@@ -84,13 +84,6 @@ class _MyPageState extends State<MyPage> {
             return Center(child: Text("loading"));
           }
           if(isLogin) {
-            my_user.setUserInfo(
-                snapshot.data.docs[num]['imagePath'],
-                snapshot.data.docs[num]['name'],
-                snapshot.data.docs[num]['email'],
-                snapshot.data.docs[num]['about'],
-                snapshot.data.docs[num]['nickname'],
-                snapshot.data.docs[num]['age']);
             }
           if(isLogin) {
             return ListView.builder(

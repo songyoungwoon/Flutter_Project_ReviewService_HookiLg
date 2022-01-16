@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as fq;
+import 'package:fp_review_service_hookilg/page/login/login_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -138,10 +139,10 @@ class _writeReviewTestState extends State<writeReviewTest> {
                           usercol.set({
                             "movie_title": "$movie_title",
                             "movie_director": "$movie_director",
-                            "user_email": my_user.email,
-                            "user_name": my_user.name,
+                            "user_email": user_info.email,
+                            "user_name": user_info.name,
                             //"user_level":my_user.level,
-                            "imagePath": my_user.imagePath,
+                            "imagePath": user_info.imagePath,
                             "review_title": "$review_title",
                             "review_brief": "$review_brief",
                             "review_content": "$json",

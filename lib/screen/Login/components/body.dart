@@ -10,7 +10,7 @@ import 'package:fp_review_service_hookilg/screen/fristhome.dart';
 
 import 'package:fp_review_service_hookilg/model/user_info.dart';
 
-UserInformation my_user = UserInformation('', '', '', '', '', '');
+UserInformation my_user = UserInformation();
 
 class Body extends StatelessWidget {
   Body({
