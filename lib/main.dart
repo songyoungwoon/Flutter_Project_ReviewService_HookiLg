@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fp_review_service_hookilg/page/login/login_page.dart';
+import 'package:fp_review_service_hookilg/page/reviewList_page.dart';
+import 'package:fp_review_service_hookilg/page/writeReviewTest_page.dart';
 import 'package:fp_review_service_hookilg/screen/Welcome/welcome_screen.dart';
 import 'package:fp_review_service_hookilg/screen/my_page_test.dart';
 
@@ -34,7 +36,10 @@ class _MyAppState extends State<MyApp> {
         primaryColor: Colors.white,
         accentColor: Colors.black12,
       ),
-      home: WelcomeScreen(),
+      home:
+      reviewList.reviewListInfo('기생충', '봉준호'),
+      //writeReviewTest('기생충', '봉준호'),
+      //WelcomeScreen(),
       //Login(),
       //myPageTest(),
     );

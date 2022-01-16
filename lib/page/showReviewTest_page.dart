@@ -70,6 +70,7 @@ class _showReviewTestState extends State<showReviewTest> {
                   onPressed: () {},
                 )
               : Text(''),
+          IconButton(icon: Icon(Icons.ios_share), color: Colors.black38, onPressed: () {}),
         ],
         backgroundColor: Colors.white,
         elevation: 0,
@@ -162,12 +163,25 @@ class _showReviewTestState extends State<showReviewTest> {
                       padding: EdgeInsets.zero,
                     ),
                   ),
-
                 ],
               ),
             ),
           );
         },
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          children: [
+            IconButton(icon: Icon(Icons.comment_outlined), onPressed: () {}),
+            Spacer(),
+            IconButton(
+              icon: Icon(Icons.favorite_outline_sharp),
+              onPressed: () {},
+            ),
+            Text('5'),
+            Padding(padding: EdgeInsets.all(5)),
+          ],
+        ),
       ),
     );
   }

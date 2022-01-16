@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import '../page/searchResult_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
