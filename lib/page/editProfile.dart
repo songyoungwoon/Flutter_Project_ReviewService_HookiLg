@@ -57,9 +57,8 @@ class _editProfileState extends State<editProfile> {
           ),
           onPressed: () {
             // 수정 취소
-            if(isprofilePick == true)
-              deleteUpload(_changed_imagePath);
-            if(isbackgroundPick == true)
+            if (isprofilePick == true) deleteUpload(_changed_imagePath);
+            if (isbackgroundPick == true)
               deleteUpload(_changed_backgroundimagePath);
 
             Navigator.pop(context);
@@ -75,19 +74,22 @@ class _editProfileState extends State<editProfile> {
             ),
             onPressed: () {
               // 저장시 DB 처리
-              if(_changed_nickname == '') _changed_nickname = user_info.nickname;
-              if(_changed_nickname == '') _changed_nickname = user_info.birthdate;
+              if (_changed_nickname == '')
+                _changed_nickname = user_info.nickname;
+              if (_changed_nickname == '')
+                _changed_nickname = user_info.birthdate;
 
-              void updatedata() {
-                final usercol = FirebaseFirestore.instance.collection("user_info").doc(user_info.email);
-                usercol.update({
-                  "nickname": _changed_nickname,
-                  "about": _changed_about,
-                  "birthdate": _changed_birthdate,
-                  "imagePath": _changed_imagePath,
-                  "backgroundimagePath": _changed_backgroundimagePath,
-                });
-              }
+              final usercol = FirebaseFirestore.instance
+                  .collection("user_info")
+                  .doc(user_info.email);
+              usercol.update({
+                "nickname": _changed_nickname,
+                "about": _changed_about,
+                "birthdate": _changed_birthdate,
+                "imagePath": _changed_imagePath,
+                "backgroundimagePath": _changed_backgroundimagePath,
+              });
+
               user_info.nickname = _changed_nickname;
               user_info.about = _changed_about;
               user_info.birthdate = _changed_birthdate;
@@ -236,23 +238,6 @@ class _editProfileState extends State<editProfile> {
                   ),
                 ],
               ),
-
-              /*
-              TextField(
-                    controller: _birthController,
-                    style: TextStyle(color: Colors.black),
-                    //onChanged: onChanged,
-                    cursorColor: Colors.black,
-                    decoration: _textFieldDecoration(
-                        'birthdate to 8 word', Icons.date_range_rounded),
-                  ),
-
-               Text(
-                  user_info.nickname,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                ),
-
-               */
 
               // edit nickname
               Container(

@@ -45,6 +45,11 @@ class _reviewListState extends State<reviewList> {
   final _valueList = ['인기순', '최신순'];
   var _selectedValue = '인기순';
 
+  // writer info
+  String writer_nickname = '';
+  int writer_level = 0;
+  String writer_imagePath = '';
+
   _reviewListState(this.movie_title, this.movie_director);
 
   @override
@@ -90,8 +95,8 @@ class _reviewListState extends State<reviewList> {
             .collection('review')
             .where("movie_title", isEqualTo: movie_title)
             .where("movie_director", isEqualTo: movie_director)
+            //.orderBy('date_time')
             .snapshots(),
-        // snapshot.data.docs[index]['title'],
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -115,6 +120,18 @@ class _reviewListState extends State<reviewList> {
               }
 
               // 리뷰 유저 정보 받아와야됨
+              void readdata() async {
+                final usercol = await FirebaseFirestore.instance
+                    .collection("user_info")
+                    .doc(snapshot.data.docs[index]['user_email'])
+                    .get()
+                    .then((value) => {
+                          writer_nickname = value['nickname'],
+                          writer_level = value['level'],
+                          writer_imagePath = value['imagePath']
+                        });
+              }
+              readdata();
 
               // arrange bar boolean
               bool isFirstTrue = false;
@@ -127,54 +144,55 @@ class _reviewListState extends State<reviewList> {
                     // arrange dropdown
                     isFirstTrue
                         ? Container(
-                      height: 60,
-                      alignment: Alignment.center,
-                      child:Padding(
-                            padding: EdgeInsets.only(right: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Stack(
-                                  children: [
-                                    Positioned(
-                                      bottom: 35,
-                                      right: 18,
-                                      child: Text(
-                                        '스포방지',
-                                        style: TextStyle(fontSize: 7),
+                            height: 60,
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Stack(
+                                    children: [
+                                      Positioned(
+                                        bottom: 35,
+                                        right: 18,
+                                        child: Text(
+                                          '스포방지',
+                                          style: TextStyle(fontSize: 7),
+                                        ),
                                       ),
-                                    ),
-                                    Switch(
-                                      value: _isChecked,
+                                      Switch(
+                                        value: _isChecked,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _isChecked = value;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  DropdownButton(
+                                      value: _selectedValue,
+                                      items: _valueList.map(
+                                        (value) {
+                                          return DropdownMenuItem(
+                                            value: value,
+                                            child: Text(
+                                              value,
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                          );
+                                        },
+                                      ).toList(),
                                       onChanged: (value) {
                                         setState(() {
-                                          _isChecked = value;
+                                          _selectedValue = value.toString();
                                         });
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                DropdownButton(
-                                    value: _selectedValue,
-                                    items: _valueList.map(
-                                      (value) {
-                                        return DropdownMenuItem(
-                                          value: value,
-                                          child: Text(
-                                            value,
-                                            style: TextStyle(fontSize: 12),
-                                          ),
-                                        );
-                                      },
-                                    ).toList(),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _selectedValue = value.toString();
-                                      });
-                                    }),
-                              ],
+                                      }),
+                                ],
+                              ),
                             ),
-                          ),)
+                          )
                         : Container(),
 
                     // review list
@@ -191,8 +209,8 @@ class _reviewListState extends State<reviewList> {
                                 children: [
                                   CircleAvatar(
                                     radius: 15,
-                                    backgroundImage: NetworkImage(
-                                        snapshot.data.docs[index]['imagePath']),
+                                    backgroundImage:
+                                        NetworkImage(writer_imagePath),
                                     backgroundColor: Colors.grey,
                                   ),
                                   Container(
@@ -202,8 +220,7 @@ class _reviewListState extends State<reviewList> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          snapshot.data.docs[index]
-                                              ['user_name'],
+                                          writer_nickname,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
                                               fontSize: 12,
@@ -213,7 +230,7 @@ class _reviewListState extends State<reviewList> {
                                           height: 5,
                                         ),
                                         Text(
-                                          'Lv',
+                                          writer_level.toString() + 'Lv',
                                           style: TextStyle(
                                               fontSize: 10,
                                               fontFamily: 'NanumBarun'),
@@ -228,12 +245,14 @@ class _reviewListState extends State<reviewList> {
                                           CrossAxisAlignment.end,
                                       children: [
                                         Text(
-                                          snapshot.data.docs[index]
-                                              ['date_time'],
+                                          snapshot.data.docs[index]['date_time']
+                                              .toDate()
+                                              .toString(),
                                           style: TextStyle(fontSize: 8),
                                         ),
                                         Padding(padding: EdgeInsets.all(5)),
-                                        spoilerIstrue
+                                        snapshot.data.docs[index]
+                                                ['review_spoiler']
                                             ? Row(
                                                 children: [
                                                   Icon(
@@ -295,7 +314,6 @@ class _reviewListState extends State<reviewList> {
                             Padding(padding: EdgeInsets.only(top: 10)),
 
                             // review image
-
                           ],
                         ),
                       ),

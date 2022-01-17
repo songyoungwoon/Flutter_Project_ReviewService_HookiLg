@@ -168,6 +168,7 @@ class _myPageTestState extends State<myPageTest> {
                 ],
               ),
 
+              /*
               // entire content  or  my category
               isEntireTrue
                   ? Container(
@@ -178,6 +179,7 @@ class _myPageTestState extends State<myPageTest> {
                       height: 40,
                       color: Colors.blue,
                     ),
+              */
             ],
           ),
         ),

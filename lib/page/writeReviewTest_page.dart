@@ -126,13 +126,6 @@ class _writeReviewTestState extends State<writeReviewTest> {
                           var json = jsonEncode(
                               _controller.document.toDelta().toJson());
                           // db 저장
-                          /*
-                          String imagePath;
-                          String name;
-                          String email;
-                          String about;
-                          String nickname;
-                          String age;      */
                           final usercol = FirebaseFirestore.instance
                               .collection("review")
                               .doc();
@@ -140,13 +133,13 @@ class _writeReviewTestState extends State<writeReviewTest> {
                             "movie_title": "$movie_title",
                             "movie_director": "$movie_director",
                             "user_email": user_info.email,
-                            "user_name": user_info.name,
-                            //"user_level":my_user.level,
-                            "imagePath": user_info.imagePath,
                             "review_title": "$review_title",
                             "review_brief": "$review_brief",
                             "review_content": "$json",
-                            "date_time": DateTime.now().toString(),
+                            "review_like":[''],
+                            "review_spoiler":false,
+                            "date_time": DateTime.now(),
+
                           });
                           Navigator.of(context).pop('YES');
                           Navigator.of(context).pop('YES');
