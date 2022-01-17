@@ -108,6 +108,7 @@ class _reviewListState extends State<reviewList> {
           }
 
           return ListView.builder(
+            scrollDirection: Axis.vertical,
             itemCount: snapshot.data.docs.length,
             itemBuilder: (ctx, index) {
               //Routing method
@@ -139,6 +140,7 @@ class _reviewListState extends State<reviewList> {
                 isFirstTrue = true;
               }
               return Container(
+                padding: EdgeInsets.only(bottom: 20),
                 child: Column(
                   children: [
                     // arrange dropdown
@@ -311,13 +313,34 @@ class _reviewListState extends State<reviewList> {
                                   },
                                 )),
 
-                            Padding(padding: EdgeInsets.only(top: 10)),
 
                             // review image
+                            Container(
+                              height: 100,
+                              color: Colors.white,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                physics: ClampingScrollPhysics(),
+                                itemCount:
+                                snapshot.data.docs[index]['review_images'].length,
+                                itemBuilder: (context, i) {
+                                  return Row(
+                                    children: [
+                                      Image(
+                                        image: NetworkImage(snapshot.data.docs[index]
+                                        ['review_images'][i]),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
+
                   ],
                 ),
               );

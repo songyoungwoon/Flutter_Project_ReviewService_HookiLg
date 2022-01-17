@@ -35,7 +35,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
   String movie_director = '';
   String review_title = '';
   String review_brief = '';
-
+  List<String> review_images = [];
 
 
   _writeReviewTestState(this.movie_title, this.movie_director);
@@ -138,6 +138,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
                             "review_content": "$json",
                             "review_like":[''],
                             "review_spoiler":false,
+                            "review_images":review_images,
                             "date_time": DateTime.now(),
 
                           });
@@ -246,6 +247,7 @@ class _writeReviewTestState extends State<writeReviewTest> {
     await uploadTask.whenComplete(() => null);
     final downloadUrl = await firebaseStorageRef.getDownloadURL();
 
+    review_images.add(downloadUrl);
     return downloadUrl;
     // Copies the picked file from temporary cache to applications directory
     /*

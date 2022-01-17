@@ -19,8 +19,7 @@ class _HomeState extends State<Home> {
         color: Colors.white,
         child: ListView(children: [
           IconButton(
-            onPressed: () {
-              },
+            onPressed: () {},
             icon: Icon(
               Icons.auto_stories,
               size: 40,
@@ -37,16 +36,17 @@ class _HomeState extends State<Home> {
                 autoPlayInterval: Duration(seconds: 3),
                 autoPlayAnimationDuration: Duration(milliseconds: 800),
                 height: 220.0),
-
-            items: [1,2,3
-            ].map((i) {
+            items: [1, 2, 3].map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(color: Colors.blueGrey[50],
-                      image: DecorationImage(image: AssetImage('images/ban_$i.jpg'),fit: BoxFit.cover)),
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    decoration: BoxDecoration(
+                        color: Colors.blueGrey[50],
+                        image: DecorationImage(
+                            image: AssetImage('images/ban_$i.jpg'),
+                            fit: BoxFit.cover)),
                   );
                 },
               );
@@ -70,12 +70,10 @@ class _HomeState extends State<Home> {
                     Text(
                       '이주의 베스트 리뷰어',
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'EliceDigitalBaeum'
-                      ),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'EliceDigitalBaeum'),
                     ),
-                    
                   ],
                 ),
                 SizedBox(height: 8),
@@ -101,8 +99,15 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 9,),
-                              Text((index + 1).toString() + '위',style: TextStyle(fontFamily: 'EliceDigitalBaeum',fontWeight: FontWeight.bold),),
+                              SizedBox(
+                                height: 9,
+                              ),
+                              Text(
+                                (index + 1).toString() + '위',
+                                style: TextStyle(
+                                    fontFamily: 'EliceDigitalBaeum',
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ],
                           ),
                         ),
@@ -113,7 +118,7 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          Padding(padding: EdgeInsets.only(bottom:13)),
+          Padding(padding: EdgeInsets.only(bottom: 13)),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,10 +135,9 @@ class _HomeState extends State<Home> {
                     Text(
                       ' 이주의 베스트 리뷰',
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'EliceDigitalBaeum'
-                      ),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'EliceDigitalBaeum'),
                     ),
                   ],
                 ),

@@ -28,7 +28,7 @@ class _showReviewTestState extends State<showReviewTest> {
   bool isEdit = false;
 
   // writer info
-  String writer_nickname = '';
+  String writer_nickname= '';
   int writer_level = 0;
   String writer_imagePath = '';
 
