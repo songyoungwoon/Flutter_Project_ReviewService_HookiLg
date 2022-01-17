@@ -61,22 +61,30 @@ class _myPageTestState extends State<myPageTest> {
             children: [
               //profile image
               Container(
-                padding: EdgeInsets.all(20),
+                height: 220,
+                padding: EdgeInsets.fromLTRB(20, 120, 20, 20),
                 alignment: Alignment.center,
                 child: CircleAvatar(
-                  radius: 50,
+                  radius: 40,
                   backgroundImage: NetworkImage(user_info.imagePath),
+                ),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(user_info.backgoundimagePath),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
 
               // nickname
               Container(
-                  padding: EdgeInsets.all(10),
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    user_info.nickname,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  )),
+                padding: EdgeInsets.all(10),
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  user_info.nickname,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                ),
+              ),
 
               // level follower following
               Container(
@@ -91,7 +99,8 @@ class _myPageTestState extends State<myPageTest> {
                   Expanded(
                     flex: 3,
                     child: Container(
-                        alignment: Alignment.center, child: Text(user_info.level.toString()+' '+'Lv')),
+                        alignment: Alignment.center,
+                        child: Text(user_info.level.toString() + ' ' + 'Lv')),
                   ),
                   Container(
                     color: Colors.grey[200],
@@ -102,7 +111,9 @@ class _myPageTestState extends State<myPageTest> {
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Text((user_info.follower.length-1).toString()+' '+'팔로워'),
+                      child: Text((user_info.follower.length - 1).toString() +
+                          ' ' +
+                          '팔로워'),
                     ),
                   ),
                   Container(
@@ -114,7 +125,9 @@ class _myPageTestState extends State<myPageTest> {
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Text((user_info.following.length-1).toString()+' '+'팔로잉'),
+                      child: Text((user_info.following.length - 1).toString() +
+                          ' ' +
+                          '팔로잉'),
                     ),
                   ),
                 ],

@@ -287,6 +287,8 @@ void createuserinfo(
     "level": 0,
     "imagePath":
         'https://firebasestorage.googleapis.com/v0/b/reviewservicehookilg.appspot.com/o/profile.jpg?alt=media&token=f76f7985-5f5d-44d1-8689-f507c41558aa',
+    "backgroundimagePath":
+        'https://firebasestorage.googleapis.com/v0/b/reviewservicehookilg.appspot.com/o/basicbackground.png?alt=media&token=9adb9468-2546-4a9c-82bb-99a0d92e771f',
     "follower": [''],
     "following": [''],
     "review": [''],

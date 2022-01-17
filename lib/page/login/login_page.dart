@@ -130,6 +130,7 @@ class _LoginState extends State<Login> {
                                     value['about'],
                                     value['level'],
                                     value['imagePath'],
+                                    value['backgroundimagePath'],
                                     value['follower'],
                                     value['following'],
                                     value['review'])

@@ -6,19 +6,21 @@ class UserInformation {
   String about = '';
   int level = 0;
   String imagePath = '';
+  String backgoundimagePath = '';
   List follower = [];
   List following = [];
   List review = [];
 
   UserInformation();
 
-  void setUserInfo(String email, String name, String birthdate, String nickname, String about, int level, String imagePath, List follower, List following, List review){
+  void setUserInfo(String email, String name, String birthdate, String nickname, String about, int level, String imagePath, String backgroundimagePath, List follower, List following, List review){
     this.email = email;
     this.name = name;
     this.birthdate = birthdate;
     this.nickname = nickname;
     this.about = about;
     this.imagePath = imagePath;
+    this.backgoundimagePath = backgroundimagePath;
     this.level = level;
     this.follower = follower;
     this.following = following;
