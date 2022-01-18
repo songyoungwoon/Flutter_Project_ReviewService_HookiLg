@@ -1,15 +1,17 @@
+//library
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-
-
-
 import 'package:http/http.dart' as http;
 import 'package:flutter_html/flutter_html.dart';
 
+//firebase
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+//local path
 // import '../main.dart';
 import 'reviewList_page.dart';
 import '../screen/fristhome.dart';
-
 
 class searchResult extends StatefulWidget {
   String searchText;
@@ -57,14 +59,14 @@ class _searchResultState extends State<searchResult> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: Text(searchText+' 검색 결과',
+          title: Text(searchText + ' 검색 결과',
               style: TextStyle(
                   color: Colors.grey[800],
                   fontWeight: FontWeight.bold,
                   fontFamily: 'EliceDigitalBaeum',
                   fontSize: 15)),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color:  Colors.black26),
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black26),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -77,8 +79,6 @@ class _searchResultState extends State<searchResult> {
                   Route route =
                       MaterialPageRoute(builder: (context) => FirstHome());
                   Navigator.pushReplacement(context, route);
-                 
-
                 },
               ),
             ),
@@ -99,11 +99,21 @@ class _searchResultState extends State<searchResult> {
                         margin:
                             EdgeInsets.symmetric(vertical: 4, horizontal: 0),
                         child: GestureDetector(
-                          onTap: (){
+                          onTap: () {
+                            final usercol = FirebaseFirestore.instance
+                                .collection("search_word")
+                                .doc(result[index]['title']);
+                            var data = usercol.get().then((value) => {
+                                  usercol.set({
+                                    "word":result[index]['title'],
+                                    "director":result[index]['director'],
+                                    "count": 1}),
+                                  usercol.update({'count': value['count'] + 1})
+                                });
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => reviewList.reviewListInfo(result[index]['title'],result[index]['director'],)),
+                                  builder: (context) => reviewList.reviewListInfo(result[index]['title'], result[index]['director'],)),
                             );
                           },
                           child: Container(
@@ -113,15 +123,15 @@ class _searchResultState extends State<searchResult> {
                                     child: get_urlIsNull(result[index]['image'])
                                         ? Image.asset(
                                             'images/noImage.png',
-                                            fit: BoxFit.cover, scale: 20,
+                                            fit: BoxFit.cover,
+                                            scale: 20,
                                           )
                                         : FadeInImage.assetNetwork(
                                             placeholder: 'images/loading.jpg',
                                             image: result[index]['image']
                                                 .toString(),
                                             fit: BoxFit.cover,
-                                          )
-                                ),
+                                          )),
                                 Container(
                                   width: 200,
                                   child: Column(
@@ -181,12 +191,10 @@ class _searchResultState extends State<searchResult> {
                         },
                       ),
                           */
-
                       ),
                     );
                   });
-            }
-            )
+            })
 
         /*
       body: Container(

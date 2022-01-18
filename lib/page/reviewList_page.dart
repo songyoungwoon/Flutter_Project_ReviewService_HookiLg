@@ -139,6 +139,13 @@ class _reviewListState extends State<reviewList> {
               if (index == 0) {
                 isFirstTrue = true;
               }
+
+              //review image true?
+              bool isreviewimageTrue = false;
+              if (snapshot.data.docs[index]['review_images'].length != 0){
+                isreviewimageTrue = true;
+              }
+              else isreviewimageTrue = false;
               return Container(
                 padding: EdgeInsets.only(bottom: 20),
                 child: Column(
@@ -315,7 +322,7 @@ class _reviewListState extends State<reviewList> {
 
 
                             // review image
-                            Container(
+                            isreviewimageTrue ? Container(
                               height: 100,
                               color: Colors.white,
                               child: ListView.builder(
@@ -334,6 +341,20 @@ class _reviewListState extends State<reviewList> {
                                     ],
                                   );
                                 },
+                              ),
+                            ):Container(),
+
+                            Container(
+                              color: Colors.white,
+                              height: 30,
+                              child: Row(
+                                children: [
+                                  IconButton(icon: Icon(Icons.favorite_outline_sharp),iconSize: 16,onPressed: (){}, ),
+                                  IconButton(icon: Icon(Icons.comment_outlined), iconSize: 16,onPressed: (){},),
+                                  Expanded(child: SizedBox()),
+                                  IconButton(icon: Icon(Icons.ios_share),iconSize: 16,onPressed: (){},),
+
+                                ],
                               ),
                             ),
                           ],
